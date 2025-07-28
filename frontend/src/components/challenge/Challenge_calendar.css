@@ -154,9 +154,8 @@
 .modal {
   background: #fff;
   border-radius: 18px;
-  padding: 24px 16px 16px 16px;
-  max-width: 90%;
-  width: 336px;
+  padding: 24px 32px 16px 32px;
+  width: 96%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   font-family: inherit;           /* 전역 폰트 상속 유지 */
@@ -202,9 +201,8 @@
 /* ----------------------------
    모달 버튼 공통
    ---------------------------- */
-.modal-backdrop .modal-buttons {display: flex; justify-content: space-between;}
+.modal-backdrop .modal-buttons {display: flex; justify-content: space-between; gap: 8px;}
 .modal button {
-  margin: 0 8px;
   padding: 13px 0;
   font-size: 15px;
   border-radius: 4px;
@@ -285,43 +283,193 @@
 
 
 
-.Month_common .particle {
-  position: absolute;
-  top: 32.5%; left: 65%;               /* 컨테이너 중앙 기준 */
-  width: 40px; height: 40px;
-  opacity: 0;
-  transform-origin: center center;    /* 회전 중심을 요소 중앙으로 */
 
-  /* 변수 정의 */
-  --start-angle: 0deg;       /* 입자별 시작 회전 각도 */
-  --rotations: 1;            /* 애니메이션 동안 돌릴 전체 회전 수 */
-  --end-distance: 150px;     /* 최종 이동 반경 */
 
-  animation: swirl-out 0.6s ease-out both;
-  animation-delay: 0.9s;     /* 필요에 따라 지연 시간 조절 */
+/* 출첵 애니메이션 */
+
+.fullscreen-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  pointer-events: none;
 }
 
-@keyframes swirl-out {
+.fullscreen-blur {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 2s ease;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.fullscreen-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  animation: check_slideUp2 0.4s ease both;
+}
+
+@keyframes check_slideUp2 {
+  0% {transform: translate(-50%, calc(-50% + 30px)); opacity: 0;}
+  100% {transform: translate(-50%, -50%); opacity: 1;}
+}
+
+.check_slideUp {
+  animation: check_slideUp 0.4s ease both;
+}
+
+@keyframes check_slideUp {
+  0% {transform: translateY(30px) ; opacity: 0;}
+  100% {transform: translateY(0); opacity: 1;}
+}
+
+.fullscreen-blur.fade-in {
+  opacity: 1;
+}
+
+.fullscreen-blur.fade-out {
+  opacity: 0;
+}
+
+/* 카운트업 애니메이션 */
+
+.point-bonus {
+  font-size: 27px;
+  font-weight: 500;
+  color: #ff4187;
+  animation: popUp 1.2s linear both;
+  opacity: 1;
+  white-space: nowrap;
+  width: 80px;
+}
+
+/* 카운트업 숫자 크기 */
+@keyframes popUp {
+  0%   { transform: scale(1);}
+  80%  { transform: scale(1); }
+  90%  { transform: scale(1.5);} /* 도장 떼는 순간 */
+  100% { transform: scale(1);}
+}
+
+
+/* 출석체크 포인트 아이콘 */
+img.pointCheck {height: 44px; width: 44px;}
+
+.check_cong {margin: 23px 13px; color: #fff; font-size: 17px; font-weight: 700;}
+
+
+.check_point {display: flex; align-items: center; justify-content: center;}
+.point_detail {color: #3d3d3d; font-size: 12px; font-weight: 500; margin-top: 4px;}
+
+/* 출석체크 스탬프 찍는 애니메이션 */
+.stampImgBox img {width: 149px; height: 149px;}
+.stampImgBox {display: inline-block; position: relative;}
+.stamp_gray {opacity: 0; animation: stamp_gray 0.8s;}
+.stamp_color {position: absolute; top: 0; left: 0; animation: stamp 0.8s ease both; animation-delay: 0.4s; z-index: 1000;}
+
+@keyframes stamp {
+  0% {opacity: 0; transform: scale(20) rotate(360deg);}
+  70% {opacity: 1; transform: scale(0.8);}
+  80% {transform: scale(0.8);}
+  90% {transform: scale(1.2);}
+  100% {opacity: 1; transform: scale(1);}
+}
+@keyframes stamp_gray {
   0% {opacity: 0;}
-  1% {
+  100% {opacity: 1;}
+}
+
+/* 블러가 사라질때 모든 객체 자연스럽게 삭제 */
+.fade-content {
+  animation: fadeContentOut 0.5s ease forwards;
+}
+
+@keyframes fadeContentOut {
+  0% {
     opacity: 1;
-    /* 시작: 각도가 var(--start-angle), 거리 0 */
-    transform: rotate(var(--start-angle)) translate(0) scale(1);
+  }
+  80% {
+    opacity: 0;
   }
   100% {
     opacity: 0;
-    /* 끝: var(--rotations)만큼 회전 + var(--end-distance)만큼 이동 + 축소 */
-    transform:
-      rotate(calc(var(--start-angle) + var(--rotations) * 135deg))
-      translate(var(--end-distance))
-      scale(0.1);
   }
 }
 
+
+/* 스탬프 찍었을때 파티클 애니메이션 */
+.particle {
+  position: absolute;
+  top: 25%;
+  left: 48%;
+  width: 30px;
+  height: 30px;
+  animation: particle-burst 1.4s forwards;
+  animation-timing-function: cubic-bezier(0.0, 0.0, 0.05, 1);
+  animation-delay: 0.9s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+
+.particle-container {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.Challenge_calendar .particle-0 {width: 12px; height: auto;}
+.Challenge_calendar .particle-1 {width: 17px; height: auto;}
+.Challenge_calendar .particle-2 {width: 13px; height: auto;}
+.Challenge_calendar .particle-3 {width: 10px; height: auto;}
+.Challenge_calendar .particle-4 {width: 12px; height: auto;}
+.Challenge_calendar .particle-5 {width: 12px; height: auto;}
+
+
 /* 각 입자마다 시작각도만 달리 지정 */
-.Month_common .particle-0 { --start-angle:   0deg; }
-.Month_common .particle-1 { --start-angle:  60deg; }
-.Month_common .particle-2 { --start-angle: 120deg; }
-.Month_common .particle-3 { --start-angle: 180deg; }
-.Month_common .particle-4 { --start-angle: 240deg; }
-.Month_common .particle-5 { --start-angle: 300deg; }
+.Challenge_calendar .particle-container_1 .particle-0 { --dx: -180px; --dy: -10px; --de :-360deg;}
+.Challenge_calendar .particle-container_1 .particle-1 { --dx:  -110px; --dy: -100px; --de :790deg;}
+.Challenge_calendar .particle-container_1 .particle-2 { --dx: -120px; --dy: -30px; --de :90deg;}
+.Challenge_calendar .particle-container_1 .particle-3 { --dx:  -140px; --dy: -50px; --de : 180deg;}
+.Challenge_calendar .particle-container_1 .particle-4 { --dx: -100px; --dy: -0px; --de : 236deg;}
+.Challenge_calendar .particle-container_1 .particle-5 { --dx:  -80px; --dy: -80px; --de : -235deg;}
+
+.Challenge_calendar .particle-container_2 .particle-0 { --dx: 100px; --dy: -100px; --de :-123deg;}
+.Challenge_calendar .particle-container_2 .particle-1 { --dx:  80px; --dy: -80px; --de :183deg;}
+.Challenge_calendar .particle-container_2 .particle-2 { --dx: 140px; --dy: -50px; --de :-268deg;}
+.Challenge_calendar .particle-container_2 .particle-3 { --dx:  150px; --dy: -10px; --de : 253deg;}
+.Challenge_calendar .particle-container_2 .particle-4 { --dx: 180px; --dy: -60px; --de :-156deg;}
+.Challenge_calendar .particle-container_2 .particle-5 { --dx:  140px; --dy: -80px; --de :760deg;}
+
+
+
+
+@keyframes particle-burst {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(2) rotate(0deg);
+  }
+  10% {
+    opacity: 0.8;
+    transform: scale(2) rotate(0deg);
+  
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * 1.4), calc(var(--dy) * 1.4)) rotate(var(--de)) scale(0.3);
+  }
+}
+
+

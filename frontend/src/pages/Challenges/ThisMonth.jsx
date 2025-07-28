@@ -24,10 +24,10 @@ import rank_IVE from '../../assets/Challenge/rank_IVE.png'
 // 팬덤랭크 유저 리스트 : 에스파
 import winter from '../../assets/Challenge/AespauserList/winter.png'
 import ticketing from '../../assets/Challenge/AespauserList/ticketing.png'
-import Karining from '../../assets/Challenge/AespauserList/karining.png'
+import karining from '../../assets/Challenge/AespauserList/karining.png'
 import mongmong from '../../assets/Challenge/AespauserList/mongmong.png'
 import next from '../../assets/Challenge/AespauserList/next.png'
-import Karidoong from '../../assets/Challenge/AespauserList/karidoong.png'
+import karidoong from '../../assets/Challenge/AespauserList/karidoong.png'
 import lightguide from '../../assets/Challenge/AespauserList/lightguide.png'
 import waitwinter from '../../assets/Challenge/AespauserList/waitwinter.png'
 import lovezizel from '../../assets/Challenge/AespauserList/lovezizel.png'
@@ -65,10 +65,10 @@ const initialFandomMap = {
   AESPA: [
     { imgSrc: winter, name: '순간의 윈터', value: '6,100 p', isMe: true },
     { imgSrc: ticketing, name: '티켓팅전사', value: '13,200 p' },
-    { imgSrc: Karining, name: '카리닝이', value: '11,300 p' },
+    { imgSrc: karining, name: '카리닝이', value: '11,300 p' },
     { imgSrc: mongmong, name: '몽몽', value: '10,200 p' },
     { imgSrc: next, name: '넥스트레벨가자', value: '8,700 p' },
-    { imgSrc: Karidoong, name: '카리둥절', value: '7,500 p' },
+    { imgSrc: karidoong, name: '카리둥절', value: '7,500 p' },
     { imgSrc: lightguide, name: '광야길잡이', value: '6,000 p' },
     { imgSrc: waitwinter, name: '겨울만기다려', value: '5,400 p' },
     { imgSrc: lovezizel, name: '지젤언니사랑해', value: '5,200 p' },

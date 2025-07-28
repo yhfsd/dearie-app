@@ -14,6 +14,7 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+  width: 100%;
 }
 
 
@@ -39,12 +40,13 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: -225%;
-  right: -105%;
+  top: -230%;
+  right: 0%;
   padding: 10px;
   box-sizing: border-box;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 
@@ -67,10 +69,11 @@
 
 .group-intro__menu {
   position: fixed;
+  max-width: 768px;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   width: 90%;
   display: flex;
   justify-content: start;

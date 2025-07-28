@@ -24,6 +24,7 @@
   font-size: 15px;
 }
 .ve-edit-btn {
+  display: none !important;
   background: none;
   border: none;
   color: #FF4187;

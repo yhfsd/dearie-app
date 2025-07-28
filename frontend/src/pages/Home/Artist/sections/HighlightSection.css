@@ -179,6 +179,7 @@
   align-items: start;
   padding: 5%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .talkBoxFam .talkBoxes .talkBox.first {

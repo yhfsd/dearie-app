@@ -9,6 +9,10 @@ import { IoIosMore } from "react-icons/io";
 import { PiSiren } from "react-icons/pi";
 import { FiEdit } from 'react-icons/fi';
 import { MdModeEditOutline } from "react-icons/md";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 
 const TalkSection = ({ artist }) => {
@@ -22,6 +26,42 @@ const TalkSection = ({ artist }) => {
   const [editTarget, setEditTarget] = useState(null);
   const [reportTarget, setReportTarget] = useState(null);
   const [entriesByProfile, setEntriesByProfile] = useState({});
+
+  // 시간 포맷팅 함수 (다른 컴포넌트와 동일)
+  const formatRelativeTime = (timestamp) => {
+    if (!timestamp) return '방금 전';
+    
+    const now = new Date();
+    const targetTime = new Date(timestamp);
+    const diffMs = now - targetTime;
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffMinutes < 1) {
+      return '방금 전';
+    } else if (diffMinutes < 60) {
+      return `${diffMinutes}분 전`;
+    } else if (diffHours < 24) {
+      return `${diffHours}시간 전`;
+    } else if (diffDays < 7) {
+      return `${diffDays}일 전`;
+    } else {
+      // 일주일이 넘으면 연도, 달, 일, 시간으로 표시
+      const year = targetTime.getFullYear();
+      const month = String(targetTime.getMonth() + 1).padStart(2, '0');
+      const day = String(targetTime.getDate()).padStart(2, '0');
+      const hours = String(targetTime.getHours()).padStart(2, '0');
+      const minutes = String(targetTime.getMinutes()).padStart(2, '0');
+      
+      // 올해와 같은 년도면 월.일. 시간으로, 다른 년도면 년.월.일. 시간으로 표시
+      if (year === now.getFullYear()) {
+        return `${month}.${day}. ${hours}:${minutes}`;
+      } else {
+        return `${year}.${month}.${day}. ${hours}:${minutes}`;
+      }
+    }
+  };
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('userName');
@@ -84,6 +124,16 @@ useEffect(() => {
       window.removeEventListener('localStorageUpdate', handleStorageChange);
     };
   }, [artist]);
+
+  // 실시간 시간 업데이트를 위한 useEffect 추가
+  useEffect(() => {
+    const timeUpdateInterval = setInterval(() => {
+      // 컴포넌트가 마운트된 상태에서만 강제 리렌더링
+      setEntriesByProfile(prev => ({ ...prev }));
+    }, 60000); // 1분마다 업데이트
+
+    return () => clearInterval(timeUpdateInterval);
+  }, []);
 
 const handleDeleteEntry = (profileIndex, entryId) => {
   const storageKey = `fanTalkEntries-${artist.key}-${profileIndex}`;
@@ -224,11 +274,24 @@ const handleUserLikeToggle = (entryId) => {
                   <span style={{color:'#AA7FFA', fontWeight:'700'}}>{profile.talkPostColor}</span>{profile.talkPostText || '작성된 내용이 없습니다.'}
                 </div>
                 <div className="img-box">
-{profile.talkPostImg ? (
-  <img src={`${import.meta.env.BASE_URL}${profile.talkPostImg}`} alt="게시 이미지" />
-) : (
-  <div className="img-placeholder" />
-)}
+                  {profile.talkPostImg ? (
+                    <Swiper
+                      modules={[Pagination]}
+                      pagination={{
+                        clickable: true,
+                        bulletClass: 'swiper-pagination-bullet',
+                        bulletActiveClass: 'swiper-pagination-bullet-active'
+                      }}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                    >
+                      <SwiperSlide>
+                        <img src={`${import.meta.env.BASE_URL}${profile.talkPostImg}`} alt="게시 이미지" />
+                      </SwiperSlide>
+                    </Swiper>
+                  ) : (
+                    <div className="img-placeholder" />
+                  )}
                 </div>
                 <div className="icon-box">
                   {likesState[index]?.liked ? (
@@ -287,7 +350,7 @@ const handleUserLikeToggle = (entryId) => {
                   </div>
                   <div className="profile-info">
                     <div className="profile-name">{username}</div>
-                    <p className="post-time">방금 전</p>
+                    <p className="post-time">{formatRelativeTime(entry.timestamp)}</p>
                   </div>
                   <IoIosMore
                     style={{ transform: 'rotate(-90deg)', width: 25, height: 25, opacity: 0.5, cursor: 'pointer' }}
@@ -306,9 +369,22 @@ const handleUserLikeToggle = (entryId) => {
 
                 {entry.images && entry.images.length > 0 && (
                   <div className="img-box">
-                    {entry.images.map((img, i) => (
-                      <img key={i} src={img.preview} alt={`post-img-${i}`} />
-                    ))}
+                    <Swiper
+                      modules={[Pagination]}
+                      pagination={{
+                        clickable: true,
+                        bulletClass: 'swiper-pagination-bullet',
+                        bulletActiveClass: 'swiper-pagination-bullet-active'
+                      }}
+                      spaceBetween={0}
+                      slidesPerView={1}
+                    >
+                      {entry.images.map((img, i) => (
+                        <SwiperSlide key={i}>
+                          <img src={img.preview} alt={`post-img-${i}`} />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
                   </div>
                 )}  
                 {entry.links && entry.links.length > 0 && (

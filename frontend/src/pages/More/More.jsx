@@ -72,12 +72,53 @@ const More = () => {
     }
   }, [expGiven]);
 
-  // ----- 이미지 변경 시 저장 -----
+  // ----- 이미지 변경 시 저장 ----
   useEffect(() => {
     if (imageUrl) {
       localStorage.setItem("profileImage", imageUrl);
     }
   }, [imageUrl]);
+
+
+  async function compressImage(file, maxWidth = 800, quality = 0.7) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(maxWidth / img.width, 1);
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(
+        (blob) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        },
+        "image/jpeg",
+        quality
+      );
+    };
+    img.src = URL.createObjectURL(file);
+  });
+}
+const handleImageChange = async (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  try {
+    // 압축된 dataURL을 얻어서 저장
+    const compressedDataUrl = await compressImage(file, 800, 0.6);
+    setImageUrl(compressedDataUrl);
+  } catch (err) {
+    console.error("이미지 압축 실패:", err);
+    // 최후의 수단으로 원본을 저장할 수도 있습니다
+    const reader = new FileReader();
+    reader.onload = () => setImageUrl(reader.result);
+    reader.readAsDataURL(file);
+  }
+};
 
   // ----- 즐겨찾기 변경 시 저장 -----
   useEffect(() => {
@@ -96,14 +137,6 @@ const More = () => {
     setLevel(newLevel);
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => setImageUrl(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleGroupPick = (group) => {
     const exists = pickedGroups.some((g) => g.id === group.id);

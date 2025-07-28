@@ -115,11 +115,10 @@
 }
 
 .talk-post-detail-container .content-text {
-  margin: 12px 0;
   margin: 0 2.5%;
   line-height: 1.2;
-  font-weight: 100;
-  font-size: 13px;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 /* 이미지 */
@@ -137,8 +136,13 @@
   display: block;
   border-radius: 10px;
   object-fit: cover;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
+
+/* 스와이퍼 */
+.talk-post-detail-container .swiper-pagination{position: relative; margin: 0 0 8px;}
+.talk-post-detail-container .swiper-pagination-bullet{background: #ddd;}
+.talk-post-detail-container .swiper-pagination-bullet-active{background: #FF4187;}
 
 /* 링크 */
 .talk-post-detail-container .post-links {

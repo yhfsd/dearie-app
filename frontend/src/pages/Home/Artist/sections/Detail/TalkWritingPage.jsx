@@ -19,8 +19,34 @@ export default function TalkWritingPage() {
   const [editingEntryId, setEditingEntryId] = useState(null);
   const fileInputRef = useRef(null);
 
+  // 시간 포맷팅 함수
+  const formatRelativeTime = (timestamp) => {
+    const now = new Date();
+    const targetTime = new Date(timestamp);
+    const diffMs = now - targetTime;
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  
+    if (diffMinutes < 1) {
+      return '방금 전';
+    } else if (diffMinutes < 60) {
+      return `${diffMinutes}분 전`;
+    } else if (diffHours < 24) {
+      return `${diffHours}시간 전`;
+    } else if (diffDays < 7) {
+      return `${diffDays}일 전`;
+    } else {
+      // 일주일이 넘으면 연도, 달, 일, 시간으로 표시
+      const year = targetTime.getFullYear();
+      const month = String(targetTime.getMonth() + 1).padStart(2, '0');
+      const day = String(targetTime.getDate()).padStart(2, '0');
+      const hours = String(targetTime.getHours()).padStart(2, '0');
+      const minutes = String(targetTime.getMinutes()).padStart(2, '0');
+      
+      return `${year}.${month}.${day}. ${hours}:${minutes}`;
+    }
+  };
 
   // 수정 모드 데이터 로드
   useEffect(() => {
@@ -120,6 +146,7 @@ const onSave = useCallback(() => {
 
   const localKey = `fanTalkEntries-${artistKey}-${profileIndex}`;
   const prevEntries = JSON.parse(localStorage.getItem(localKey) || '[]');
+  const currentTime = new Date();
 
   if (isEditMode && editingEntryId) {
     // 수정 모드: 기존 글 업데이트
@@ -130,7 +157,8 @@ const onSave = useCallback(() => {
           text,
           images,
           links,
-          editedAt: new Date().toLocaleString()
+          editedAt: currentTime.toISOString(),
+          editedAtFormatted: formatRelativeTime(currentTime)
         };
       }
       return entry;
@@ -144,7 +172,8 @@ const onSave = useCallback(() => {
       text,
       images,
       links,
-      timestamp: new Date().toLocaleString()
+      timestamp: currentTime.toISOString(),
+      timestampFormatted: formatRelativeTime(currentTime)
     };
     const updatedEntries = [...prevEntries, newEntry];
     localStorage.setItem(localKey, JSON.stringify(updatedEntries));

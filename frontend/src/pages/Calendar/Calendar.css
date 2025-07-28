@@ -29,7 +29,7 @@
 
 
 .calendar-wrap .calendar-container .titleBox .dropdown-menu{position: absolute; width: 100%; align-content: end; bottom: -200%; left: 0; background: #FF4187;border-radius: 0 0 10px 10px; z-index: 5; padding-top: 10px;}
-.calendar-wrap .calendar-container .titleBox .dropdown-menu li{text-align: center; color: #fff; font-size: 15px; margin: 10px 0; }
+.calendar-wrap .calendar-container .titleBox .dropdown-menu li{text-align: center; color: #fff; font-size: 15px; margin: 10px 0; cursor: pointer;}
 
 
 .calendar-wrap .calendar-container .calendarBox{position: relative;}

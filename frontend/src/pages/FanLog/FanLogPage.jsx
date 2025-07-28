@@ -24,6 +24,8 @@ import calendar_10 from '../../assets/more/fanLogPage_and_themePage/calendar_10.
 
 import aespa_item  from '../../assets/more/fanLogPage_and_themePage/aespa_item.png'
 import aespa_item02  from '../../assets/more/fanLogPage_and_themePage/aespa_item02.png'
+import titleImg from '../../assets/more/fanLogPage_and_themePage/title-img.png'
+import titlePart2Img from '../../assets/more/fanLogPage_and_themePage/title-part2-img.png'
 
 const WEEKDAYS = ['일','월','화','수','목','금','토'];
 const RING_IMAGES = [
@@ -220,7 +222,7 @@ const handleRingClick = useCallback(day => {
       <section className="calendar-section">
         <div className="section-title">
           <p className="title"><span>{userName || '팬'}</span> 님!</p>
-          <p className="title">오늘의 하루를 <span>기록</span>해보세요 📝</p>
+          <p className="title second">오늘의 하루를&nbsp;<span>기록</span>해보세요 <img src={titleImg} alt="타이틀 이미지" className='title-img' /></p>
         </div>
         <div className="calendar-wrapper" ref={calendarWrapperRef}>
           <img src={bgImage} alt="calendar bg" className="calendar-bg" />
@@ -291,9 +293,9 @@ const handleRingClick = useCallback(day => {
 
       {/* 타임라인 섹션 */}
       <section className="timeline-section">
-        <div className="section-title part2">
+        <div className="section-title-part2">
           <p className="title">잊기 아까운 순간들,</p>
-          <p className="title">이렇게 모았어요! 💖</p>
+          <p className="title second">이렇게 모았어요! <img src={titlePart2Img} alt="타이틀 이미지" className='title-part2-img' /></p>
         </div>
         <div className="timeline">
           {entries.map(entry => (

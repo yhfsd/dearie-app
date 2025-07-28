@@ -19,7 +19,7 @@
 
 .profile-pic {width: 65px; height: 65px; background: #F7F7FA; border-radius: 50%;border: 2px solid #FF4187; position: relative;}
 
-.profile-pic .camera {color: #000; background: #F7F7FA; width: 25px; height: 25px; border-radius: 50%; border: 2px solid #ff4187; position: absolute; bottom: 0; right: -10%;}
+.profile-pic .camera {color: #000; background: #F7F7FA; width: 25px; height: 25px; border-radius: 50%; border: 2px solid #ff4187; position: absolute; bottom: 0; right: -10%; cursor: pointer;}
 .profile-pic .camera .camera-icon {font-size: 13px; position: absolute; left: 51%; top: 50%; transform: translate(-50%,-50%); padding-top: 1px;}
 
 .profile-pic img {

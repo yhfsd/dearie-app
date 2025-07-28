@@ -11,16 +11,22 @@ import heartalram from '../../assets/Challenge/heartalram.png'
 import hearts     from '../../assets/Challenge/hearts.png'
 
 // 애니메이션 데코
-import particle1 from '../../assets/Home/pink4.png'
-import particle2 from '../../assets/Home/pink7.png'
-import particle3 from '../../assets/Home/note.png'
-import particle4 from '../../assets/Home/pinkstar.png'
-import particle5 from '../../assets/Home/purple7.png'
-import particle6 from '../../assets/Home/heart.png'
+import particle1 from '../../assets/Challenge/Challenge_Check/particle1.png'
+import particle2 from '../../assets/Challenge/Challenge_Check/particle2.png'
+import particle3 from '../../assets/Challenge/Challenge_Check/particle3.png'
+import particle4 from '../../assets/Challenge/Challenge_Check/particle4.png'
+import particle5 from '../../assets/Challenge/Challenge_Check/particle5.png'
+import particle6 from '../../assets/Challenge/Challenge_Check/particle6.png'
+
+// 스탬프 관련
+import pointIcon from '../../assets/Challenge/Challengezone/pointIcon.png'
+import check_gray from '../../assets/Challenge/Challenge_Check/check_gray.png'
+import check_color from '../../assets/Challenge/Challenge_Check/check_color.png'
 
 
 
 const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+
 
 /**
  * @param {{
@@ -52,8 +58,6 @@ export default function Challenge_calendar({
   selectedArtist = '',
   categories = [],
   onCertSuccess = () => {},
-  myPoint = 0,
-  certPoint = 1000,
   captureRef,
   daysIcon,
   disableToggle = false,
@@ -72,10 +76,7 @@ export default function Challenge_calendar({
   const [now, setNow] = useState(new Date());
   const [folded, setFolded] = useState(isFolded);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [oldPoint, setOldPoint] = useState(0);
-  const [newPoint, setNewPoint] = useState(0);
 
   // 인증 가능 여부
   const { startHour, endHour } = certWindow;
@@ -137,23 +138,40 @@ useEffect(() => {
     setShowConfirmModal(true);
     setChecked(false);
   }
+const [showFullScreenEffect, setShowFullScreenEffect] = useState(false); // 새로 추가
+const [isFadingOut, setIsFadingOut] = useState(false); // 블러 사라지기전 한번 거치는 상태
 
-  function onConfirmModal() {
-    // 1) 스탬프 처리
-    setStamps(prev => ({ ...prev, [certDate]: 'success' }));
-    // 2) 포인트 애니메이션 준비
-    setOldPoint(myPoint);
-    setNewPoint(myPoint + certPoint);
-    // 3) 모달 전환
-    setShowConfirmModal(false);
-    setShowSuccessModal(true);
-    // 4) 부모 콜백
-    onCertSuccess();
-  }
+function onCancel() {
+  setShowConfirmModal(false);
+}
 
-  function onCancel() {
-    setShowConfirmModal(false);
-  }
+
+function onConfirmModal() {
+  setStamps(prev => ({ ...prev, [certDate]: 'success' }));
+  setShowConfirmModal(false);
+  setShowFullScreenEffect(true);
+  onCertSuccess();
+
+  // 스크롤 비활성화
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+
+  // 애니메이션 종료 방지 주석 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  // 2.5초 후에 페이드 아웃 시작
+  setTimeout(() => {
+    setIsFadingOut(true);
+  }, 2500);
+
+  // 3초 후 화면 닫기
+  setTimeout(() => {
+    setShowFullScreenEffect(false);
+    setIsFadingOut(false);
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  }, 4500);
+}
+
+
 
   // 아티스트 메시지 (기존 그대로)
   const currentCat = categories.find(c => c.key === selectedArtist) || {};
@@ -319,32 +337,68 @@ useEffect(() => {
         </div>
       )}
 
-      {/* 인증 성공 모달 (카운트업) */}
-      {showSuccessModal && (
-        <div className="modal-backdrop">
-          <div className="modal success-modal">
-            <div className="particle-container">
-              {[particle1, particle2, particle3, particle4, particle5, particle6].map((src, i) => (
-              <img key={i} src={src} className={`particle particle-${i}`} alt="effect" />))}
-            </div>
-            <h2>인증 성공! 1000냥 적립되었어요! 🎉</h2>
-            <div className="point-up-layout">
-              <div className="old-point">{oldPoint.toLocaleString()} 냥</div>
-              <div className="arrow">→</div>
-              <div className="new-point">
-                <CountUp
-                  start={oldPoint}
-                  end={newPoint}
-                  duration={1}
-                  separator="," 
-                  suffix=" 냥"
-                />
-              </div>
-            </div>
-            <button onClick={() => setShowSuccessModal(false)}>닫기</button>
+
+{/* 인증성공 애니메이션 */}
+{showFullScreenEffect && (
+  <div className="fullscreen-effect">
+    <div className={`fullscreen-blur ${isFadingOut ? 'fade-out' : 'fade-in'}`} />
+    <div className={`fullscreen-animation ${isFadingOut ? 'fade-content' : ''}`}>
+
+      <div className="check_stampAni">
+        <div className="stampImgBox">
+          <img src={check_gray} alt="스탬프흑백" className='stamp_gray' />
+          <img src={check_color} alt="스탬프컬러" className='stamp_color' />
+        </div>
+        <div className="particle-container particle-container_1">
+          <img src={particle1} className="particle particle-0" />
+          <img src={particle2} className="particle particle-1" />
+          <img src={particle3} className="particle particle-2" />
+          <img src={particle4} className="particle particle-3" />
+          <img src={particle5} className="particle particle-4" />
+          <img src={particle6} className="particle particle-5" />
+        </div>
+        <div className="particle-container particle-container_2">
+          <img src={particle1} className="particle particle-0" />
+          <img src={particle2} className="particle particle-1" />
+          <img src={particle3} className="particle particle-2" />
+          <img src={particle4} className="particle particle-3" />
+          <img src={particle5} className="particle particle-4" />
+          <img src={particle6} className="particle particle-5" />
+        </div>
+      </div>
+
+      <div className="check_slideUp">
+        <div className="check_cong">
+          <span>챌린지 완료 🎉 오늘도 멋지게 시작했어요!</span>
+        </div>
+
+        <div className="check_point">
+          <img src={pointIcon} alt="포인트" className='pointCheck' />
+          <div className="point-bonus">
+            +<CountUp
+              start={0}
+              end={1000}
+              duration={1.1}
+              separator=","
+            />{" "}
           </div>
         </div>
-      )}
+
+
+        <div className="point_detail">
+          <span>(기본 700p + 연속 챌린지 300p)</span>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+)}
+
+
+
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
 // src/pages/FanLog/ViewEntryPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { IoChevronBack } from 'react-icons/io5';
 import './ViewEntryPage.css';
@@ -19,14 +19,27 @@ export default function ViewEntryPage() {
   const month = params.get('month') || '';
   const day   = params.get('day') || '';
 
+  // ✅ 수정 버튼 동작 (useCallback으로 고정)
+  const goEdit = useCallback(() => {
+    navigate(`/fan-log/write?year=${year}&month=${month}&day=${day}`);
+  }, [navigate, year, month, day]);
+
+  // ✅ fanLogEdit 이벤트 발생 시 goEdit 실행
+  useEffect(() => {
+    const handler = () => goEdit();
+    window.addEventListener('fanLogEdit', handler);
+    return () => window.removeEventListener('fanLogEdit', handler);
+  }, [goEdit]);
+
   // 요일 계산
   const WEEKDAYS_KR = ['일','월','화','수','목','금','토'];
   const dateObj = new Date(+year, +month - 1, +day);
   const weekday = WEEKDAYS_KR[dateObj.getDay()] || '';
 
-  // 사용자 정보 (More.jsx에서 저장된)
+  // 사용자 정보
   const [userName, setUserName] = useState('익명');
   const [profileImage, setProfileImage] = useState(null);
+
   useEffect(() => {
     const storedName = localStorage.getItem('userName');
     if (storedName) setUserName(storedName);
@@ -34,10 +47,10 @@ export default function ViewEntryPage() {
     if (storedImg) setProfileImage(storedImg);
   }, []);
 
-  // 프로필 src: 없으면 기본 이미지 사용
+  // 프로필 이미지
   const profileSrc = profileImage || '/More/default-profile.png';
 
-  // 엔트리 상태에 selectedTab, createdAt 추가
+  // 작성된 엔트리
   const [entry, setEntry] = useState({
     text: '',
     images: [],
@@ -53,11 +66,11 @@ export default function ViewEntryPage() {
       try {
         const data = JSON.parse(raw);
         setEntry({
-          text:   data.text   || '',
-          images: data.images || [],
-          links:  data.links  || [],
+          text:        data.text || '',
+          images:      data.images || [],
+          links:       data.links || [],
           selectedTab: data.selectedTab || '',
-          createdAt: data.createdAt || '',
+          createdAt:   data.createdAt || '',
         });
       } catch (e) {
         console.error('Entry parse error', e);
@@ -76,14 +89,8 @@ export default function ViewEntryPage() {
     if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}시간 전`;
     if (diffSec < 2592000) return `${Math.floor(diffSec / 86400)}일 전`;
 
-    // 한 달 이상이면 날짜 표시
     return time.toLocaleDateString();
   }
-
-  // 수정 페이지로 이동
-  const goEdit = () => {
-    navigate(`/fan-log/write?year=${year}&month=${month}&day=${day}`);
-  };
 
   return (
     <div className="view-entry-container">
@@ -94,9 +101,12 @@ export default function ViewEntryPage() {
             <span className="ve-weekday">({weekday})</span>
           </h1>
         </div>
+
+        {/* ✅ 수정 버튼 */}
         <button className="ve-edit-btn" onClick={goEdit}>
           수정
         </button>
+
         <header className="ve-header">
           <img
             src={profileSrc}
@@ -118,36 +128,37 @@ export default function ViewEntryPage() {
             )}
           </div>
         </header>
+
         <p className="ve-text">{entry.text || '내용이 없습니다.'}</p>
       </div>
+
       <div className="ve-content">
         {entry.images.length > 0 && (
-<Swiper
-  spaceBetween={12}
-  slidesPerView={1}
-  pagination={{ clickable: true }}
-  modules={[Pagination]}
-  className="ve-swiper"   // ← 커스텀 클래스명!
->
-  {entry.images.map((img, i) => {
-    const src = img.preview || (typeof img === 'string' ? img : '');
-    if (!src) return null;
-    return (
-      <SwiperSlide key={i} className="ve-swiper-slide">
-        <img
-          className="ve-image"
-          src={src}
-          alt={`attachment-${i}`}
-          onError={e => {
-            e.currentTarget.style.display = 'none';
-            console.warn('Image failed to load:', src);
-          }}
-        />
-      </SwiperSlide>
-    );
-  })}
-</Swiper>
-
+          <Swiper
+            spaceBetween={12}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
+            className="ve-swiper"
+          >
+            {entry.images.map((img, i) => {
+              const src = img.preview || (typeof img === 'string' ? img : '');
+              if (!src) return null;
+              return (
+                <SwiperSlide key={i} className="ve-swiper-slide">
+                  <img
+                    className="ve-image"
+                    src={src}
+                    alt={`attachment-${i}`}
+                    onError={e => {
+                      e.currentTarget.style.display = 'none';
+                      console.warn('Image failed to load:', src);
+                    }}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         )}
 
         {entry.links.map((url, i) => (

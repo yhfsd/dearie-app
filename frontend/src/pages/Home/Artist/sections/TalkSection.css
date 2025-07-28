@@ -19,6 +19,9 @@
 .talk-wrap .artist-list .artistPost .icon-box svg:nth-child(3){width: 16px; height: 16px;}
 
 .talk-wrap .artist-list .artistPost .img-box img{width: 100%; padding-bottom: 15px;}
+.talk-wrap .artist-list .swiper-pagination{position: relative; margin: 0 0 8px 0;}
+.talk-wrap .artist-list .swiper-pagination-bullet{background: #ddd;}
+.talk-wrap .artist-list .swiper-pagination-bullet-active{background: #FF4187}
 
 /* 내가 쓴 글 */
 .talk-wrap .artist-list .userPost{border-radius: 10px; background: #1A1A1A; margin-bottom: 16px;}
@@ -53,7 +56,7 @@
   font-size: 14px;
   display: block;}
 
-.talk-wrap .artist-list .userPost .img-box img{width: 100%; padding-bottom: 15px;}
+.talk-wrap .artist-list .userPost .img-box img{width: 100%; padding-bottom: 16px;}
 
 
 /* 신고확인 */

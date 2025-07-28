@@ -3,7 +3,7 @@
 /* 이번달 */
 .challenges .container .thisMonth {margin-bottom: 14px; padding: 0 2.5%;}
 .challenges .container .thisMonth a {margin-top: 6px; display: inline-block; width: 100%;;}
-.challenges .container .thisMonth .challImgBox {margin-bottom: 20px; position: relative;}
+.challenges .container .thisMonth .challImgBox {margin-bottom: 8px; position: relative;}
 
 .challenges .container .thisMonth .textBox {padding-left: 8px;}
 .challenges .container .thisMonth .textBox h3 {display: flex; margin-bottom: 4px;}

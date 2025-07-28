@@ -190,7 +190,18 @@ const headerConfig = {
       onClick: () => window.history.back(),
     }],
     center: [],
-    right: [],
+    right: [
+              { id: 'debug',
+                element: <button
+                        key="save-btn"
+                        className="we-save-btn"
+                        onClick={() => window.dispatchEvent(new Event('fanLogEdit'))}
+                        style={{color: '#ff4187', fontSize: '15px', fontWeight: '500'}}
+                        >
+                        수정
+                          </button>
+              }
+            ],
   },
   '/likelist': {
     bgColor: '#fff',
