@@ -1,5 +1,5 @@
 .Closet-wrap {background: #fff;}
-.Closet-container {padding: 42px 0 150px; color: #000;  font-family: 'Pretendard' , sans-serif; overflow-X: hidden; overflow-y: scroll; min-height: 100vh;}
+.Closet-container {padding: 35px 0 150px; color: #000;  font-family: 'Pretendard' , sans-serif; overflow-X: hidden; min-height: 100vh;}
 
 .Closet-container .button-container{ padding-top: 30px;}
 .Closet-container .button-container ul{display: flex;}

@@ -25,7 +25,7 @@
 .challGuide .guideTitle h2 {font-size: 16px; font-weight: 560;}
 .challGuide .guideTitle img {position: absolute; width: 45px; top: -5.5px; right: 6%;}
 .challGuide .guideBox {background: #fdfdfd; border-radius: 10px; padding: 24px 16px; margin-top: 8px; border: 1px solid rgba(0, 0, 0, 0.05);}
-.challGuide .guideBox p {margin-bottom: 8px;}
+.challGuide .guideBox p {margin-bottom: 8px; line-height: 17px;}
 .challGuide .guideBox p:nth-child(3) {margin-bottom: 0;}
 
 /* 가이드박스 아이콘 */

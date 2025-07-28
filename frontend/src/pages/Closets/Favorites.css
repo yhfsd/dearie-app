@@ -1,4 +1,4 @@
-.favorites-wrap{background: #fff; padding: 63px 2.5% 0; height: 100vh;}
+.favorites-wrap{background: #fff; padding: 56px 2.5% 0; height: 100vh;}
 .favorites-wrap .favorites-container ul{display: flex; flex-wrap: wrap;}
 .favorites-wrap .favorites-container ul li { display: flex; width: 30%; margin-left: 3%;}
 .favorites-wrap .favorites-container ul li .favorites-buttonBox{display: flex; margin-top: 10px; position: relative;}

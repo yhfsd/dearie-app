@@ -1,5 +1,15 @@
 /* src/components/Header.css */
-.header {display: flex; align-items: center; justify-content: space-between; padding: 0px 6.5% ; min-height: 53px; background: #121212; position: fixed; top: 0; left: 50%; width: 100%; z-index: 999;
+.header {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0px 6.5% ; 
+  min-height: 46px; 
+  position: fixed; 
+  top: 0; 
+  left: 50%; 
+  width: 100%; 
+  z-index: 999;
   transform: translateX(-50%);
   max-width: 768px;
   margin: 0;
@@ -10,7 +20,6 @@
 .header-section.left   {justify-content: flex-start;}
 
 .header-section.center {
-  padding-top: 16px;
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -24,7 +33,6 @@
 .header-section.left,
 .header-section.right {
   min-width: 96px; /* 혹은 padding */
-  padding-top: 16px;
 }
 
 .header-logo {height: 24px;}
@@ -64,7 +72,7 @@
 .likes-dropdown {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
-  top: 53px;
+  top: 46px;
   left: 50%;
   transform: translateX(-50%); /* 정중앙 정렬 */
   width: 100%;

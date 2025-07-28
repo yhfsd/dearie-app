@@ -1,4 +1,4 @@
-.calendar-wrap{padding: 42px 0 150px; background: #fff; overflow: hidden;}
+.calendar-wrap{padding: 35px 0 150px; background: #fff; overflow: hidden;}
 .calendar-wrap .overlay {position: fixed;top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(0, 0, 0, 0.7); z-index: 10000;}/* 배경 어둡게 만드는 overlay css */
 .calendar-wrap .calendar-container{width: 95%; margin: 0 auto; position: relative;}
 
