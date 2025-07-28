@@ -110,8 +110,15 @@
   overflow-x: auto;
   margin: 0 auto;
   gap: 20px;
-  overflow: visible;
+  overflow-x: scroll;
   margin-bottom: 10px;
+  padding: 10px 0px 0px 0px;
+  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  /* IE, Edge */
+}
+
+.we-preview-list::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
 }
 
 /* 이미지 */

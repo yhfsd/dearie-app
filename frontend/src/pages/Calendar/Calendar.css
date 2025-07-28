@@ -4,11 +4,11 @@
 
 
 /* 카테고리 선택 박스 */
-.calendar-wrap .category {position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; z-index: 100000; transform: translateY(100%); transition: transform 0.3s ease; border-radius: 20px 20px 0 0;}
-.calendar-wrap .category.show {transform: translateY(0%);}
+.calendar-wrap .category {position: fixed; bottom: 0; left: 50%; width: 100%; background: #fff; z-index: 100000; transform: translateY(100%) translateX(-50%); transition: transform 0.3s ease; border-radius: 20px 20px 0 0; max-width: 768px;}
+.calendar-wrap .category.show {transform: translateY(0%) translateX(-50%); }
 .calendar-wrap .category .categoryInner{width: 95%; margin: 0 auto;}
 .calendar-wrap .category .categoryInner .cancelBox{width: 90%; margin: 15px auto 7px; display: flex; justify-content: right;}
-.calendar-wrap .category .categoryInner .cancelBox > svg{width: 24px; height: 24px; ;}
+.calendar-wrap .category .categoryInner .cancelBox > svg{width: 24px; height: 24px; cursor: pointer;}
 .calendar-wrap .category .categoryInner .categorySelect{font-size: 18px; width: 90%; margin:0 auto;}
 .calendar-wrap .category .categoryInner ul{width: 90%; margin: 25px auto 0;}
 .calendar-wrap .category .categoryInner ul li{display: flex; justify-content: space-between; margin-bottom: 23px; align-items: center;}

@@ -78,12 +78,18 @@
 .talkWritingPage-Wrap .talk-preview-list {
   width: 95%;
   margin: 0 auto;
-  gap: 15px;
   padding: 10px 0;
   margin-bottom: 10px;
+  overflow-x: scroll;
+  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  /* IE, Edge */
 }
 
-.talkWritingPage-Wrap .talk-preview-list .talk-photo{display: flex; margin-bottom: 16px;}
+.talkWritingPage-Wrap .talk-preview-list::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
+}
+
+.talkWritingPage-Wrap .talk-preview-list .talk-photo{display: flex; margin-bottom: 16px; gap: 15px;}
 
 .talkWritingPage-Wrap .talk-preview-list::-webkit-scrollbar {
   height: 4px;

@@ -244,7 +244,7 @@ export default function ChatWindow({
           disabled={isDisabled}
         />
         <button className="btn send-btn" onClick={() => submitText(input)} disabled={isDisabled}>
-          <PiPaperPlaneTilt size={24} style={{ marginRight: '15px', marginTop: '0px' }} />
+          <PiPaperPlaneTilt size={24} style={{ marginRight: '15px', marginTop: '0px', marginLeft:'8px',display:'block' }} />
         </button>
       </div>
     </div>

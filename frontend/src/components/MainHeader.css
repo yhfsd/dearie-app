@@ -14,7 +14,7 @@
 }
 .main-header-section.right  {justify-content: flex-end;}
 
-.header-link.back-button {
+.main-header .header-link.back-button {
   display: inline-block;
   margin-left: -5px;
 } 

@@ -244,13 +244,17 @@
   padding: 8px 16px;
   color: #fff;
   border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;        
   margin: 16px 0px;
-}
 
-.message.bot {
-  padding: 0;
+  max-width: 84%;              
+  word-break: break-word; 
+  white-space: normal;   
+}
+.message.bot {    
+  max-width: 100%;        
+  white-space: normal;     
+  word-break: break-word;  
 }
 
 
@@ -313,6 +317,8 @@
     inset 0 -0.5px 0 rgba(138, 134, 173, 1),
     inset 0 0 0px 0px rgba(138, 134, 173, 1);
   border-radius: 47px;
+  width: auto;
+  box-sizing: border-box;
 }
 
 .input-area input::placeholder {
@@ -335,8 +341,17 @@
 
 
 .send-btn {
-    margin-left: 8px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: none;
+    padding: 0;
 }
+
 
 /* + 버튼 */
 .add-btn {
@@ -350,6 +365,7 @@
   background: transparent;
   color: #fff;
   padding: 6px 0;
+  min-width: 0;
   outline: none;
   font-size: 15px;
   font-weight: 500;
@@ -370,9 +386,9 @@
   border-radius: 10px;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 0.2px 0 rgba(213, 213, 213, 1),
-    inset 0 -0.2px 0 rgba(213, 213, 213, 1),
-    inset 0 0 0px 0px rgba(213, 213, 213, 1);
+    inset 0 0.2px 0 rgba(213, 213, 213, 0.1),
+    inset 0 -0.2px 0 rgba(213, 213, 213, 0.1),
+    inset 0 0 1px 0px rgba(213, 213, 213, 0.5);
     border-radius: 50%;
     color: #fff;
     transform: rotate(45deg);
@@ -381,7 +397,6 @@
 .btn.add-btn svg {
     transform: rotate(-45deg);
 }
-
 .bot-text {
   color: #fff;
   font-size: 14px;

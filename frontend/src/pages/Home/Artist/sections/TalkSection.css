@@ -85,7 +85,7 @@
 .talk-wrap .reportedBox{position: fixed; left: 50%; bottom: 10%; transform: translate(-50%, -50%); display: flex; align-items: center; padding: 15px 22px; background: #282828; border-radius: 10px; font-size: 14px; font-weight: 300; color: #fff;}
 
 /* 글쓰기 */
-.talk-wrap .talkWritingBox{z-index: 100000000 ; position: fixed; bottom: 170px; right: 5.3%; color: #fff; border-radius: 50%; width: 60px; height: 60px;background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0px 0px rgba(255, 255, 255, 0);}
+.talk-wrap .talkWritingBox{z-index: 9999 ; position: fixed; bottom: 170px; right: 5.3%; color: #fff; border-radius: 50%; width: 60px; height: 60px;background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0px 0px rgba(255, 255, 255, 0);}
 .talk-wrap .talkWritingBox svg{position: relative; width: 20px; height: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #FF4187;}
 
 

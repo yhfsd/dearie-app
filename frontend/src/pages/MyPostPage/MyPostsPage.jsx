@@ -74,12 +74,14 @@ export default function MyPostsPage() {
               >
                 {/* 유저 정보 */}
                 <div className="entry-header">
-                  <img
+                  <div className="imgBox">
+                                      <img
                     className="entry-avatar"
                     src={profileImage || '/More/default-profile.png'}
                     alt="avatar"
                     onError={e => { e.currentTarget.src = '/More/default-profile.png'; }}
                   />
+                  </div>
                   <div className="title-inner">
                                       <div className="entry-user-info">
                     <span className="entry-username">{userName}</span>

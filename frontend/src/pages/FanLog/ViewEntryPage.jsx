@@ -108,7 +108,8 @@ export default function ViewEntryPage() {
         </button>
 
         <header className="ve-header">
-          <img
+          <div className="imgBox">
+                      <img
             src={profileSrc}
             alt="profile"
             className="ve-profile-img"
@@ -116,6 +117,7 @@ export default function ViewEntryPage() {
               e.currentTarget.src = '/More/default-profile.png';
             }}
           />
+          </div>
           <div className="ve-user-info">
             <div className="user-info">
               <span className="ve-username">{userName}</span>

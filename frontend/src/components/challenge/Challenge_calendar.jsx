@@ -87,12 +87,12 @@ export default function Challenge_calendar({
       : h >= startHour || h < endHour;
 
   // 스탬프 저장  로컬에 저장하는거 비활성화!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     `challenge-stamps-${month}`,
-  //     JSON.stringify(stamps)
-  //   );
-  // }, [stamps, month]);
+  useEffect(() => {
+    localStorage.setItem(
+      `challenge-stamps-${month}`,
+      JSON.stringify(stamps)
+    );
+  }, [stamps, month]);
 
   // 시간 업데이트
   useEffect(() => {

@@ -1,13 +1,22 @@
 .my-posts-page {padding: 0 2.5%; padding-bottom: 120px; min-height: 100vh; background: #fff; padding-top: 61px; box-sizing: border-box;}
 
 
-.entry-avatar {
-    width: 32px;
-    height: 32px;
+.entry-header .imgBox {
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0; /* 추가 */
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
+    box-sizing: content-box;
+
     margin-right: 8px;
     border: 1px solid #ff4187;
+}
+
+.entry-header .imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .item-date {
