@@ -1,0 +1,169 @@
+/* 폰트 적용 안되는 문제 수정 [김정태_수정] */
+:root {
+  --main-font: Pretendard, -apple-system, system-ui, sans-serif;
+}
+
+html, body {
+  font-family: var(--main-font);
+}
+
+input, button, textarea, select {
+  font-family: var(--main-font);
+}
+
+
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 900;
+    src: url(/font/Pretendard-ExtraBold.otf) format("opentype");
+}
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 600;
+    src: url(/font/Pretendard-SemiBold.otf) format("opentype");
+}
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 700;
+    src: url(/font/Pretendard-Bold.otf) format("opentype");
+}
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 500;
+    src: url(/font/Pretendard-Medium.otf) format("opentype");
+}
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 400;
+    src: url(/font/Pretendard-Regular.otf) format("opentype");
+}
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 300;
+    src: url(/font/Pretendard-Light.otf) format("opentype");
+}
+@font-face {
+    font-family: "FugazOne";
+    font-weight: 500;
+    src: url(/font/FugazOne-Regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: 700;
+    src: url(/font/Roboto-Bold.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    src: url(/font/Roboto-Regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto";
+    font-weight: 300;
+    src: url(/font/Roboto-Light.ttf) format("truetype");
+}
+
+* {
+  font-family: "Pretendard", sans-serif; letter-spacing: -0.02em;
+}
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	/* font: inherit; */
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+html,body {
+    height: auto;
+    /* overflow-x: hidden;   메인페이지 홈 스티키 쓰려면 이걸 지워야합니당
+    overflow-y: auto; */
+    scroll-behavior: smooth;
+}
+
+* {box-sizing: border-box; margin: 0; padding: 0;}
+a {text-decoration: none; color: inherit;}
+
+body { display: flex; flex-direction: column; margin: 0; background: #121212; -ms-overflow-style: none;}
+
+body::-webkit-scrollbar {display: none;}
+
+#root {flex: 1; display: flex; flex-direction: column; min-height: 100%;}
+#root {
+  width: 100%;
+  max-width: 768px;    /* 여기서 원하는 최대 너비 */
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  body {
+    background: #161616 !important;
+  }
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    outline: none;
+    border: none;
+    background: none;
+    all: unset;
+cursor: pointer;      
+display: inline-block;
+}
+a,
+.header-link,
+.nav-item {
+  color: inherit;
+  text-decoration: none;
+  border: none;
+  background: none;
+}
+
+input:focus {
+  outline: none;    /* 기본 링을 지우고 */
+  border-color: #D9D9D9;                          /* 테두리 컬러 변경 */
+  box-shadow: 0 0 0 2px rgb(255, 65, 135, 0.5);    /* 파란색 외곽광 효과 */
+}
+
+
+

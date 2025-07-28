@@ -1,0 +1,121 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* overflow-x: hidden; */
+}
+
+
+
+
+
+.login-page {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px 5%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #121212;
+    color: #fff;
+    position: relative;
+}
+.social-icons .social img {width: 50px; height: 50px;}
+.social-icons button {all: unset; cursor: pointer;}
+
+.login-page .mainTitle {
+    align-self: flex-start;
+    text-align: left;
+    width: 100%;
+}
+.mainTitle .title {margin-bottom: 7px; font-size: 25px;}
+.mainTitle .secondTitle {display: flex; align-items: center; font-size: 25px; margin-bottom: 14px;}
+.mainTitle .secondTitle .secondtext {margin: 0;}
+.mainTitle .secondTitle .brand img {width: 70px; margin-right: 5px;}
+.mainTitle .text {font-size: 14px; opacity: 0.68; margin-bottom: 35px;}
+
+.login-page input {width: 100%; padding: 15px 12px; box-sizing: border-box; border-radius: 10px; background: #121212; border: 1px solid #fff; margin-bottom: 15px; color: #fff; touch-action: manipulation;}
+.login-page input::placeholder {color: #fff; opacity: 0.65;}
+.login-page .next-btn {width: 100%; background: #FF4187; border: none;  border-radius: 10px; box-sizing: border-box; margin-bottom: 30px;}
+.login-page .next-btn .text {opacity: 0.65; font-size: 13px; padding: 13px 12px; text-align: center;}
+
+.login-page .forgot-email {font-size: 14px; opacity: 0.65; margin-bottom: 22px; text-align: center;}
+.login-page .divider {font-size: 14px; opacity: 0.65; padding: 10px 5px; position: relative; text-align: center; margin-bottom: 22px; display: flex; align-items: center; justify-content: center; background: #121212;}
+.login-page .divider::before {content: ''; width: 100%; height: 1px; position: absolute; top: 50%; left: 0; background: #fff; z-index: 0; opacity: 0.2; transform: translate(0 , -50%);}
+.login-page .divider .divider-text {position: relative; z-index: 10; background: #121212; display: inline-block; padding: 0 10px; box-sizing: border-box; font-size: 14px;}
+.social-icons {width: 82%; display: flex; align-items: center; justify-content: space-around; margin: 0 auto;}
+.social-icons .social.naver {color: #fff; background: #3CB53F; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;}
+.social-icons .icon {font-size: 24px; padding-top: 4px;}
+.social-icons .social.kakao {color: #3E2723; background: #FFEB3B; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;}
+.social-icons .social.kakao .icon {font-size: 32px; padding-top: 5px;}
+.social-icons .social.facebook {color: #fff; background: #334C8C; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;}
+.social-icons .social.google {background: #fff; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;}
+.social-icons .social.google .icon {font-size: 30px; padding-top: 5px;}
+.social-icons .social.apple {background: #fff; color: #000; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%;}
+.social-icons .social.apple .icon {font-size: 30px; padding: 0;}
+.login-page .signup {position: absolute; left: 50%; bottom: 5%; width: 100%; transform: translateX(-50%); text-align: center; font-size: 13px; color: #fff; display: flex; justify-content: center; align-items: center;}
+.login-page .signup .text {opacity: 0.65;}
+.login-page .signup .link {color: #FF4187; opacity: 1; margin-left: 5px;}
+/* 단계 전환용 fade-in 애니메이션 */
+.step-container {
+  /* animation: fadeInRight 0.8s ease-in-out; */
+  width: 100%;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 돌아가기 버튼 */
+.back-btn {
+  all: unset;
+  color: #fff;
+  font-size: 30px;
+  opacity: 0.65;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+}
+.back-container {font-family: 'Pretendard',sans-serif; font-weight: 300; }
+.back-container .back-title {font-size: 20px; color: #fff; margin-bottom: 25px;}
+.back-container input {margin-bottom: 20px;}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* 눈 아이콘 공간 */
+  box-sizing: border-box;
+}
+
+.eye-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-90%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+}
+
+.eye-toggle svg {
+  font-size: 20px;
+}
+
+.back-container .next-btn .text {color: #fff; opacity: 0.65;}
+.back-container .forgot-email {font-size: 14px;}
+

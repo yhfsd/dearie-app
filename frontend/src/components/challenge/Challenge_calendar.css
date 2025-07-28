@@ -1,0 +1,327 @@
+/* Challenge_calendar.css */
+
+.Challenge_calendar {
+  width: 100%;
+  margin: 0 auto;
+  font-family: sans-serif;
+  padding: 0 2.5%;
+}
+
+.Challenge_calendar-header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px;}
+
+.Challenge_calendar-header .rewardiconBox {display: flex; align-items: center;}
+.Challenge_calendar-header .iconBox {width: 104px; margin-left: 7px;}
+.Challenge_calendar-header button {margin-right: 16px;}
+.Challenge_calendar-header button svg {width: 22.29px; height: auto;}
+
+.Challenge_calendar h3 {
+  text-align: center;
+  height: 19px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.Challenge_calendarBox {display: grid; grid-template-columns: 2.5% repeat();}
+
+.Challenge_calendarBox.no-bg {
+  background: none;
+}
+
+.Challenge_calendarBox.no-bg .Challenge_month-label {font-size: 22px; font-weight: 500;}
+
+/* 요일 헤더 */
+.Challenge_weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.Challenge_weekday {
+  text-align: center;
+  margin: 9.96px 0 9px;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.Challenge_weekday:nth-child(2) {color: #ff4187;}
+
+/* 날짜 셀 그리드 */
+.Challenge_dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 16px;
+}
+
+.Challenge_date-cell {
+  position: relative;
+  text-align: center;
+}
+
+.Challenge_date-cell.empty {
+  background: none;
+  border: none;
+}
+
+
+/* 날짜 헤더와 스탬프 영역 분리 */
+.Challenge_date-header {
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.Challenge_day-number.small {
+  font-size: 13px;
+  display: block;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
+}
+.Challenge_date-cell:nth-child(2) .Challenge_date-header .Challenge_day-number.small {color: #ff4187;}
+
+
+/* 스탬프 표시 */
+.Challenge_stamp-wrapper {
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 100px;
+}
+
+.Challenge_stamp {width: 46px; height: 46px;}
+
+.Challenge_stamp-today {color: #ff4187; background: #ffecf3; border-radius: 100px;}
+
+.Challenge_stamp-wrapper img {width: 100%;}
+
+/* 인증하기 버튼 */
+.Challenge_cert-button {
+  display: block;
+  width: 100%;
+  height: 48px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 65, 135,0.4);
+  border-radius: 24px;
+  cursor: pointer;
+  background-color: #ff4187;
+  color: #fff;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  margin-bottom: 32px;
+  font-family: Pretendard, -apple-system, system-ui, sans-serif;
+}
+
+/* 인증성공 및 비활성화 */
+.Challenge_cert-button:disabled {
+  background-color: #fff;
+  border: 1px solid #ff4187;
+  color: #000;
+  cursor: default;
+}
+
+.Challenge_cert-button:not(:disabled):hover {
+  background-color: rgba(255, 65, 135,0.8);
+}
+
+/* 인증 실패 */
+.Challenge_cert-button--fail:disabled {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color:    rgba(0, 0, 0, 0.4);
+  color:           #585858;
+}
+
+
+/* 모발창 CSS */
+/* ----------------------------
+   모달 백드롭 (화면 전체 어둡게)
+   ---------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;                        /* top/right/bottom/left 모두 0 */
+  background: rgba(0, 0, 0, 0.5); /* 반투명 블랙 */
+  display: flex;                  /* 중앙 정렬을 위해 flex */
+  align-items: center;            /* 수직 중앙 */
+  justify-content: center;        /* 수평 중앙 */
+  z-index: 10000;                  /* 달력 위에 표시 */
+}
+
+/* ----------------------------
+   모달 컨테이너 (흰 배경 박스)
+   ---------------------------- */
+.modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px 16px 16px 16px;
+  max-width: 90%;
+  width: 336px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-family: inherit;           /* 전역 폰트 상속 유지 */
+  position: relative;
+}
+
+/* ----------------------------
+   모달 내부 텍스트
+   ---------------------------- */
+.modal p {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.4;
+}
+
+.modal p:nth-child(2) {margin-bottom: 18px;}
+
+/* 모달 내부 텍스트 내부 아이콘 */
+.modal .calendarIcons {width: 15px; vertical-align: middle;}
+
+/* ----------------------------
+   체크박스 레이블
+   ---------------------------- */
+.modal label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 12px;
+  color: #333;
+  justify-content: center;
+}
+
+.modal input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.Challenge_calendar .who {color: #ff4187;}
+
+/* ----------------------------
+   모달 버튼 공통
+   ---------------------------- */
+.modal-backdrop .modal-buttons {display: flex; justify-content: space-between;}
+.modal button {
+  margin: 0 8px;
+  padding: 13px 0;
+  font-size: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  width: 50%;
+}
+
+/* 인증하기 버튼 비활성 */
+.modal button:disabled {
+  background: #999999;
+  cursor: not-allowed;
+  color: #fff;
+  border: none;
+  transition: all 0.15s;
+}
+
+/* 모달창 : 인증하기 버튼 */
+.modal button:not(:disabled) {
+  background: #ff4187;
+  color: #fff;
+  border: none;
+  transition: all 0.15s;
+}
+
+/* 모달창 : 취소버튼 */
+.modal button:nth-child(1) {
+  background: transparent;
+  color: #555;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* 숨겨진 실제 체크박스 */
+.modal-checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkBoxwidth {width: 70%; margin: 0 auto;}
+
+/* 커스텀 체크박스 박스 */
+.modal-checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 아이콘 영역: 박스 틀 꾸미기 */
+.modal-checkbox-icon {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+/* 체크된 상태에 다른 컬러 주기 */
+.modal-checkbox-input:checked + .modal-checkbox-icon {
+  border-color: rgba(0, 0, 0, 0.4);
+  background: #fff;
+  color: #ff4187;
+}
+
+/* 인증 성공 모달 */
+.success-modal .point-up-layout {display: flex; justify-content: space-evenly; padding: 20px 0;}
+
+.success-modal .point-up-layout .old-point {color: #888;}
+.success-modal .point-up-layout .new-point {color: #ff4187; font-weight: 600;}
+
+
+
+
+
+.Month_common .particle {
+  position: absolute;
+  top: 32.5%; left: 65%;               /* 컨테이너 중앙 기준 */
+  width: 40px; height: 40px;
+  opacity: 0;
+  transform-origin: center center;    /* 회전 중심을 요소 중앙으로 */
+
+  /* 변수 정의 */
+  --start-angle: 0deg;       /* 입자별 시작 회전 각도 */
+  --rotations: 1;            /* 애니메이션 동안 돌릴 전체 회전 수 */
+  --end-distance: 150px;     /* 최종 이동 반경 */
+
+  animation: swirl-out 0.6s ease-out both;
+  animation-delay: 0.9s;     /* 필요에 따라 지연 시간 조절 */
+}
+
+@keyframes swirl-out {
+  0% {opacity: 0;}
+  1% {
+    opacity: 1;
+    /* 시작: 각도가 var(--start-angle), 거리 0 */
+    transform: rotate(var(--start-angle)) translate(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    /* 끝: var(--rotations)만큼 회전 + var(--end-distance)만큼 이동 + 축소 */
+    transform:
+      rotate(calc(var(--start-angle) + var(--rotations) * 135deg))
+      translate(var(--end-distance))
+      scale(0.1);
+  }
+}
+
+/* 각 입자마다 시작각도만 달리 지정 */
+.Month_common .particle-0 { --start-angle:   0deg; }
+.Month_common .particle-1 { --start-angle:  60deg; }
+.Month_common .particle-2 { --start-angle: 120deg; }
+.Month_common .particle-3 { --start-angle: 180deg; }
+.Month_common .particle-4 { --start-angle: 240deg; }
+.Month_common .particle-5 { --start-angle: 300deg; }

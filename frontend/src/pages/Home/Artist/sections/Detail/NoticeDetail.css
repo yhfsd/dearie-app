@@ -1,0 +1,244 @@
+.notice-detail {
+    padding-top: 62px;
+    color: #fff;
+    padding-bottom: 68px;
+    background: #121212;
+    height: 100vh;
+}
+
+
+.notice-detail__body {
+    padding: 0 2.5%;
+    box-sizing: border-box;
+}
+
+
+
+.notice-detail__title {
+    display: flex;
+    align-items: center;
+    padding: 0 7.8%;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.notice-detail__title .title {
+    margin-left: 5px;
+}
+
+
+.notice-detail__body .bodyBox {
+    background: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    width: 100%;
+    padding: 9% 5.5%;
+}
+
+.bodyBox--rules p {
+    letter-spacing: -0.04em;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 300;
+}
+
+
+
+
+
+.bodyBox.bodyBox--application {
+    padding: 4.5% 3.75%;
+}
+
+.title.bodyBox--application {
+    font-size: 14px;
+}
+
+
+.bodyBox .firstBox .mainTitleBox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+
+.bodyBox .firstBox .mainTitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+
+.bodyBox .firstBox .imgBox {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.bodyBox .firstBox .imgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 10;
+}
+
+
+.bodyBox .firstBox .imgBox .textBox {
+    background: #FF4187;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-top: -20px;
+    position: relative;
+    z-index: 20;
+}
+
+.bodyBox .firstBox .imgBox .textBox .text {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 0px;
+    box-sizing: border-box;
+}
+
+.bodyBox.bodyBox--rules .firstBox {
+    display: none;
+}
+
+
+.bodyBox.bodyBox--rules .secondBox {
+    display: none;
+}
+
+
+.imgBox-inside {
+    width: 100%;
+    background: #282828;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+
+.imgBox-inside .insideBox-inner {
+    padding: 2.75% 4%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.imgBox-inside .insideBox-inner .inside-textBox  {
+    margin-top: 5px;
+}
+
+.imgBox-inside .insideBox-inner .inside-textBox .title {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.imgBox-inside .insideBox-inner .inside-textBox .title span {
+    background: #FF4187;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    margin-right: 8px;
+    text-align: center;
+    display: inline-block;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+
+
+.imgBox-inside .insideBox-inner .inside-textBox .text {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 8px;
+    margin-bottom: 8px;
+}
+
+
+.imgBox-inside .insideBox-inner .inside-imgBox {
+    width: 70px;
+    height: 99px;
+    object-fit: cover;
+}
+.imgBox-inside .insideBox-inner .inside-imgBox img {
+    width: 100%;
+    height: 100%;
+    height: auto;
+}
+
+
+.notice-detail__body .secondBox {
+    padding: 0 5.5%;
+}
+
+
+.notice-detail__body .secondBox .titleBox .title {
+    color: #FF4187;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    line-height: 12px;
+    align-items: center;
+}
+
+.notice-detail__body .secondBox .textBox .text {
+    font-size: 12px;
+    letter-spacing: -0.04em;
+    line-height: 20px;
+}
+
+.notice-detail__body .secondBox .textBox .text .opacity0 {
+    opacity: 0;
+}
+
+.notice-detail__body .secondBox .textBox {
+    margin-bottom: 24px;
+}
+
+.notice-detail__body .secondBox .urlBox {
+    width: 100%;
+    text-align: center;
+}
+
+
+.notice-detail__body .secondBox .urlBox .title {
+    font-size: 10px;
+    letter-spacing: -0.04rem;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 9px;
+}
+.notice-detail__body .secondBox .urlBox .title .main-title {
+    margin: 0 8px;
+}
+
+
+.notice-detail__body .secondBox .urlBox .from-link {
+    font-size: 12px;
+    color: #FF4187;
+    text-align: center;
+    width: 100%;
+    
+}
+
+
+.notice-detail__body .secondBox .urlBox .from-link span {
+    letter-spacing: -0.04rem;
+}
+
+
+
+
+
+

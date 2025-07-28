@@ -1,0 +1,21 @@
+.artist-wrap{background: #121212;}
+.artist-wrap .artist-list{margin: 2.5%; color: #fff; }
+.artist-wrap .artist-list .artistPost{border-radius: 10px; background: #1A1A1A; margin-bottom: 16px;}
+.artist-wrap .artist-list .artistPost .profile-box{display: flex; justify-content: left; align-items: center; padding-top: 19px; margin: 0 2.2%; }
+
+
+.artist-wrap .artist-list .artistPost .profile-box .profileImg{margin-right: 8px; border-radius: 50%; width: 35px; height: 35px;}
+.artist-wrap .artist-list .artistPost .profile-box .profileImg img{width: 100%; height: 100%; border-radius: 50%; object-fit: cover;}
+.artist-wrap .artist-list .artistPost .profile-box .profileNoImg{font-size: 8px; margin-right: 8px}
+.artist-wrap .artist-list .artistPost .profile-box .profile-info .profile-name{display: flex; align-items: center; font-size: 14px;}
+.artist-wrap .artist-list .artistPost .profile-box .profile-info .profile-name svg{margin-left: 3px;}
+.artist-wrap .artist-list .artistPost .profile-box .profile-info .post-time{margin-top: 5px; font-size: 11px; color: #fff; opacity: 0.54;}
+
+.artist-wrap .artist-list .artistPost .text-box{margin: 12px 2.2% 10px; line-height: 1.2; font-weight: 100; letter-spacing: 0.01em; font-size: 14px; display: -webkit-box;
+-webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
+.artist-wrap .artist-list .artistPost .icon-box{margin: 0 2.2%; padding: 15px 0; display: flex; align-items: center;}
+.artist-wrap .artist-list .artistPost .icon-box svg{margin-right: 6px; width: 17px; height: 17px;}
+.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(1){width: 20px; height: 20px;}
+.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(3){width: 16px; height: 16px;}
+
+.artist-wrap .artist-list .artistPost .img-box img{width: 100%;}

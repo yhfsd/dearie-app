@@ -1,0 +1,12 @@
+.artist-page {
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #000;
+}
+
+@media (min-width: 1023px) {
+    .artist-page {padding: 53px 0 87px;}
+}
+

@@ -1,0 +1,53 @@
+/* 기본 설정 */
+.content-section {padding: 0 2.5%; color: #fff;}
+.content-section .imgBox {width: 100%; aspect-ratio: 16 / 9; overflow: hidden; position: relative; border-radius: 11.35px;}
+.content-section .imgBox img {width: 100%; height: 100%; object-fit: cover; display: block;}
+.content_icon {width: 30px; height: 30px;}
+.content_icon img {width: 100%;}
+
+/* 메인 동영상 */
+.content-main {width: 100%;}
+.icon_name_date {display: flex; align-items: center; margin: 16px 0 20px;}
+.content_name_date {display: flex; flex-direction: column; align-items: flex-start; margin-left: 6px; gap: 2px;}
+.content_name {color: #fff; font-size: 14px; font-weight: 400;}
+.content_date {color: #717171; font-size: 12px;}
+
+/* 서브동영상 */
+.content-subContents {padding-top: 20.5px; position: relative; width: 100%; overflow: hidden;}
+.content-subContents::before {content: ''; width: 100%; height: 1px; background: #292929; top: 0; left: 0; display: block; position: absolute; border-radius: 100px;}
+.content-subContents span {font-size: 17px; font-weight: 500;}
+.content-subContents .content-name {
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+}
+.content-subContents .content-date {font-size: 11px; font-weight: 400; color: #717171;}
+.content-list-namedate {display: flex; flex-direction: column; gap: 1px; margin-top: 8px; margin-left: 6px;}
+
+.content-row {display: flex; gap: 8px;}
+
+.content-swiper {
+  overflow: visible;
+  margin-bottom: 32px;
+}
+
+.content-swiper .swiper-wrapper {
+  margin-top: 8px;
+}
+
+.content-swiper .swiper-slide {
+  flex-shrink: 0;
+}
+.content-item {width: 53%; flex-shrink: 0;}
+
+.content-item button {
+    all: unset; /* 기본 버튼 스타일 제거 */
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}

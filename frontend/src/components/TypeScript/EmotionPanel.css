@@ -1,0 +1,218 @@
+/* src/components/TypeScript/ChatbotWindow.css (또는 EmotionPanel.css에 추가) */
+
+
+.emotion-backdrop {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;           /* 낮게 */
+  pointer-events: auto;
+}
+
+.emotion-panel {
+  touch-action: pan-y;
+  position: absolute;
+  width: 100%;
+  bottom: 0px; left: 0px; right: 0;
+  max-height: 90vh;
+  min-height: 350px;
+  overflow-y: visible;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  border-radius: 12px 12px 0px 0px;
+  z-index: 200;           /* backdrop보다 높게 */
+  pointer-events: auto;   /* 클릭 허용 */
+}
+
+
+.emotion-panel .icon-Box {
+  position: relative;
+}
+
+.emotion-input-icon {
+    position: absolute;
+    top: -38px;
+    left: 10%;
+    z-index: 1000;
+}
+.emotion-input-icon img {
+  width: 57px;   /* 필요에 따라 조절 */
+  height: auto;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 헤더 */
+.emotion-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 21px;
+  box-sizing: border-box;
+  margin: 25px 0px 30px 0px;
+  align-items: center;
+  height: 36px;
+}
+
+/* 헤더 버튼 공통 */
+.header-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+}
+
+
+.emotion-TitleBox .title {
+    font-size: 17px;
+    color: #fff;
+    padding: 0 6%;
+    margin-bottom: 27px;
+}
+
+
+
+
+.emotion-GroupBox {
+    padding: 0 4%;
+    margin-bottom: 50px;
+}
+
+
+
+.emotion-group-title {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+
+
+
+/* 버튼 박스 */
+.emotion-btnBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3열 고정 */
+  gap: 16px 8px;
+  text-align: center;
+  margin-bottom: 25px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+
+
+/* 기존 emotion-btn 스타일 유지 */
+.emotion-btn {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  color: #fff;
+    min-width: 100px;
+    min-height: 50px;
+  border: none;
+  border-radius: 47px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.emotion-panel .mainBox {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+
+
+
+
+.emotion-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.emotion-btn.selected {
+    background: rgba(254, 165, 165, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+.emotion-footer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-bottom: 45px;
+    margin-top: -3px;
+}
+.emotion-footer .confirm-btn {
+    width: 92%;
+    padding: 20px 0;
+      background: rgba(4, 2, 51, 0.7);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0.5px 0 rgba(138, 134, 173, 1),
+    inset 0 -0.5px 0 rgba(138, 134, 173, 1),
+    inset 0 0 0px 0px rgba(138, 134, 173, 1);
+  border-radius: 47px;
+  position: fixed;
+  bottom: 20px;
+  z-index: 9999;
+}

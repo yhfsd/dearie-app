@@ -1,0 +1,143 @@
+
+/* 2. 제목 */
+.challenge_Fandom_Rank h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 0 2.5%;
+}
+
+/* 3. 리스트 슬라이드 래퍼 */
+.challenge_Fandom_Rank .fandomListWrapper {
+  overflow: hidden;
+  /* 접힌 상태: 앞 4개, 펼친 상태: 전체 5개 */
+  max-height: calc((65px + 20px) * 4);
+  transition: all 0.4s ease;
+}
+.challenge_Fandom_Rank.expanded .fandomListWrapper {
+  max-height: calc((65px + 20px) * var(--item-count));
+  transition: max-height 0.4s ease;
+}
+
+/* 4. 리스트 기본 */
+.challenge_Fandom_Rank .fandomRankList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 5. 아이템 기본 & 애니메이션 */
+.challenge_Fandom_Rank .fandomRankItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 0 2.5%;
+  position: relative;
+}
+
+/* 메달 아이콘 (1~3위) */
+.fandomRankItem .medal-icon {width: 32px; position: absolute; right: 5%; top: 50%; transform: translateY(-50%);}
+
+.challenge_Fandom_Rank .fandomRankItem .num {width: 20px; text-align: center;}
+
+/* 6. collapsed 시 5번째 이후 숨김 */
+.challenge_Fandom_Rank:not(.expanded) .fandomRankItem:nth-child(n + 5) {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition-delay: 0s;
+}
+
+/* 7. expanded 시 5번째 이후 보여주기 (stagger) */
+.challenge_Fandom_Rank.expanded .fandomRankItem:nth-child(n + 5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+
+.challenge_Fandom_Rank .fandomRankItem .imgBox {
+  width: 65px;
+  height: 65px;
+  margin: 0 12px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.challenge_Fandom_Rank .fandomRankItem .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.challenge_Fandom_Rank .fandomRankItem .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+.challenge_Fandom_Rank .fandomRankItem .info .name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.challenge_Fandom_Rank .fandomRankItem .info .gauge {
+  width: 83%;
+  height: 8px;
+  background: #dadada;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.challenge_Fandom_Rank .fandomRankItem .info .gauge-bar {
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 65, 135, 0.58) 0%,
+    rgba(255, 65, 135, 1) 100%
+  );
+  width: 0;
+  transition: width 0.8s ease;
+}
+.challenge_Fandom_Rank .fandomRankItem .info .value {
+  font-size: 12px;
+  color: #ff4187;
+}
+
+/* 9. 토글 버튼 & 버튼 위치 애니메이션 */
+.challenge_Fandom_Rank .buttonBox {padding: 0 5%; margin-top: 20px;}
+
+.challenge_Fandom_Rank .fandomToggleBtn {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px 0;
+  background-color: #f6f6f6;
+  color: #5e5e5e;
+  border: 1px solid #f0f0f0;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  margin: 16px auto 0;
+}
+
+.challenge_Fandom_Rank.expanded .fandomToggleBtn {
+  margin-top: 20px;
+}
+
+.challenge_Fandom_Rank .fandomToggleBtn svg {
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+.challenge_Fandom_Rank.expanded .fandomToggleBtn svg {
+  transform: rotate(180deg);
+}
+
+
+/* 나의 순위 항목 스타일 */
+.fandomRankItem.myRankItem {background: rgba(255, 65, 135, 0.4); padding-top: 8px; padding-bottom: 8px;}
+
+
+
+

@@ -1,0 +1,546 @@
+.more {padding: 0 2.5%; padding-bottom: 120px; min-height: 100vh; background: #fff; padding-top: 89px;}
+
+
+
+.user-detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  background: #fff;
+  color: #000;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-right: 10%;
+  box-sizing: border-box;
+}
+
+
+.profile-pic {width: 65px; height: 65px; background: #F7F7FA; border-radius: 50%;border: 2px solid #FF4187; position: relative;}
+
+.profile-pic .camera {color: #000; background: #F7F7FA; width: 25px; height: 25px; border-radius: 50%; border: 2px solid #ff4187; position: absolute; bottom: 0; right: -10%;}
+.profile-pic .camera .camera-icon {font-size: 13px; position: absolute; left: 51%; top: 50%; transform: translate(-50%,-50%); padding-top: 1px;}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.name {
+  display: flex;
+  align-items: end;
+  gap: 7px;
+}
+
+.name h2 {
+  margin: 0;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 400;
+  color: #000;
+}
+
+.name input {
+  font-size: 20px;
+  padding: 0px 2px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.level {
+  font-size: 13px;
+  color: #000;
+  opacity: 0.7;
+  font-weight: 300;
+}
+
+.name-placeholder {
+  font-size: 13px !important;
+  color: #999;
+}
+
+.exp-bar {
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+.exp-fill {
+  height: 100%;
+  background: #FF4187;
+  transition: width 0.3s ease;
+}
+
+.exp-text {
+  font-size: 10px;
+  color: #000;
+  opacity: 0.7;
+}
+
+
+
+.pick-section {
+  margin-top: 40px;
+}
+.pick-section .pick-title {
+  background: linear-gradient(90deg, #FF4187 0%, #AA7FFA 30%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 9px;
+  box-sizing: border-box;
+  margin-left: 5px;
+}
+
+
+
+.pick-list-imgBox {
+  position: absolute;
+  right: 14px;
+  top: -31px;
+  width: 45px;
+  height: auto;
+}
+
+.pick-list-imgBox img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
+
+.pick-section .pick-list {
+  background: #fdfdfd;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  gap: 12px;
+  padding: 12px 0px;
+  position: relative;
+}
+
+
+
+.pick-section .pick-list .pick-list-inside {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+  background: #fdfdfd;
+  border-radius: 10px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+
+.pick-section .pick-list .pick-list-inside .pick-circle.plus {
+  color: #767676;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: -0.193301px -0.193301px 2.89951px #FF4187, 0.193301px 0.193301px 2px #FF4187;
+  border-radius: 50%;
+  border: none;
+}
+.pick-section .pick-list .pick-list-inside .pick-card p.plus {
+  margin: 6px;
+}
+
+.pick-section .pick-list .pick-list-inside .pick-card p {
+  margin-top: 7px;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+.pick-section .pick-list .pick-list-inside .pick-circle {
+  color: #9a9a9a;
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.pick-section .pick-list .pick-list-inside .pick-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid #ACACAC;
+  border-radius: 50%;
+}
+
+.modal-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; /* 필요시 조절 */
+  background: rgba(0, 0, 0, 0.4); /* 바깥 클릭 영역 표시 */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* 모달을 아래로 정렬 */
+}
+
+@keyframes slideUp2 {
+  from {
+    transform: translateX(0) translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-overlay .modal-content {
+  /* 애니메이션 전 초기 위치를 이렇게 설정하거나 생략해도 됩니다 */
+  animation: slideUp2 0.4s ease-out forwards;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 46%;
+  padding: 0 20px 20px;
+  overflow-y: auto;
+  position: relative;
+  max-width: 768px;
+}
+
+.modal-overlay .modal-content {
+  overflow-y: scroll;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE 10+ */
+}
+
+.modal-overlay .modal-content::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
+
+.modal-content .titleBox {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    z-index: 9999;
+    padding: 20px 0px;
+}
+
+.modal-content .pick-title {
+  background: linear-gradient(90deg, #FF4187 0%, #AA7FFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 9px;
+  text-align: center;
+  padding: 0px 0px 10px 0px;
+  width: 100%;
+  margin: 0 auto 10px auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.group-item .img {
+  justify-content: start;
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-radius: 50%;
+  background: transparent;
+  overflow: hidden;
+  border: 1px solid #ACACAC;
+}
+.group-item .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pick-list-inside {
+  background: #f0f0f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 12px;
+}
+
+.pick-list-inside.has-picks {
+  padding: 10px 20px;
+}
+
+.pick-list-inside.no-picks {
+  padding: 0;
+}
+
+
+
+.pick-list-inside .pick-circle .cancel-img {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.pick-list-inside .pick-circle .cancel-img img {
+  border: 1px solid #FF4187;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pick-list-inside .pick-circle {position: relative;}
+.pick-circle .remove-btn {
+  font-size: 16px;
+  position: absolute;
+  top: 0%;
+  color: #999;
+  right: -10%;
+  background: #000;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 3px;
+  box-sizing: border-box;
+  display: none;
+}
+
+.modal-group-list {
+  margin-top: 20px;
+}
+
+
+
+
+.group-icon {
+  font-size: 20px;
+  color: #000;
+  opacity: 0.5;
+}
+.group-icon.picked {
+  color: #FF4187;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.modal-group-list li {
+  margin-bottom: 20px;
+}
+
+.modal-group-list li span {
+  color: #000;
+  flex: 1;
+  margin-left: 9px;
+}
+
+
+.menu-grid {
+  margin: 16px 0px;
+  display: grid;
+  grid-template-columns: repeat(3 ,1fr);
+  gap: 8px;
+}
+
+
+
+
+
+
+
+
+.menu-grid .menu-item {
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  background: #fdfdfd;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  /* box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1); */
+  
+}
+
+.menu-grid .menu-item .icon {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-grid .menu-item p {
+  color: #000;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+
+
+
+/* 기본 버튼 스타일 */
+.group-action-btn {
+  font-size: 12px;
+  padding: 8px 21px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+
+/* 가입하기 상태 */
+.group-action-btn.join {
+  background: linear-gradient(90deg, #FF4187 0%, #AA7FFA 100%);
+  color: #fff;
+}
+
+/* 취소하기 상태 */
+.group-action-btn.cancel {
+  background-color: #444;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.accordion-section {
+  background: #fdfdfd;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+
+/* 아코디언 회전 */
+.chevron {
+  transition: transform 0.3s ease;
+}
+.chevron.rotated {
+  transform: rotate(180deg);
+}
+
+
+
+
+.divider {
+  background: rgba(255, 255, 255, 0.14);
+  width: 90%;
+  margin: 0px auto;
+  height: 1px;
+}
+
+
+
+
+.accordion-section .accordion-item {
+  color: #474747;
+  padding: 16px 18px;
+  cursor: pointer;
+  position: relative;
+}
+
+.accordion-section .accordion-item::after {
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  content: '';
+}
+
+.accordion-section .accordion-item:last-child:after {
+  display: none;
+}
+
+.accordion-title {
+  display: flex;
+  color: #000;
+  justify-content: space-between;
+  font-size: 13px;
+  position: relative;
+}
+
+
+.accordion-content {
+  font-size: 12px;
+  padding: 20px 0px 0px 0px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.accordion-content p {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+.warning-list p{
+  text-align: start;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+
+.logout-section {
+  margin-top: 16px;
+  background: #fdfdfd;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 16px 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.logout-section .logout-btn {
+  width: 100%;
+  text-align: start;
+  font-size: 13px;
+  color: #000;
+}
+
+
+
+

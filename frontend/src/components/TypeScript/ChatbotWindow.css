@@ -1,0 +1,413 @@
+/* src/components/TypeScript/ChatbotWindow.css */
+
+/* 1) 전체 컨테이너 */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  max-height: 100dvh !important;
+  padding-top: 73px;
+  background: transparent;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.messages {
+  overflow-y: scroll;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+
+.messages::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
+
+.chat-window .chat-date {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.chat-window .chat-date::before {
+  content: '';
+  background: rgba(255, 255, 255, 0.55);
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+
+.chat-window .chat-date .text {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+  background: #050327;
+  padding: 0 5px;
+  position: relative;
+  z-index: 11;
+}
+
+/* 2) 메시지 리스트 영역 */
+.messages {
+  flex: 1;
+  padding: 0px 16px 40px 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 3) 메시지 버블 */
+.message {
+  max-width: 100%;
+  padding: 10px 14px;
+  border-radius: 20px;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+/* 봇 메시지 (왼쪽) */
+.message.bot {
+  display: flex;
+  flex-direction: column;      /* 세로 스택으로 변경 */
+  align-items: flex-start;     /* 왼쪽 정렬 유지 */
+}
+
+/* bot-content 에만 가로 레이아웃을 적용 */
+.bot-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* chatbox 스타일 예시 */
+.chatbot-textBox {
+  display: block;
+  background: #fff;
+  border-radius: 16px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+
+.chatbot-textBox .chatbot-textBox-inner {
+  padding: 37px 28px 20px 28px;
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.chatbot-textBox .chatbot-textBox-inner .titleBox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 29px;
+}
+
+
+.chatbot-textBox .chatbot-textBox-inner .titleBox .text {
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+}
+
+.chatbot-textBox .chatbot-textBox-inner .titleBox .imgBox {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.chatbot-textBox .chatbot-textBox-inner .titleBox .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+
+
+.chatbot-textBox .chatbot-textBox-inner .bottom-btn {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chatbot-textBox .chatbot-textBox-inner .bottom-btn button {
+  width: 100%;
+  text-align: center;
+  padding: 14px 0px;
+  border-radius: 29px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.chatbot-textBox .chatbot-textBox-inner .bottom-btn button.fine {
+  background: #fff;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.chatbot-textBox .chatbot-textBox-inner .bottom-btn button.like {
+  background: #FF4187;
+  border: 1px solid #FF4187;
+  color: #fff;
+} 
+
+
+
+
+
+
+
+.bot-avatar-wrapper {
+  flex-shrink: 0;
+  width: 41px !important;
+  height: 41px !important;
+  background: rgba(55, 53, 83, 1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+    border-radius: 50%;
+  color: #fff;
+  overflow: hidden;
+  margin-right: 8px;
+  position: relative;
+}
+
+
+.bot-avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.bot-bubble {
+    background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.01),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.01),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  max-width: 100%;
+  min-width: 0;
+  white-space: pre-line;
+}
+
+
+.chatbot-textBox {
+  display: inline-block;
+}
+
+
+
+/* 유저 메시지 (오른쪽) */
+.message.user {
+  align-self: flex-end;
+  background: rgba(55, 53, 83, 1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  margin: 16px 0px;
+}
+
+.message.bot {
+  padding: 0;
+}
+
+
+.message-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.message-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+
+.message-arrow {
+  position: relative;
+  margin-left: 8px;
+}
+
+.message-arrow svg {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 4) 입력창 영역 */
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  margin: 0 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0.5px 0 rgba(138, 134, 173, 1),
+    inset 0 -0.5px 0 rgba(138, 134, 173, 1),
+    inset 0 0 0px 0px rgba(138, 134, 173, 1);
+  border-radius: 47px;
+}
+
+.input-area input::placeholder {
+    color: #fff;
+}
+
+.input-area input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+
+/* + 버튼, 전송 버튼 공통 */
+.btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+.send-btn {
+    margin-left: 8px;
+}
+
+/* + 버튼 */
+.add-btn {
+  margin-right: 10px;
+}
+
+/* 입력 필드 */
+.input-area input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 6px 0;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+
+.btn.add-btn {
+    min-width: 46px;
+    min-height: 46px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0.2px 0 rgba(213, 213, 213, 1),
+    inset 0 -0.2px 0 rgba(213, 213, 213, 1),
+    inset 0 0 0px 0px rgba(213, 213, 213, 1);
+    border-radius: 50%;
+    color: #fff;
+    transform: rotate(45deg);
+}
+
+.btn.add-btn svg {
+    transform: rotate(-45deg);
+}
+
+.bot-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  white-space: pre-wrap;
+}
+
+
+.music-btn {
+  align-self: center;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(55, 53, 83, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-top : 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  padding: 6px 16px;
+  color: #fff;
+  border-radius: 47px;
+  margin: 16px 0px;
+}

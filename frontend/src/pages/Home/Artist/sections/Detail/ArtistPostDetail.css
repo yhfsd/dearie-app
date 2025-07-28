@@ -1,0 +1,95 @@
+.postDetail-wrap{background: #121212; color: #fff; padding: 53px 0 200px; overflow: hidden;}
+.postDetail-wrap .postBox{margin: 8px 2.5% 0; background: #121212;}
+
+/* 프로필 */
+.postDetail-wrap .postBox .profile-box{display: flex; align-items: center;}
+.postDetail-wrap .postBox .profile-box .profileImg{margin-right: 10px; width: 35px; height: 35px; border-radius: 50%; overflow: hidden;}
+.postDetail-wrap .postBox .profile-box .profileImg img{width: 100%; height: 100%;}
+.postDetail-wrap .postBox .profile-box .profile-info{flex: 1;}
+.postDetail-wrap .postBox .profile-box .profile-info .post-time{font-size: 13px; opacity: 70%; margin-top: 2px;}
+.postDetail-wrap .postBox .profile-box .profile-info .profile-name{display: flex; font-size: 15px;}
+.postDetail-wrap .postBox .profile-box .profile-info .profile-name svg{margin-left: 2px;}
+.postDetail-wrap .postBox .profile-box > svg{width: 22px; height: 22px; opacity: 0.5;}
+
+.postDetail-wrap .postBox .img-box{margin-top: 8px; border-radius: 10px; overflow: hidden;}
+.postDetail-wrap .postBox .img-box img{width: 100%;}
+
+/* 글 */
+.postDetail-wrap .postBox .text-box{font-size: 14px; font-weight: 300; line-height: 1.2; margin-top: 10px;}
+
+
+/* 아이콘 */
+.postDetail-wrap .postBox .icon-box{display: flex; align-items: center; margin-top: 14px; font-size: 14px;}
+.postDetail-wrap .postBox .icon-box svg{margin:0 2px 0 6px; width: 16px; height: 14px;}
+.postDetail-wrap .postBox .icon-box svg:nth-child(1){width: 17px; height: 17px; margin-left: 0px}
+.postDetail-wrap .postBox .icon-box svg:nth-child(3){width: 13px; height: 13px;}
+
+/* 라인 */
+.postDetail-wrap .postBox .whiteLine{content: ''; position: relative; width: 120%; height: 1px; background: #fff; left: -10%; margin: 16px 0; opacity: 0.05;}
+
+/* 댓글 */
+.postDetail-wrap .postBox .comment-list > p{font-size: 17px; margin-bottom: 16px;}
+.postDetail-wrap .postBox .comment-list .comment-profile{display: flex; align-items: center; margin-top: 12px;}
+.postDetail-wrap .postBox .comment-list .comment-info{flex: 1;}
+.postDetail-wrap .postBox .comment-list .comment-info .comment-name{font-size: 13px; font-weight: 500; display: flex; align-items: center;}
+.postDetail-wrap .postBox .comment-list .comment-info .comment-time{font-size: 11px; font-weight: 300; opacity: 0.4; margin-top: 4px;}
+.postDetail-wrap .postBox .comment-list .comment-box{border-bottom: 1px solid rgba(255, 255, 255, 0.05);}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-profile .commentImg-box{width: 35px; height: 35px; margin-right: 8px; border-radius: 50%; overflow: hidden;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-profile .commentImg-box img{width: 100%; height: 100%; object-fit: cover;}
+
+.postDetail-wrap .postBox .comment-list .comment-box .comment-text{margin-top: 8px; color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 300;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-icon{margin: 8px 0 12px; display: flex; align-items: center;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-icon p{font-size: 13px; opacity: 0.7;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-icon svg{width: 12px; height: 12px; margin:0 4px 0 8px; opacity: 0.7;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-icon svg:nth-child(1){margin-left: 0;}
+.postDetail-wrap .postBox .comment-list .comment-box .comment-icon:nth-child(2){width: 15px; height: 15px;}
+
+/* 글쓰기 */
+.postDetail-wrap .comment-input-box {position: fixed; width: 100%; max-width: 768px; height: 87px; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 10000; background: #121212;}
+.postDetail-wrap .comment-input-box .input-box{position: relative;}
+.postDetail-wrap .comment-input-box .input-box svg{position: absolute; top: 50%; right: 8%; transform: translateY(-50%); opacity: 0.4;}
+.postDetail-wrap .comment-input-box input{margin: 12px 2.5%; width: 95%; background: #121212; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); padding: 16px 13px; color: #fff;} 
+
+
+
+
+
+
+
+/* 저장하기 */
+.postDetail-wrap .postBox .profile-box  .downloadBox .overlay{  position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.postDetail-wrap .postBox .profile-box  .downloadBox .download-modal{position: fixed; width: 95%;  max-width: 736px;  bottom: 18px; left: 50%; transform: translateX(-50%); background: #282828; border-radius: 10px; z-index: 1000000; } 
+.postDetail-wrap .postBox .profile-box  .downloadBox .download-modal span{content: ''; display: block; width: 31px; height: 2px; border-radius: 10px; margin: 8px auto 0; background: #fff; opacity: 0.2 ;} 
+.postDetail-wrap .postBox .profile-box  .downloadBox .download-modal .downloadBtn{display: flex; margin: 24px 4.5%; width: 95%; box-sizing: border-box;}
+.postDetail-wrap .postBox .profile-box  .downloadBox .download-modal .downloadBtn svg{margin-right: 10px;}
+
+/* 신고하기&수정&삭제 하단바*/
+
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .reportButtonBox{position: fixed; width: 95%;   max-width: 736px;  bottom: 18px; left: 50%; transform: translateX(-50%); background: #282828; border-radius: 10px; z-index: 10000000;}
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .reportButtonBox span{content: ''; display: block; width: 31px; height: 2px; border-radius: 10px; margin: 8px auto 0; background: #fff; opacity: 0.2 ;}
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .reportButtonBox button{display: flex; padding: 24px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); width: 100%; box-sizing: border-box;}
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .reportButtonBox button:last-child{border: none;}
+.postDetail-wrap .postBox .comment-list .comment-box .report-alert .reportButtonBox button svg{margin-right: 10px;}
+
+
+/* 삭제확인 */
+.postDetail-wrap .postBox .comment-list .deleteBox .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal{position: fixed; z-index: 1000; width: 95%;  max-width: 736px;  top: 50%; left: 50%; transform: translate(-50%, -50%); background: #282828; border-radius: 10px; }
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal .delete-buttons{display: flex; justify-content: center; margin-bottom: 20px;}
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal button{padding: 13px 61px; border-radius: 22px;}
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal .yes-btn{background: #FF4187;}
+.postDetail-wrap .postBox .comment-list .deleteBox .delete-modal .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+
+/* 신고확인 */
+.postDetail-wrap .postBox .reportBox .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.postDetail-wrap .postBox .reportBox .report-modal{position: fixed; z-index: 1000; width: 95%;  max-width: 736px;  top: 50%; left: 50%; transform: translate(-50%, -50%); background: #282828; border-radius: 10px; }
+.postDetail-wrap .postBox .reportBox .report-modal p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.postDetail-wrap .postBox .reportBox .report-modal .report-buttons{display: flex; justify-content: center; margin-bottom: 20px;}
+.postDetail-wrap .postBox .reportBox .report-modal button{padding: 13px 61px; border-radius: 22px;}
+.postDetail-wrap .postBox .reportBox .report-modal .yes-btn{background: #FF4187;}
+.postDetail-wrap .postBox .reportBox .report-modal .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+/* 신고완료 */
+.postDetail-wrap .reportedBox{position: fixed; left: 50%; bottom: 10%; transform: translate(-50%, -50%); display: flex; align-items: center; padding: 15px 22px; background: #282828; border-radius: 10px; font-size: 14px; font-weight: 300;}

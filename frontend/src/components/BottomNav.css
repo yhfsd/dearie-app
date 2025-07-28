@@ -1,0 +1,50 @@
+.bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 87px;
+  background-color: #121212; /* Dark background */
+  border-top: 1px solid rgba(0 , 0, 0, 0.1);
+  box-shadow: 0px -4px 17px rgba(255, 255, 255, 0.02);
+  z-index: 1000;
+  font-family: 'Pretendard',sans-serif;
+  font-weight: 300;
+  padding-top: 6px;
+  box-sizing: border-box;
+  padding: 6px 9.2% 0px;
+    max-width: 768px;
+  margin: 0 auto;
+}
+
+.bottom-nav .nav-icon {
+  font-size: 29px;
+  height: 32px;
+}
+
+/* 하단바(블랙) */
+
+
+
+
+.bottom-nav .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+
+.bottom-nav .nav-item.active {
+  color: #FF4187 !important; /* 핫핑크 텍스트 */
+}
+
+.bottom-nav .nav-item.active img {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(31%) saturate(2858%) hue-rotate(306deg) brightness(106%) contrast(102%);
+}

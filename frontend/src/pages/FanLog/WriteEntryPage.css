@@ -1,0 +1,175 @@
+/* src/pages/FanLog/WriteEntryPage.css */
+
+.write-entry-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 61px;
+  background: #fff;
+  height: 100vh;
+  font-family: 'Pretendard',sans-serif;
+  position: relative;
+  z-index: 1;
+  position: relative;
+}
+
+.we-date-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.we-tabs {
+  position: relative;
+  margin-top: -13px;
+}
+
+.we-tab-btn {
+  background: #FF4187;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  gap: 5px;
+
+}
+
+.we-tab-btn .arrow {
+  font-size: 10px;
+}
+
+.we-tab-list {
+  position: absolute;
+  top: 110%;
+  left: 0%;
+  transform: translateX(0);
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  min-width: 100%;
+  padding: 7px 0;
+  z-index: 30;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.we-tab-list .we-tab-btn {
+  background: #fff;
+  color: #FF4187;
+  border: none;
+  border-radius: 10px;
+  margin: 0;
+  padding: 7px 22px;
+  font-weight: 500;
+  transition: background 0.16s;
+}
+
+.we-tab-list .we-tab-btn:hover {
+  background: #ffe4ef;
+}
+
+
+
+
+.we-date {
+    margin-bottom: 16px;
+    padding: 0 0 0 7%;
+    box-sizing: border-box;
+}
+
+.we-textarea::placeholder {
+    color: #7E7E7E;
+}
+
+.we-textarea {
+  padding: 0 7%;
+    box-sizing: border-box;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  resize: none;
+  color: #000;
+  min-height: 30%;
+  margin-bottom: 10px;
+}
+/* 이미지, url 목록 */
+.we-preview-list {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  margin: 0 auto;
+  gap: 20px;
+  overflow: visible;
+  margin-bottom: 10px;
+}
+
+/* 이미지 */
+.we-preview-items {display: flex; justify-content: flex-start; gap: 8px;}
+
+.we-preview-item {
+  display: flex;
+  align-items: start;
+  position: relative;
+  overflow: visible;
+}
+
+.we-preview-img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* 하이퍼링크 */
+.we-link-item {background: #fdfdfd; position: relative; display: block; width: 100%; padding: 14px; border-radius: 10px;}
+
+.write-entry-container .we-preview-list .we-link-item a {color: #4c4c4c; font-size: 12px; font-weight: 400;}
+
+.we-remove-btn {
+  background: #4c4c4c;
+  border-radius: 50%;
+  width: 11px;
+  height: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  right: -4px;
+  top: -4px;
+  z-index: 9999;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+}
+
+.we-remove-btn.writeLink {top: 5px; right: 5px;}
+
+
+.we-toolbar {
+  padding: 0 7%;
+  box-sizing: border-box;
+  display: flex;
+  background: #fff;
+  box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.1);
+  height: 46px;
+}
+
+.we-tool-btn {
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+

@@ -1,0 +1,134 @@
+.view-entry-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 61px;
+  background: #fff;
+  min-height: 100dvh;
+  font-family: 'Pretendard',sans-serif;
+  position: relative;
+  padding-bottom: 120px;
+}
+
+.ve-title {
+  position: fixed;
+  z-index: 9999;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  font-family: 'Pretendard',sans-serif;
+  max-height: 53px;
+  line-height: 52px;
+  font-size: 15px;
+}
+.ve-edit-btn {
+  background: none;
+  border: none;
+  color: #FF4187;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-block;
+  position: fixed;
+  padding-right: 5%;
+  top: 8px;
+  right: 0;
+  z-index: 9999;
+  max-height: 53px;
+  line-height: 52px;
+}
+
+.view-entry-inner {
+  padding: 0 2.5%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+
+.ve-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ve-back-btn {
+  background: none;
+  border: none;
+  margin-right: 8px;
+}
+
+.ve-profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  border: 1px solid #FF4187;
+}
+.ve-timeago {
+  font-size: 11px;
+  color: #888;
+  vertical-align: middle;
+  margin-top: 3px;
+}
+.ve-user-info .ve-username {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.ve-user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ve-group-badge {
+  background: #FF4187;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-family: 'Pretendard',sans-serif;
+}
+
+.ve-user-info .user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+/* Swiper 전체 컨테이너 */
+.ve-swiper {
+  margin-bottom: 1rem;
+}
+
+/* Swiper 각 슬라이드 */
+.ve-swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 슬라이드 이미지 스타일 */
+.ve-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  background: #fafafc;
+}
+
+/* Swiper 페이지네이션(점) 스타일 커스텀 */
+.ve-swiper .swiper-pagination-bullet {
+  background: #ddd;
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  margin: 0 3px !important;
+  transition: background 0.2s;
+}
+.ve-swiper .swiper-pagination-bullet-active {
+  background: #ff2979;
+}

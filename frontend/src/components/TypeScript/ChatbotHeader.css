@@ -1,0 +1,119 @@
+/* src/components/ChatbotHeader.css */
+.chatbot-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 768px;      /* 메인 컨테이너 너비와 맞추기 */
+  height: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  color: #fff;
+  z-index: 1000;
+}
+
+
+.chatbot-header__count {
+  font-size: 15px;
+}
+
+.chatbot-header__back {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.chatbot-header__title {
+  font-size: 15px;
+  font-weight: 400;
+  padding: 14px 15px;
+}
+
+
+.midBox {
+  flex: 1;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  position: relative;
+  overflow: hidden;
+  width: 147px;
+  text-align: center;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+
+.glass-card.rightBox {
+  width: 67px;
+  padding: 7px 11px;
+  border-radius: 41px;
+  position: relative;
+  overflow: visible;
+}
+
+
+.glass-card.rightBox .imgBox {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -30%;
+  width: 36px;
+  height: 36px;
+}
+
+.glass-card.rightBox .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+}
+
+
+.chatbot-header.started .midBox {
+  opacity: 0;
+}

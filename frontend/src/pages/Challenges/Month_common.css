@@ -1,0 +1,14 @@
+.Month_common {padding: 61px 0 155px; background: #fff; overflow: hidden;}
+.Month_common.prev {padding: 61px 0 0;}
+.Month_common img {width: 100%;}
+
+.common_ChallengeTitle {font-family: "Pretendard", sans-serif;}
+
+.common_ChallengeTitle {margin-bottom: 16px;}
+.common_challenge_Artist_Rank {margin-bottom: 52px;}
+.common_challenge_calendar {margin-bottom: 32px;}
+
+
+.PrevTitleTxt {text-align: center; margin: 8.47px 0 24px; color: #4b4b4b; font-size: 12px; font-weight: 500;}
+
+.challenges ul.prevMonths > li {margin-bottom: 24px;}

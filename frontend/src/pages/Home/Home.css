@@ -1,0 +1,89 @@
+.home {
+    color: #ffffff; 
+    padding: 114px 4% 0 6%;
+    background: #121212;
+    height: 100vh;
+}
+.home .home-superContainer {max-width: 800px; position: relative; margin: 0 auto;}
+
+
+.home .home-container .inner .title {text-align: center; font-size: 45px; font-family: 'FugazOne',sans-serif; margin-bottom: 30px;}
+
+.home .home-container .inner ul {
+    display: grid; 
+    grid-template-columns: auto auto; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 500px; 
+    margin: 0 auto; 
+    gap: 5%; 
+    row-gap: 1.4rem; 
+    box-sizing: border-box;}
+
+
+
+
+.home .home-container .inner ul li:nth-child(2n) {transform: translateY(21%);}
+.home .imgBox {width: 158px; height: 180px; position: relative;}
+.home .imgBox img {width: 100%;}
+
+
+
+
+
+
+.home .imgBox .nameBox {position: absolute; bottom: 12px; left: -24px; font-size: 20px; font-weight: 900; width: 70px; text-align: center;}
+.home .imgBox .nameBox .artist-name {text-align: center;}
+.home .imgBox .new-badge {background: #ff4187; position: absolute; left: -13px; bottom: 35px; padding: 2px 6px; border-radius: 12px; font-size: 10px;}
+
+
+/* 데코레이션 */
+/* .home .imgDeco {pointer-events: none;} */
+.home .imgDeco div {position: absolute;}
+.home .imgDeco div img {width: 100%; height: 100%;}
+
+
+.home .imgDeco .imgBox_note {top: -53px; left: 5%; width: 96px;}
+.home .imgDeco .imgBox_note img {transform: rotate(-21.75deg);}
+.home .imgDeco .imgBox_camera {top: 21px; right: 15%; width: 57px;}
+.home .imgDeco .imgBox_camera img {transform: rotate(-25.58deg);}
+.home .imgDeco .imgBox_heart {top: 60px; left: 40%; width: 36px;}
+.home .imgDeco .imgBox_heart img {transform: rotate(23.68deg);}
+.home .imgDeco .imgBox_heart2 {top: 507px; right: 7%; width: 50px;}
+.home .imgDeco .imgBox_heart2 img {transform: rotate(13.7deg);}
+.home .imgDeco .imgBox_stars {top: -33px; right: 14%; width: 15px;}
+.home .imgDeco .imgBox_pink4 {top: 477px; right: 11%; width: 4px;}
+.home .imgDeco .imgBox_pink7-6 {top: 72px; left: 14%; width: 7px;}
+.home .imgDeco .imgBox_pink7-7 {top: 47px; right: 35%; width: 7px;}
+.home .imgDeco .imgBox_pink7-8 {top: -54px; left: 35%; width: 7px;}
+.home .imgDeco .imgBox_pink8 {top: 296px; right: 13%; width: 8px;}
+.home .imgDeco .imgBox_pink9 {top: 685px; left: 37%; width: 9px;}
+.home .imgDeco .imgBox_pink10 {top: 712px; right: 12%; width: 10px;}
+.home .imgDeco .imgBox_pink11 {top: 529px; right: 45%; width: 11px;}
+.home .imgDeco .imgBox_pinkstar {top: 302px; left: 47%; width: 17px;}
+.home .imgDeco .imgBox_purple6 {top: 498px; left: 7%; width: 6px;}
+.home .imgDeco .imgBox_purple7 {top: 95px; right: 11%; width: 7px;}
+.home .imgDeco .imgBox_purple8 {top: 267px; left: 35%; width: 8px;}
+
+
+/* 데코 애니메이션 */
+
+@keyframes float {
+    0% {transform: translateY(-10px);}
+    50% {transform: translateY(10px);}
+    100% {transform: translateY(-10px);}
+}
+
+@keyframes rotate {
+    0% {transform: rotate(0);}
+    100% {transform: rotate(360deg);}
+}
+
+.home .imgDeco .imgBox_note {animation: float 8s ease-in-out infinite alternate }
+.home .imgDeco .imgBox_camera {animation: float 7s ease-in-out infinite alternate;}
+.home .imgDeco .imgBox_heart {animation: float 8s ease-in-out infinite alternate;}
+.home .imgDeco .imgBox_heart2 {animation: float 6s ease-in-out infinite alternate;}
+
+.home .imgDeco .imgBox_pinkstar {animation: rotate 8s linear infinite; align-items: center; height: 17px;}
+
+.footer-container {max-width: 768px; margin: 0 auto; padding-bottom: 100px;}

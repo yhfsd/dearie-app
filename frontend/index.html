@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+
+    <title>Dearie</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+      <meta property="og:title" content="Dearie" />
+  <meta property="og:description" content="최애와 함께 감정을 나누는 팬로그, 디어리!" />
+  <meta property="og:image" content="https://dearie-app-v3.vercel.app/og-image.png" />
+  <meta property="og:url" content="https://dearie-app-v3.vercel.app/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dearie" />
+  <meta name="twitter:description" content="최애와 함께 감정을 나누는 팬로그, 디어리!" />
+  <meta name="twitter:image" content="https://dearie-app-v3.vercel.app/og-image.png" />
+    <!-- 기본 파비콘(favicon) -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icon-512.png"
+    />
+
+
+
+    <!-- Android 웹앱 모드 허용 -->
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- iOS 홈화면용 설정 (그대로 유지!) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="default"
+    />
+    <meta name="apple-mobile-web-app-title" content="Dearie" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <!-- Android/Samsung Internet 초기 상태바 색상 -->
+    <meta name="theme-color" content="#121212" />
+
+    <!-- 서비스워커 등록 -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+      }
+    </script>
+
+    <!-- Android 전용: 다크/라이트 모드에 따라 theme-color 런타임 갱신 -->
+<script>
+  (function() {
+    // iOS인지 체크
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) return; // iOS는 apple-meta만 사용
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function update() {
+      meta.setAttribute('content', mql.matches ? '#121212' : '#ffffff');
+    }
+
+    // 최신 API
+    if (mql.addEventListener) {
+      mql.addEventListener('change', update);
+    }
+    // 구형 브라우저용
+    else if (mql.addListener) {
+      mql.addListener(update);
+    }
+
+    // 초기 실행
+    update();
+  })();
+</script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

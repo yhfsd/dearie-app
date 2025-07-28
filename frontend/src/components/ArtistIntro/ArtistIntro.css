@@ -1,0 +1,122 @@
+.artist-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100vw;
+}
+
+
+
+.artist-intro__description {
+    /* white-space: pre-line;  */
+    font-size: 13px;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.2;
+}
+/* white-space -> 줄바꿈 */
+
+
+.artist-intro__video {
+    max-width: 768px;
+    max-height: auto;
+    margin-bottom: 20px;
+    margin: 0 auto 20px;
+}
+
+.artist-intro__video video {
+    width: 100%;
+    height: auto;
+}
+
+.artist-intro-inner {
+    padding: 0 5%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.artist-intro__name {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+
+.artist-intro__social {
+    display: flex;
+    justify-content: start;
+    gap: 13px;
+    margin-bottom: 21px;
+    align-items: center;
+    margin-left: -2px;
+}
+
+.artist-intro__social a {
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+    width: 23px;
+    height: 23px;
+}
+
+.artist-intro__social a::before {
+    content: '';
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    right: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+.artist-intro__social li:last-child a::before {
+  display: none;
+}
+
+.artist-intro__social li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.artist-intro__social li svg{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+.skip-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.artist-intro__skip {
+    background: #FF4187;
+    padding: 11.5px 45px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    bottom: 150px;
+}
+
+@media (min-width: 1023px) {
+    .artist-intro-inner-responsive {display: flex; justify-content: flex-start; gap: 20px; align-items: center; margin-bottom: 10px;}
+    .artist-intro__name {margin-bottom: 0;}
+    .artist-intro__social {margin-bottom: 0;}
+    .skip-button {margin-bottom: 20px;}
+    .artist-intro {position: relative; transform: none; top: inherit; left: inherit; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 20px;}
+    .artist-intro__video {margin: 0;}
+}

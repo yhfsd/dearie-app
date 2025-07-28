@@ -1,0 +1,356 @@
+.highlight-section {
+    color: #fff;
+}
+
+
+.highlight-section .noticeSection {
+    padding: 0 2.5%;
+    box-sizing: border-box;
+}
+
+.highlight-section .noticeSection .noticeTitle .title {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 0 2.5%;
+}
+
+
+.highlight-section .noticeSection .noticeBox {
+    background: #1a1a1a;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.highlight-section .noticeSection .noticeBox::after {
+    content: '';
+    width: 91.6%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.highlight-section .noticeSection .noticeBox .link-notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 4.2%;
+    box-sizing: border-box;
+}
+
+
+
+.highlight-section .noticeSection .noticeBox .link-notice .highlight-section__desc {
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    margin-left: 7px;
+}
+
+.artistSection-title .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 100%;
+    display: block;
+    padding: 0 5%;
+}
+
+
+
+
+
+/* Swiper 컨테이너에 아래 여백 추가 */
+.highlight-gallery-swiper {
+  padding-bottom: 32px;
+  padding-left: 2.5%;
+}
+
+/* auto 슬라이드 너비 지정 */
+.highlight-slide {
+  width: 112px !important; /* 한 슬라이드의 너비, 원하시는 크기로 조정 */
+  height: 148px !important;
+}
+
+/* 슬라이드 내부 이미지 */
+.highlight-slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+/* 빈 박스만 있는 슬라이드 */
+.box-only-slide .box-only {
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;      /* 원하시는 배경색 */
+  border-radius: 10px;       /* 모서리 둥글게 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 예: 가운데에 “+” 표시하고 싶다면: */
+  font-size: 13px;
+  color: #fff;
+}
+
+/* 예: 중앙에 “+” 를 표시 */
+.box-only::after {
+  content: "전체보기";
+  font-family: 'Pretendard',sans-serif;
+}
+
+.Xsection-title {
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+.Xsection-title .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.Xsection-gallery-swiper {
+  padding-bottom: 32px;
+  padding-left: 2.5%;
+}
+
+.Xsection-slide  {
+  width: 152px !important;   /* 한 슬라이드의 너비 */
+  height: 210px !important;  /* 한 슬라이드의 높이 */
+}
+
+/* 슬라이드 내부 이미지 */
+.Xsection-slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.talkSection {
+  margin-bottom: 37px;
+}
+
+
+.talkSection-title {
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+.talkSection-title .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.talkBoxFam {
+  padding: 0 2.5%;
+  box-sizing: border-box;
+}
+
+.talkBoxFam .talkBoxes {
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+
+.talkBoxFam .talkBoxes .talkBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 5%;
+  box-sizing: border-box;
+}
+
+.talkBoxFam .talkBoxes .talkBox.first {
+  position: relative;
+}
+
+.talkBoxFam .talkBoxes .talkBox.first::before {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 90%;
+  transform: translateX(-50%);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  content: '';
+}
+
+
+.talkBoxFam .talkBoxes .talkBox .circleBox {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  background: #020202;
+  border-radius: 50%;
+}
+
+.talkBoxFam .talkBoxes .talkBox .circleBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox .text {
+  line-height: 17px;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox {
+  display: block;
+  flex: 1;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox .name {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox .line {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox .text .span {
+  color: #AA7FFA;
+  font-weight: 700;
+}
+
+.talkBoxFam .talkBoxes .talkBox .textBox .like {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  font-weight: 300;
+}
+
+
+.talkBoxFam .talkBoxes .talkBox .mainImgBox {
+  width: 62px;
+  height: 62px;
+  margin-top: 10px;
+}
+
+.talkBoxFam .talkBoxes .talkBox .mainImgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+.talkBoxFam .talkBoxes  .textBox-more {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+.talkBoxFam .talkBoxes  .textBox-more button {
+  background: #4D4D4D;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.76);
+  padding: 10px 0px;
+  margin-bottom: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+.toGroupSection-inner {
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+.toGroupSection-inner .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.toGroupSection-Box {
+  padding: 0 2.5%;
+  box-sizing: border-box;
+}
+
+.toGroupSection-Box-inner {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 5% 2.5%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.toGroupSection-Box-inner .toGroupSection-imgBox {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
+
+.toGroupSection-Box-inner .imgBox {
+  width: 100%;
+}
+
+.toGroupSection-Box-inner .imgBox img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+
+
+.toGroupBox-more {
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-top: 16px;
+}
+
+.toGroupBox-more button {
+  background: #4D4D4D;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.76);
+  padding: 10px 0px;
+}

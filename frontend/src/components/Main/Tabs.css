@@ -1,0 +1,43 @@
+/* src/components/Tabs.css */
+
+.main-tabs ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0 4%;
+  box-sizing: border-box;
+  background: transparent;
+  text-align: center;
+  height: 45px;
+}
+
+
+
+
+
+.main-tabs li {
+  padding: 15px 0px;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 100%;
+  text-align: center;
+}
+
+.main-tabs li.active {
+    border-bottom: 2px solid #ff4187;
+}
+
+.main-tabs .tab-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: 0% !important;
+}
+
+.main-tabs li.active .tab-text{
+  color: #ff4187;
+}

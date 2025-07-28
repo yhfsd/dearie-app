@@ -1,0 +1,73 @@
+.player-wrapper {
+    width: 100%;
+    padding: 0 9%;
+    
+}
+
+
+
+
+.track-title {
+  font-weight: bold;
+}
+
+.track-artist {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.progress-container {
+  width: 100%; height: 2px;
+  background: #000;
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 6px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #000;
+  width: 0%;
+  position: relative;
+}
+
+.progress-bar:after {
+    content: '';
+    background: #000;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translate(50%,-50%);
+    border-radius: 50%;
+}
+
+.time-display {
+  font-size: 10px;
+  color: #464646;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+    align-items: center;
+    line-height: 50px;
+}
+.controls .ctrl-btn {
+    color: #4B4B4B;
+    font-size: 18px;
+}
+.play-btn {
+  font-size: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+}

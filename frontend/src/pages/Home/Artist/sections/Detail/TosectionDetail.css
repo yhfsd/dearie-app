@@ -1,0 +1,204 @@
+.detail-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;  /* 슬라이드 밖까지 메뉴 띄우려고 visible */
+  background: #121212;
+}
+
+.penletter-detail {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.penletter-detail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4%;
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.03);
+
+}
+
+
+
+
+
+
+
+
+/* 메인 이미지 */
+.penletter-inner {position: relative; z-index: 100;}
+
+/* 이미지 상단 */
+.penletter-more {transform: rotate(-90deg); color: #7f7f7f; font-size: 28px; position: absolute; top: 4%; right: 4%; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));}
+
+/* 신고 완료후 토스트 메세지 */
+.penletter-toast {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #282828;
+  color: #fff;
+  padding: 15px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  z-index: 200;
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* 메뉴 박스는 화면 중앙에 고정 */
+.penletter-options {
+  position: fixed;       /* absolute → fixed */
+  bottom: 32px;
+  left: 50%;             /* 뷰포트의 가로 50% */
+  transform: translateX(-50%); /* 정확히 중앙으로 */
+  background-color: #282828;
+  width: 95%;          /* 필요에 따라 조절 */
+  padding: 32px 24px 22px;
+  border-radius: 8px;
+  color: #fff;
+  z-index: 1000;
+  animation: slide-up 0.3s ease-out;
+}
+
+
+.penletter-options::before {content: ''; width: 31px; height: 1px; position: absolute; background: #535353; top: 8px; left: 50%; transform: translateX(-50%); border-radius: 100%;}
+
+/* 옵션 슬라이드 애니메이션 */
+@keyframes slide-up {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+.penletter-modal-window {position: absolute; top: 50%; left: 50%; background: #282828; transform: translate(-50%, -50%); padding: 38px 29px 20px; border-radius: 22px; color: #fff;}
+
+.penletter-modal-inner {display: flex; flex-direction: column; gap: 29px; text-align: center;}
+.penletter-modal p {font-size: 15px; font-weight: 500;}
+.penletter-modal-inner button {padding: 13px 61px; border-radius: 22px; font-size: 15px; font-weight: 500; width: 100%; white-space: nowrap;}
+.penletter-modal-inner button:nth-child(1) {background: #282828; border: 1px solid #484848;}
+.penletter-modal-inner button:nth-child(2) {background: #ff4187;}
+.penletter-modal-buttons {display: flex; justify-content: space-between; gap: 8px;}
+
+
+/* 이미지 하단 */
+.penletter-icon-name-date {position: absolute; bottom: 4%; width: 100%; display: flex; align-items: center; padding: 0 4%; justify-content: flex-start;}
+.penletter-icon-name-date .imgBox {width: 38px; height: 38px; margin-right: 9px; border-radius: 100%; overflow: hidden; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));}
+.penletter-name-date {display: flex; flex-direction: column; gap: 4px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);}
+.penletter-name {font-size: 14px; font-weight: 600;}
+.penletter-date {font-size: 11px; font-weight: 400; color: #B2B2B2;}
+
+/* 이미지 오른쪽 */
+
+.penletter-share-like {position: absolute; right: 4%; bottom: 14%; display: flex; flex-direction: column; gap: 18px; align-items: center; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));}
+.penletter-share, .penletter-like  {font-size: 26px;}
+.penletter-like.liked {color: #ff4187;}
+.penletter-like-count {margin-top: -20px; font-size: 14px; font-weight: 500;}
+
+/* 백드롭: 뷰포트 전체 */
+.penletter-options-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+
+/* 신고하기 버튼 */
+.penletter-report {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: none;
+  border: none;
+}
+
+/* 모달 백드롭 */
+.penletter-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+
+.detail-wrapper .nextIcon {
+  position: absolute; 
+  bottom: 24px; 
+  left: 50%; 
+  transform: translate(-50%,0); 
+  color: #929292; 
+  width: 20px; 
+  height: 20px;
+  animation: bounce 2.4s ease-in-out infinite;
+}
+
+.detail-wrapper .nextIcon svg {width: 100%; height: 100%;}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -4px); }
+}
+
+.lastSlideText {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #929292;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  z-index: 1;
+  animation: enenter 1s both;
+  animation-delay: 0.5s;
+}
+
+@keyframes enenter {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

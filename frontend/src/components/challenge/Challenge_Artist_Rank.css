@@ -1,0 +1,71 @@
+.challenge_Artist_Rank {padding: 0 2.5%;}
+
+/* 폰트 */
+.challenge_Artist_Rank h2 {font-size: 16px; font-weight: 600; margin-bottom: 12px;}
+
+/* 일단적어 */
+.challenge_Artist_Rank ul li {padding-left: 7px;}
+
+
+/* 리스트 아이템 */
+.challenge_Artist_Rank .rankList .rankItem {display: flex; align-items: center; margin-bottom: 16px; width: 100%;}
+
+/* 이미지 박스(기본) */
+.challenge_Artist_Rank .rankList .rankItem .imgBox {width: 65px; height: 65px; margin: 0 13px 0 12px;}
+
+/* info 영역 */
+.challenge_Artist_Rank .rankList .rankItem .info {flex: 1; display: flex; flex-direction: column; width: 70%;}
+
+/* 이름 */
+.challenge_Artist_Rank .rankList .rankItem .info .name {font-size: 13px; font-weight: 500; margin-bottom: 6px;}
+
+/* 게이지 바 */
+.challenge_Artist_Rank .rankList .rankItem .info .gauge {width: 83%; height: 8px; background: #dadada; border-radius: 50px; overflow: hidden;  margin-bottom: 8px;}
+.challenge_Artist_Rank .rankList .rankItem .info .gauge-bar {
+    height: 100%; 
+    background: linear-gradient(to right, rgba(255, 65, 135, 0.58) 0%, rgba(255, 65, 135, 1) 100%);
+    width: 0;
+    transition: width 0.8s ease;
+}
+
+
+/* 수치 */
+.challenge_Artist_Rank .rankList .rankItem .info .value {font-size: 11px; color: #ff4187; font-weight: 400;}
+
+/* 토글 버튼 */
+.challenge_Artist_Rank .toggle-btn {width: 100%; text-align: center; padding: 17px 0; background-color: #F6F6F6; color: #5e5e5e; border: 1px solid #f0f0f0; border-radius: 7px; cursor: pointer; font-size: 12px; font-weight: 400; display: flex; justify-content: center;}
+
+
+/* 애니메이션 */
+.challenge_Artist_Rank .listWrapper {overflow: hidden; max-height: calc((65px + 16px) * 3); transition: max-height 0.4s ease;}
+.challenge_Artist_Rank .listWrapper.expanded {max-height: calc((65px + 20px) * 5);}
+
+.challenge_Artist_Rank .rankItem {opacity: 1; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; position: relative;}
+
+/* 1등 메달 */
+.challenge_Artist_Rank .goldMedal {position: absolute; right: 2.5%; width: 32px; top: 50%; transform: translateY(-50%);}
+
+.challenge_Artist_Rank .rankItem .num {width: 20px;}
+
+.challenge_Artist_Rank .listWrapper.expanded .rankItem {opacity: 1; transform: translateY(0);}
+
+.challenge_Artist_Rank .listWrapper:not(.expanded) .rankItem:nth-child(n+4) {opacity: 0; transform: translateY(-10px);}
+.challenge_Artist_Rank .listWrapper.expanded .rankItem:nth-child(n+4) {opacity: 1; transform: translateY(0); transition-delay: 0.1s;}
+
+
+.challenge_Artist_Rank .listWrapper.expanded .rankItem:nth-child(n+4) {opacity: 1; transform: translateY(0); transition-delay: 0.1s;}
+
+
+
+.challenge_Artist_Rank .rankItem:nth-child(1) { transition-delay: 0.1s; }
+.challenge_Artist_Rank .rankItem:nth-child(2) { transition-delay: 0.2s; }
+.challenge_Artist_Rank .rankItem:nth-child(3) { transition-delay: 0.3s; }
+.challenge_Artist_Rank .rankItem:nth-child(4) { transition-delay: 0.4s; transition: 0.2s;}
+.challenge_Artist_Rank .rankItem:nth-child(5) { transition-delay: 0.5s; }
+
+
+.challenge_Artist_Rank .listWrapper:not(.expanded) .rankItem:nth-child(n+4) {transition: opacity 0.3s ease, transform 0.3s ease;}
+
+.challenge_Artist_Rank .toggle-btn .icon {margin-left: 4px; transition: transform 0.3s ease;}
+
+.challenge_Artist_Rank .toggle-btn .icon.open {transform: rotate(180deg);}

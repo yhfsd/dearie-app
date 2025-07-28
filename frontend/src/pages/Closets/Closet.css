@@ -1,0 +1,44 @@
+.Closet-wrap {background: #fff;}
+.Closet-container {padding: 42px 0 150px; color: #000;  font-family: 'Pretendard' , sans-serif; overflow: hidden; height: 100vh;}
+
+.Closet-container .button-container{ padding-top: 30px;}
+.Closet-container .button-container ul{display: flex;}
+.Closet-container .button-container ul li{margin-right: 8px; flex: 0 0 auto; }
+.Closet-container .button-container .swiper-wrapper button{font-size: 14px; border-radius: 15px; padding: 5px 15px; display: block; background: #fff; border: 1px solid #000;font-family: 'Pretendard', sans-serif; color: #000; cursor: pointer;}
+    
+.Closet-container .button-container .swiper-wrapper button.active{background: #FF4187; color: #fff; border: 1px solid #FF4187;}
+
+.Closet-container .bestItem{margin-top: 38px;}
+.Closet-container .bestItem > p{margin:0 2.5% 10px;}
+.Closet-container .bestItem .bestItemTextBox p{text-align: center; margin-top: 10px; white-space: pre-wrap; font-size: 11px; font-weight: 100;}
+.Closet-container .bestItem .bestItemImgBox img{width: 100%;}
+.Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 25%;}
+
+.Closet-container .newItem{margin-top: 22px;}
+.Closet-container .newItem > p{margin:0 2.5% 10px;}
+.Closet-container .newItem .newItemTextBox p{text-align: center; font-size: 10px; margin-top: 4px; white-space: pre-wrap;}
+.Closet-container .newItem .newItemImgBox img{width: 100%;}
+.Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 10%;}
+
+.Closet-container .commercial{margin-top: 22px;}
+.Closet-container .commercial > p{margin:0 2.5% 10px;}
+.Closet-container .commercial .commercialTextBox{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 28px; font-weight: bold; color: #fff; width: 100%; text-align: center;}
+.Closet-container .commercial .swiper img{width: 100%; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10%;}
+.Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 20%;}
+
+.Closet-container .swiper{overflow: visible;}
+.Closet-container .swiper .swiper-wrapper{margin-left: 2.5%;}
+.Closet-container .swiper .swiper-wrapper .swiper-slide:last-child{margin-right: 2.5%;}
+
+
+@media (max-width: 768px) {
+    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 40%;}
+    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 10%;}
+    .Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 25%;}
+    
+}
+@media (max-width: 1200px) {
+    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 55%;}
+    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 25%;}
+    .Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 35%;}
+}

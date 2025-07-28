@@ -1,0 +1,128 @@
+.talk-wrap{background: #121212;}
+.talk-wrap .artist-list{margin: 2.5%; color: #fff; }
+.talk-wrap .artist-list .artistPost{border-radius: 10px; background: #1A1A1A; margin-bottom: 16px;}
+.talk-wrap .artist-list .artistPost .profile-box{display: flex; justify-content: left; align-items: center; padding-top: 19px; margin: 0 2.5%; }
+
+
+.talk-wrap .artist-list .artistPost .profile-box .profileImg{margin-right: 8px; border-radius: 50%; width: 35px; height: 35px;}
+.talk-wrap .artist-list .artistPost .profile-box .profileImg img{width: 100%; height: 100%; border-radius: 50%; object-fit: cover;}
+.talk-wrap .artist-list .artistPost .profile-box .profile-info{flex: 1;}
+.talk-wrap .artist-list .artistPost .profile-box .profile-info .profile-name{display: flex; align-items: center; font-size: 14px;}
+.talk-wrap .artist-list .artistPost .profile-box .profile-info .profile-name svg{margin-left: 3px;}
+.talk-wrap .artist-list .artistPost .profile-box .profile-info .post-time{margin-top: 5px; font-size: 11px; color: #fff; opacity: 0.54;}
+
+.talk-wrap .artist-list .artistPost .text-box{margin: 12px 2.5% 10px; line-height: 1.2; font-weight: 100; letter-spacing: 0.01em; font-size: 14px; display: -webkit-box;
+-webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
+.talk-wrap .artist-list .artistPost .icon-box{margin: 0 2.5%; padding: 0 0 15px; display: flex; align-items: center;}
+.talk-wrap .artist-list .artistPost .icon-box svg{margin-right: 6px; width: 19px; height: 19px;}
+.talk-wrap .artist-list .artistPost .icon-box svg:nth-child(1){width: 22px; height: 22px;}
+.talk-wrap .artist-list .artistPost .icon-box svg:nth-child(3){width: 16px; height: 16px;}
+
+.talk-wrap .artist-list .artistPost .img-box img{width: 100%; padding-bottom: 15px;}
+
+/* 내가 쓴 글 */
+.talk-wrap .artist-list .userPost{border-radius: 10px; background: #1A1A1A; margin-bottom: 16px;}
+.talk-wrap .artist-list .userPost .profile-box{display: flex;justify-content: left;align-items: center;padding-top: 19px;margin: 0 2.5%;}
+.talk-wrap .artist-list .userPost .profileImg{margin-right: 8px; width: 35px; height: 35px; border-radius: 50%; overflow: hidden;}
+.talk-wrap .artist-list .userPost .profileImg img{width: 100%; height: 100%; object-fit: cover;}
+.talk-wrap .artist-list .userPost .profile-info{flex: 1;}
+.talk-wrap .artist-list .userPost .profile-info .profile-name{align-items: center; font-size: 14px;}
+.talk-wrap .artist-list .userPost .profile-info .profile-name svg{margin-left: 3px;}
+.talk-wrap .artist-list .userPost .profile-info .post-time{margin-top: 5px; font-size: 11px; color: #fff; opacity: 0.54;}
+
+
+
+.talk-wrap .artist-list .userPost .text-box{margin: 12px 2.5% 10px; line-height: 1.2; font-weight: 100; letter-spacing: 0.01em; font-size: 14px; display: -webkit-box;
+-webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
+.talk-wrap .artist-list .userPost .icon-box{margin: 0 2.5%; padding: 0 0 15px; display: flex; align-items: center;}
+.talk-wrap .artist-list .userPost .icon-box svg{margin-right: 6px; width: 17px; height: 17px;}
+.talk-wrap .artist-list .userPost .icon-box .heart-button{display: flex; align-items: center;}
+.talk-wrap .artist-list .userPost .icon-box svg:nth-child(1){width: 22px; height: 22px;}
+.talk-wrap .artist-list .userPost .icon-box svg:nth-child(3){width: 16px; height: 16px;}
+
+.talk-wrap .artist-list .userPost .link-box{  
+  color: #fff;
+  background: #2A2A2A;
+  padding: 14px 15px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  text-decoration: underline;
+  font-size: 14px;
+  display: block;}
+
+.talk-wrap .artist-list .userPost .img-box img{width: 100%; padding-bottom: 15px;}
+
+
+/* 신고확인 */
+.talk-wrap .profile-box .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.talk-wrap .profile-box .report-modal{position: fixed; z-index: 1000; width: 95%;  max-width: 736px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #282828; border-radius: 10px; }
+.talk-wrap .profile-box .report-modal p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.talk-wrap .profile-box .report-modal .report-buttons{display: flex; justify-content: center; margin-bottom: 20px;}
+.talk-wrap .profile-box .report-modal button{padding: 13px 61px; border-radius: 22px;}
+.talk-wrap .profile-box .report-modal .yes-btn{background: #FF4187;}
+.talk-wrap .profile-box .report-modal .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+/* 신고중 */
+.talk-wrap .reportChooseBox{position: fixed; z-index: 10000000; width: 100%; height: 100%; border-radius: 10px; }
+.talk-wrap .reportChooseBox .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.talk-wrap .reportChooseBox .reportChoose-modal > p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.talk-wrap .reportChooseBox .reportChoose-modal {position: fixed; z-index: 100000; width: 95%; max-width: 736px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #282828; border-radius: 10px; color: #fff;}
+
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons{display: flex; justify-content: center; margin-bottom: 20px; }
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons button{font-size: 15px; padding: 13px 61px; border-radius: 22px; color: #fff; background: transparent; border: none; cursor: pointer;}
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons button:nth-child(2){border: none;}
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons button svg{margin-right: 10px;}
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons .chooseYes-btn{background: #FF4187;}
+.talk-wrap .reportChooseBox .reportChoose-modal .reportChoose-buttons .chooseNo-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+/* 신고완료 */
+.talk-wrap .reportedBox{position: fixed; left: 50%; bottom: 10%; transform: translate(-50%, -50%); display: flex; align-items: center; padding: 15px 22px; background: #282828; border-radius: 10px; font-size: 14px; font-weight: 300; color: #fff;}
+
+/* 글쓰기 */
+.talk-wrap .talkWritingBox{z-index: 100000000 ; position: fixed; bottom: 170px; right: 5.3%; color: #fff; border-radius: 50%; width: 60px; height: 60px;background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.1), inset 0 0 0px 0px rgba(255, 255, 255, 0);}
+.talk-wrap .talkWritingBox svg{position: relative; width: 20px; height: 20px; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #FF4187;}
+
+
+/* 삭제 확인 */
+.talk-wrap .userPost .delete-modal{position: fixed; z-index: 10000000; width: 100%; height: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 10px; }
+.talk-wrap .userPost .delete-modal .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.talk-wrap .userPost .delete-modal > p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.talk-wrap .userPost .delete-modal .reportButtonBox{position: fixed; z-index: 100000; width: 95%;  max-width: 736px;  bottom:32px; left: 50%; transform: translateX(-50%); background: #282828; border-radius: 10px;}
+
+.talk-wrap .userPost .delete-modal .report-buttons{display: flex; justify-content: center; margin-bottom: 20px; }
+.talk-wrap .userPost .delete-modal button{display: flex; align-items: center; width: 92%; flex: 1; padding: 30px 0; box-sizing: border-box; border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin: 0 4%; }
+.talk-wrap .userPost .delete-modal .userActionBox button:nth-child(2){border: none;}
+.talk-wrap .userPost .delete-modal button svg{margin-right: 10px;}
+.talk-wrap .userPost .delete-modal .yes-btn{background: #FF4187;}
+.talk-wrap .userPost .delete-modal .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+/* 삭제 확인 */
+.talk-wrap .userPost .deleteBox .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.talk-wrap .userPost .deleteBox{position: fixed; z-index: 100; width: 100%; height: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 10px; }
+.talk-wrap .userPost .deleteBox .delete-conform-box p{font-size: 15px; margin: 37px 0 29px; text-align: center;}
+.talk-wrap .userPost .deleteBox .delete-conform-box{position: fixed; z-index: 1000;  max-width: 736px;  width: 95%; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #282828; border-radius: 10px;}
+.talk-wrap .userPost .deleteBox .delete-buttons{display: flex; justify-content: center; margin-bottom: 20px;}
+.talk-wrap .userPost .deleteBox button{padding: 13px 61px; border-radius: 22px;}
+.talk-wrap .userPost .deleteBox .yes-btn{background: #FF4187;}
+.talk-wrap .userPost .deleteBox .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+/* 신고모달 */
+
+.talk-wrap  .report-modal{position: fixed; z-index: 10000000; width: 100%; height: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 10px; color: #fff;}
+.talk-wrap  .report-modal .overlay{position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9;}
+.talk-wrap  .report-modal > p{font-size: 15px; margin: 37px 0 29px; text-align: center; }
+.talk-wrap  .report-modal .reportButtonBox{position: fixed; z-index: 100000;  max-width: 736px;  width: 95%; bottom:32px; left: 50%; transform: translateX(-50%); background: #282828; border-radius: 10px;}
+
+.talk-wrap  .report-modal .report-buttons{display: flex; justify-content: center; margin-bottom: 20px; }
+.talk-wrap  .report-modal button{display: flex; align-items: center; width: 92%; flex: 1; padding: 30px 0; box-sizing: border-box; margin: 0 4%; }
+.talk-wrap  .report-modal button svg{margin-right: 10px;}
+.talk-wrap  .report-modal .yes-btn{background: #FF4187;}
+.talk-wrap  .report-modal .no-btn{border: 1px solid rgba(255, 255, 255, 0.4); margin-right: 8px;}
+
+
+@media (min-width: 768px) {
+    .talk-wrap .talkWritingBox {left: calc(50% + 384px - 76px);}
+}

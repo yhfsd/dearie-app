@@ -1,0 +1,165 @@
+.notifications-page {
+  max-width: 100%;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 0px;
+  padding-top: 61px;
+  background: #fff;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+
+.notifications-page .imgBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 23px;
+}
+
+.notifications-page .imgBox img {
+    width: 100%;
+    height: auto;
+}
+
+.notifications-page .tabSection {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.notifications-page .tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding: 0 4%;
+}
+.notifications-page .tabs button {
+  padding: 7px 15px;
+  background: none;
+  border: 1px solid #e6e6e6;
+  border-radius: 30px;
+  cursor: pointer;
+  color: #000;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notifications-page .tabs button.active {
+  background: #FF4187;
+  color: #fff;
+  border-color: #FF4187;
+}
+
+.notifications-page .tabs button img {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #f0f0f0;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+
+
+section {
+  margin-bottom: 24px;
+}
+h2 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.day-title {
+  color: #7e7e7e;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0 4%;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.no-notifs {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notif-item {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 14px;
+  border-radius: 0px;
+  box-sizing: border-box;
+  padding: 12px 4%;
+}
+.notif-item.unread {
+  background: #f5f7fa;
+}
+.notif-item.read {
+  background: white;
+}
+.notif-item .avatar {
+  width: 40px;
+  height: 40px;
+  background: #ddd;
+  border-radius: 50%;
+}
+.notif-item .avatar img{
+width: 100%;
+height: 100%;
+object-fit: contain;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.notif-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+
+.notif-item .content {
+  flex: 1;
+}
+.notif-item strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+
+.emoji {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.notif-item .text {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 15px;
+    color: #7e7e7e;
+    font-weight: 300;
+}
+
+.notif-item .text p {
+    margin-right: 5px;
+}
+
+/* 이미지 */
+.notif-image {width: 49px; height: 49px;}
+.notif-image img {width: 100%; border-radius: 10px; object-fit: cover; height: 100%;}

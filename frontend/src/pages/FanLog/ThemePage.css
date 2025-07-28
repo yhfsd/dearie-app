@@ -1,0 +1,129 @@
+/* src/pages/FanLog/ThemePage.css */
+
+.theme-page {
+  font-family: 'Pretendard', sans-serif;
+  padding: 60px 0px 0px 0px;
+  overflow-y: visible;
+  background-color: #fff;
+  position: relative;
+  height: 100vh;
+}
+
+.theme-page-inner {
+  background: #F7F7FA;
+  padding: 0;
+}
+/* 휴대폰 모형 미리보기 */
+.phone-mockup {
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 24px;
+  border-radius: 40px;
+  overflow: hidden;
+  padding-top: 53px;
+  
+  /* 추가된 부분 ↓ */
+  background: transparent;
+  background-size: contain;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-mockup img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 테마 리스트 */
+.theme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 30px 6% 100px;
+  background: #fff;
+  margin-top: -136px;
+  z-index: 100;
+  position: relative;
+}
+.theme-list section {
+  display: flex;
+  flex-direction: column;
+}
+.theme-list h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.theme-list .letterGlassIcon {width: 16px;}
+
+.theme-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 0 10px;
+  -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  /* IE, Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.theme-item {
+  flex: 0 0 auto;   /* 축소하지도, 늘어나지도 않게 고정 */
+  width: 75px;     /* 카드 하나당 너비를 정해 줍니다 (원하는 크기로 조정) */
+  border: 2px solid transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  background-color: #fff;
+}
+.theme-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+.theme-item.selected {
+  border-color: #FF4187;
+}
+
+/* 완료 버튼 */
+.btn-inner {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  z-index: 9999;
+  background: #FF4187;
+  border-radius: 25.5px;
+  max-width: calc(768px - 2.5%);
+  margin: 0 auto;
+  box-sizing: border-box;
+
+}
+
+
+.complete-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  background-color: #FF4187;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.complete-btn:hover {
+  background-color: #e63775;
+}

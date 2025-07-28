@@ -1,0 +1,32 @@
+
+.common_month_challenge_container {position: relative; z-index: 3;}
+.common_month_challenge_container::after {content: ''; width: 100%; height: 150%; background: #ff4187; position: absolute; top: -150%; left: 0; z-index: -1; animation: Chall_slideDown 0.4s ease-out forwards;}
+
+@keyframes Chall_slideDown {
+    from { top: -150%; }
+    to   { top: -83%;  }
+}
+
+
+.challTitle {text-align: center; padding: 0 2.5%;}
+.challTitle .imgBox {width: 100%; position: relative;}
+.challTitle > .imgBox > img {filter: brightness(0.2);}
+
+.challTitle .titleTxt {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; width: 100%;}
+.challTitle .titleTxt .addTxt {color: #fff; font-size: 12px; margin: 0 0 4px;}
+.challTitle .titleTxt h2 {display: flex; align-items: center; justify-content: center; font-size: 42px;}
+.challTitle .titleTxt h2 .titleimgBox {width: 52px; height: 58px; margin: 0 6px;}
+.challTitle .titleTxt h2 .titleimgBox img {width: 100%;}
+
+
+.challTitle span {font-size: 12px; font-weight: 500; color: #4b4b4b; display: inline-block; margin-top: 6px;}
+
+.challGuide {padding: 0 2.5%; margin-top: 14px; position: relative;}
+.challGuide .guideTitle h2 {font-size: 16px; font-weight: 560;}
+.challGuide .guideTitle img {position: absolute; width: 45px; top: -5.5px; right: 6%;}
+.challGuide .guideBox {background: #fdfdfd; border-radius: 10px; padding: 24px 16px; margin-top: 8px; border: 1px solid rgba(0, 0, 0, 0.05);}
+.challGuide .guideBox p {margin-bottom: 8px;}
+.challGuide .guideBox p:nth-child(3) {margin-bottom: 0;}
+
+/* 가이드박스 아이콘 */
+.challGuide .guideBox .guideIcon {width: 15px; vertical-align: middle;}

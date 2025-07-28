@@ -1,0 +1,12 @@
+.favorites-wrap{background: #fff; padding: 63px 2.5% 0; height: 100vh;}
+.favorites-wrap .favorites-container ul{display: flex; flex-wrap: wrap;}
+.favorites-wrap .favorites-container ul li { display: flex; width: 30%; margin-left: 3%;}
+.favorites-wrap .favorites-container ul li .favorites-buttonBox{display: flex; margin-top: 10px; position: relative;}
+.favorites-wrap .favorites-container ul li .favorites-buttonBox img{width: 100%;}
+.favorites-wrap .favorites-container ul li .favorites-buttonBox .delete-button{ cursor: pointer; position: absolute; bottom: 0; right: 0; margin: 8%;}
+.favorites-wrap .favorites-container ul li .favorites-buttonBox .delete-button svg{ cursor: pointer; position: absolute; bottom: 0; right: 0;}
+.favorites-wrap .favorites-container ul li .favorites-textBox p{color: #737373}
+.favorites-wrap .favorites-container ul li .favorites-textBox p span{color: #000;}
+
+
+.noItem{font-size: 24px; text-align: center; height: 100vh; align-content: center; background: #fff;}

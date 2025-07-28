@@ -1,0 +1,43 @@
+.challenges { padding: 61px 0; background: #fff; height: 100vh;}
+.challenges .container {background: #fff; padding-bottom: 87px;}
+/* 이번달 */
+.challenges .container .thisMonth {margin-bottom: 14px; padding: 0 2.5%;}
+.challenges .container .thisMonth a {margin-top: 6px; display: inline-block; width: 100%;;}
+.challenges .container .thisMonth .challImgBox {margin-bottom: 20px; position: relative;}
+
+.challenges .container .thisMonth .textBox {padding-left: 8px;}
+.challenges .container .thisMonth .textBox h3 {display: flex; margin-bottom: 4px;}
+.challenges .container .thisMonth .textBox h3 .icon {margin-right: 3px;}
+.challenges .container .thisMonth .textBox .count {display: flex; align-items: center;}
+.challenges .container .thisMonth .textBox .count .imgBox {height: 100%; margin-right: 5px;}
+
+.challenges .container .thisMonth .text {position: relative; overflow: visible;}
+.challenges .container .thisMonth .text img {position: absolute;width: auto;; height: 39px; top: -12px; left: 102px; z-index: 100;}
+
+
+.challenges .container .thisMonth .challImgBox > img:nth-child(1) {filter: brightness(0.2); position: relative;}
+
+
+.challenges .titleTxt {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; width: 100%; text-align: center;}
+.challenges .titleTxt .addTxt {color: #fff; font-size: 12px; margin: 0 0 4px;}
+.challenges .titleTxt h2 {display: flex; align-items: center; justify-content: center; font-size: 42px;}
+.challenges .titleTxt h2 .titleimgBox {width: 52px; height: 58px; margin: 0 6px;}
+.challenges .titleTxt h2 .titleimgBox img {width: 100%;}
+
+/* 지난챌린지 */
+.challenges .container ul.prevMonths {position: relative;}
+.challenges .container ul.prevMonths::after {content: ''; position: absolute; background: rgba(0, 0, 0,0.1); width: 100%; height: 1px; top: 0; left: 0;}
+.challenges .container ul.prevMonths .text h2 {font-size: 18px; font-weight: 600; padding: 24px 2.5% 8px;}
+
+/* 폰트 */
+.challenges .container .thisMonth .text h2 {font-size: 18px; font-weight: 600; font-family: 'Pretendard', sans-serif; margin-top: 8px;}
+.challenges .container .thisMonth .textBox > h3 {font-size: 15px; font-weight: 500;}
+.challenges .container .thisMonth .textBox .count .counttxt {font-size: 11px; font-weight: 400; margin: 0; color: rgba(0, 0, 0, 0.7);}
+.challenges .container .thisMonth .prevMonths .text h2 {font-size: 18px; font-weight: 600; padding: 22px 2.5% 11px;}
+.challenges .container .thisMonth .prevMonths span {font-size: 15px; font-weight: 500; color: #3b3b3b;}
+
+
+/* 이미지 */
+.challenges .thisMonth .challImgBox {width: 100%; height: 100%;}
+.challenges .thisMonth .pic {width: 12px; height: 12px;}
+.challenges .thisMonth img {width: 100%; display: block;}

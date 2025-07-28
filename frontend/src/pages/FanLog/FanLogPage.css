@@ -1,0 +1,318 @@
+.fanlog-container {padding-bottom: 122px; min-height: 100%; background: #fff; padding-top: 80px; position: relative; font-family: 'Pretendard', sans-serif;}
+
+.section-title .title {
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0%;
+    line-height: 1.2;
+    color: #000;
+    padding: 0 2.5%;
+}
+.section-title .title span {
+    color: #FF4187;
+}
+
+
+
+.calendar-wrapper {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.calendar-bg {
+  display: block;
+  width: 100%;
+  height: auto;       
+}
+
+.calendar-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -40%);
+  width: 95%;
+  height: 430px;
+
+}
+
+.calendar-inner {
+    padding: 3%;
+    box-sizing: border-box;
+}
+.calendar-header {
+    font-size: 24px;
+    color: #fff;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.calendar-header .year-month {
+    padding-bottom: 2px;
+    box-sizing: border-box;
+}
+
+.weekday-labels {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-size: 10px;
+}
+
+.calendar-cell-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+}
+
+.day-ring {
+    width: 40px;
+    height: 40px;
+    background: rgba(217, 217, 217, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0px;
+    background-size: cover;
+    background-position: center;
+}
+
+.calendar-cell.today {
+    color: #FF4187;
+    font-weight: 700;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0 2.5%;
+  margin-top: 16px;
+  gap: 10px;
+  margin-bottom: 45px;
+}
+
+.button-group .btn {
+  background: #FF4187;
+  width: 100%;
+  border-radius: 25px;
+  padding: 12px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.button-group .text {
+  padding: 12px 0px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.timeline-section {
+  padding: 0 2.5%;
+  box-sizing: border-box;
+}
+
+.timeline-section .section-title .title {
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0%;
+    line-height: 1.2;
+    color: #000;
+    padding: 0;
+}
+
+
+.section-title.part2 {
+  margin-bottom: 16px;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.timeline-date .date-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+.timeline-date {
+  position: relative;
+  width: 18%;
+}
+
+.timeline-cards {
+  max-width: 82%;
+  overflow: hidden;
+}
+
+.timeline-date::before {
+  content: '';
+  width: 1px;
+  height: 105%;
+  position: absolute;
+  right: 5px;
+  top: 5%;
+  background: linear-gradient(90deg, #FF4187 0%, #AA7FFA 100%);
+  z-index: 0;
+}
+.timeline .timeline-item:last-child .timeline-date::before {
+  /* 원하는 스타일 예시 */
+  height: 90%;
+}
+
+.timeline-item .circle {
+  background: #ff4187;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid #FF4187;
+  position: relative;
+  z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+.card {
+  background: #fdfdfd;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  max-width: 290px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+
+}
+.card img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+
+.timeline .timeline-item:nth-child(2) .card img {
+  width: 90px !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+}
+
+
+
+.entry-text {
+  color: #000;
+  font-size: 12px;
+  letter-spacing: -4%;
+}
+
+.entry-text span {
+  color: #FF4187;
+}
+
+
+
+
+
+
+
+.empty-message {
+  background: #fdfdfd;
+  border-radius: 19px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 64px 60px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: -4%;
+  color: #949496;
+}
+
+
+.button-group.pdf-btn-group {
+  padding: 0;
+  box-sizing: border-box;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+.button-group .btn.export-btn {
+  padding: 17px 0px;
+  box-sizing: border-box;
+}
+
+.exporting-text {
+  position: fixed;
+  bottom: 106px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 18px;
+  box-sizing: border-box;
+  font-weight: 300;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  white-space: pre-line;
+}
+
+.saving-image-guide {
+  position: fixed;
+  bottom: 106px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 18px;
+  box-sizing: border-box;
+  font-weight: 300;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+
+
