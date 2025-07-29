@@ -1,14 +1,14 @@
 .Closet-wrap {background: #fff;}
-.Closet-container {padding: 35px 0 150px; color: #000;  font-family: 'Pretendard' , sans-serif; overflow-X: hidden; min-height: 100vh;}
+.Closet-container {padding: 46px 0 150px; color: #000;  font-family: 'Pretendard' , sans-serif; overflow-X: hidden; min-height: 100vh;}
 
-.Closet-container .button-container{ padding-top: 30px;}
+.Closet-container .button-container{margin-top: 30px;}
 .Closet-container .button-container ul{display: flex;}
 .Closet-container .button-container ul li{margin-right: 8px; flex: 0 0 auto; }
 .Closet-container .button-container .swiper-wrapper button{font-size: 14px; border-radius: 15px; padding: 5px 15px; display: block; background: #fff; border: 1px solid #000;font-family: 'Pretendard', sans-serif; color: #000; cursor: pointer;}
     
 .Closet-container .button-container .swiper-wrapper button.active{background: #FF4187; color: #fff; border: 1px solid #FF4187;}
 
-.Closet-container .bestItem{margin-top: 38px;}
+.Closet-container .bestItem{margin-top: 24px;}
 .Closet-container .bestItem > p{margin:0 2.5% 10px;}
 .Closet-container .bestItem .bestItemTextBox p{text-align: center; margin-top: 10px; white-space: pre-wrap; font-size: 11px; font-weight: 100;}
 .Closet-container .bestItem .bestItemImgBox img{width: 100%;}

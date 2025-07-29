@@ -18,14 +18,16 @@
 }
 
 
-.group-intro__social { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 50px; font-size: 19px; margin-top: 14px; opacity: 0.42;}
+.group-intro__social { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 50px; font-size: 24px; margin-top: 14px; opacity: 0.42;}
+
 .group-intro__join { 
   background: linear-gradient(90deg, #FF4187 0%, #AA7FFA 100%);
-  border: none; padding: 5px 20px; border-radius: 20px;
+  border: none; padding: 6px 12px; border-radius: 20px;
+  font-weight: 500;
   display: inline-block;
   width: 69px;
   height: 26px;
-  color: #fff; font-size: 12px; cursor: pointer;
+  color: #fff; font-size: 15px; cursor: pointer;
   position: absolute;
   top: 70%;
   left: 50%;
@@ -42,7 +44,7 @@
   text-align: center;
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: -230%;
+  top: -210%;
   right: 0%;
   padding: 10px;
   box-sizing: border-box;

@@ -75,7 +75,7 @@ const Closet = () => {
 
         {/* Best Item */}
         <div className="bestItem">
-          <p>❤️Best Item</p>
+          <p>Best Item</p>
           <Swiper
             onSwiper={(swiper) => (bestSwiperRef.current = swiper)}
             modules={[Mousewheel]}
@@ -105,7 +105,7 @@ const Closet = () => {
 
         {/* New Item */}
         <div className="newItem">
-          <p>❤️New Item</p>
+          <p>New Item</p>
           <Swiper
             onSwiper={(swiper) => (newSwiperRef.current = swiper)}
             modules={[Mousewheel]}
@@ -132,7 +132,7 @@ const Closet = () => {
 
         {/* Commercial */}
         <div className="commercial">
-          <p>❤️Commercial</p>
+          <p>Commercial</p>
           <Swiper
             onSwiper={(swiper) => (comSwiperRef.current = swiper)}
             modules={[Mousewheel]}

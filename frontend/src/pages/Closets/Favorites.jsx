@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Favorites.css';
 import { MdCancel } from "react-icons/md";
 import { mainImgs } from './ClosetImg';
-import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
+import { IoHeartOutline,IoHeartSharp} from "react-icons/io5";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -73,7 +73,7 @@ export default function Favorites() {
                   </div>
                 </Link>
                 <button className="delete-button" onClick={() => handleDelete(item.teamId, item.itemId)}>
-                  <IoMdHeart style={{color: "#FF4187"}}/><IoMdHeartEmpty />
+                  <IoHeartSharp style={{color: "#FF4187"}}/><IoHeartOutline />
                 </button>
               </div>
             </li>

@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { lectureStatusData } from './ClosetData';
 import './ClosetDetail.css';
 import { IoIosLink } from "react-icons/io";
-import { IoIosHeartEmpty } from "react-icons/io";
-import { IoMdHeart } from "react-icons/io";
+import { IoHeartOutline,IoHeartSharp} from "react-icons/io5";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
 import 'swiper/css';
@@ -83,8 +82,8 @@ export default function ClosetDetail() {
             <div className='price'>
               {price}
               <div className="heart">
-                <IoIosHeartEmpty />
-                <IoMdHeart style={{ opacity }} onClick={handleClick} />
+                <IoHeartOutline style={{ opacity: 1, position: 'relative', zIndex: 2 }} onClick={handleClick} />
+                <IoHeartSharp style={{ opacity, display: opacity === 0 ? 'none' : 'block' }} onClick={handleClick} />
               </div>
             </div>
           </div>

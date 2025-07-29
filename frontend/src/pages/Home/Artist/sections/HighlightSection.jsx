@@ -1,5 +1,5 @@
 // src/pages/sections/HighlightSection.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './HighlightSection.css';
 import { Link, useNavigate } from 'react-router-dom'; 
@@ -8,6 +8,7 @@ import { PiSpeakerHigh } from "react-icons/pi";
 import { FaChevronRight } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AiOutlineX } from "react-icons/ai";
+import { artists } from '../artistsData'; // artists 데이터 import 필요
 import 'swiper/css';
 
 export default function HighlightSection({ artist, onTabChange }) {
@@ -21,15 +22,14 @@ export default function HighlightSection({ artist, onTabChange }) {
   };
 
   const handleTalkClick = () => {
-  onTabChange('talk');
-};
+    onTabChange('talk');
+  };
   const handleTalkDetailClick1 = () => {
-  navigate(`/talkPostDetail/${artist.key}/1/artist/artist`);
-};
+    navigate(`/talkPostDetail/${artist.key}/1/artist/artist`);
+  };
   const handleTalkDetailClick2 = () => {
-  navigate(`/talkPostDetail/${artist.key}/3/artist/artist`);
-};
-
+    navigate(`/talkPostDetail/${artist.key}/3/artist/artist`);
+  };
 
   const navigate = useNavigate();
 
@@ -37,6 +37,66 @@ export default function HighlightSection({ artist, onTabChange }) {
     onTabChange('to');
   };
 
+  // 좋아요 카운트
+  const [likeCount1, setLikeCount1] = useState(0);
+  const [likeCount2, setLikeCount2] = useState(0);
+
+  // 댓글 카운트 상태 추가
+  const [commentCount1, setCommentCount1] = useState(0);
+  const [commentCount2, setCommentCount2] = useState(0);
+
+  // 댓글 수를 계산하는 함수
+  const getCommentCount = (profileIndex) => {
+    // localStorage에서 사용자가 작성한 댓글 가져오기
+    const commentsKey = `comments-${artist.key}-${profileIndex}-artist-artist`;
+    const userComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+    
+    // artists 데이터에서 초기 댓글 가져오기
+    const foundArtist = artists.find(a => a.key === artist.key);
+    const initialCommentsCount = foundArtist?.talkProfile?.[profileIndex]?.talkComment?.length || 0;
+    
+    return userComments.length + initialCommentsCount;
+  };
+
+  useEffect(() => {
+    // 좋아요 수 로드
+    const savedLike1 = localStorage.getItem(`${artist.key}-talkPostLikes-1`) || artist?.talkProfile?.[1]?.talkPostLikes;
+    const savedLike2 = localStorage.getItem(`${artist.key}-talkPostLikes-3`) || artist?.talkProfile?.[3]?.talkPostLikes;
+
+    if (savedLike1 !== null) {
+      setLikeCount1(parseInt(savedLike1, 10));
+    }
+    if (savedLike2 !== null) {
+      setLikeCount2(parseInt(savedLike2, 10));
+    }
+
+    // 댓글 수 로드
+    setCommentCount1(getCommentCount(1));
+    setCommentCount2(getCommentCount(3));
+  }, [artist.key]);
+
+  // localStorage 변경 감지하여 댓글 수 실시간 업데이트
+  useEffect(() => {
+    const updateCommentCounts = () => {
+      setCommentCount1(getCommentCount(1));
+      setCommentCount2(getCommentCount(3));
+    };
+
+    // storage 이벤트 리스너 (다른 탭에서 변경 시)
+    window.addEventListener('storage', updateCommentCounts);
+    
+    // 같은 탭에서 변경 감지를 위한 interval
+    const interval = setInterval(updateCommentCounts, 1000);
+
+    // localStorageUpdate 커스텀 이벤트 리스너 (같은 탭에서 즉시 업데이트)
+    window.addEventListener('localStorageUpdate', updateCommentCounts);
+
+    return () => {
+      window.removeEventListener('storage', updateCommentCounts);
+      window.removeEventListener('localStorageUpdate', updateCommentCounts);
+      clearInterval(interval);
+    };
+  }, [artist.key]);
 
   return (
     <div className="highlight-section">
@@ -88,7 +148,6 @@ export default function HighlightSection({ artist, onTabChange }) {
                 </SwiperSlide>
               ))}
 
-              {/* ── 이어지는 빈 박스 슬라이드 추가 ── */}
               <SwiperSlide key="more" className="highlight-slide box-only-slide">
                 <div 
                   className="box-only" 
@@ -100,11 +159,6 @@ export default function HighlightSection({ artist, onTabChange }) {
             )}
           </div>
         </div>
-
-
-
-
-
 
         <div className="Xsection">
           <div className="Xsection-title">
@@ -140,10 +194,6 @@ export default function HighlightSection({ artist, onTabChange }) {
           )}
         </div>
 
-
-
-
-
         <div className="talkSection">
           <div className="talkSection-title">
             <h2 className="title">Talk</h2>
@@ -162,7 +212,7 @@ export default function HighlightSection({ artist, onTabChange }) {
                     <p className="span">{artist.highlightTalkBoxTitleSpan}</p>
                     <p className="line">{artist.highlightTalkBoxTitle01}</p>
                   </div>
-                  <p className="like">{artist.highlightTalkBoxLike01}</p>
+                  <p className="like">좋아요 {likeCount1} · 댓글 {commentCount1}</p>
                 </div>
                 <div className="mainImgBox">
                   <img src={artist.highlightTalkBoxMainImg01}
@@ -179,7 +229,7 @@ export default function HighlightSection({ artist, onTabChange }) {
                 <div className="textBox">
                   <p className="name">{artist.highlightTalkBoxName02}</p>
                   <p className="line">{artist.highlightTalkBoxTitle02}</p>
-                  <p className="like">{artist.highlightTalkBoxLike02}</p>
+                  <p className="like">좋아요 {likeCount2} · 댓글 {commentCount2}</p>
                 </div>
                 <div className="mainImgBox">
                   <img src={artist.highlightTalkBoxMainImg02}
@@ -199,10 +249,6 @@ export default function HighlightSection({ artist, onTabChange }) {
             </div>
           </div>
         </div>
-
-
-
-
 
         <div className="toGroupSection">
           <div className="toGroupSection-inner">
@@ -238,13 +284,8 @@ export default function HighlightSection({ artist, onTabChange }) {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
-
-
-
-
       </div>
     </div>
   );

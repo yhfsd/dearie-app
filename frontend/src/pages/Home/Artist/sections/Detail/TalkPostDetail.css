@@ -170,12 +170,12 @@
 
 }
 
-.talk-post-detail-container .heart-btn {display: flex; align-items: center; gap: 4px; font-size: 17px;}
+.talk-post-detail-container .heart-btn {display: flex; align-items: center; gap: 3px; font-size: 14px;}
 
 .talk-post-detail-container .action-buttons {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
 }
 
 .talk-post-detail-container .like-btn,
@@ -183,7 +183,7 @@
   background: none;
   border: none;
   color: #fff;
-  font-size: 17px;
+  font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -231,8 +231,8 @@
     display: flex; align-items: center; margin-bottom: 8px; 
 }
 
-.talk-post-detail-container .comment-profile .comment-img{width: 35px; height: 35px; object-fit: cover; margin-right: 8px; border-radius: 50%;}
-.talk-post-detail-container .comment-profile img {width: 100% !important; height: 100% !important; object-fit: cover !important;}
+.talk-post-detail-container .comment-profile .comment-img{width: 35px; height: 35px; object-fit: cover; margin-right: 6px; border-radius: 50%; overflow: hidden;}
+.talk-post-detail-container .comment-profile img {width: 100%; height: 100%; object-fit: cover;}
 
 .talk-post-detail-container .comment-info{
     flex: 1;
@@ -312,13 +312,13 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0 50px 0 13px;
   color: #fff;
-  font-size: 14px;
+  font-size: 12px;
   outline: none;
 }
 
 .talk-post-detail-container .send-comment-btn {
   position: absolute;
-  right: 28px;
+  right: 37px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -375,13 +375,16 @@
   opacity: 0.2;
 }
 
+.talk-post-detail-container .delete-modal .reportButtonBox .userActionBox{
+  margin: 0 16px;
+}
+
 .talk-post-detail-container .delete-modal .reportButtonBox .userActionBox button {
-  display: flex; 
-  padding: 24px 0px; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
-  width: 90%; 
+  display: flex;
+  padding: 24px 0px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
   box-sizing: border-box;
-  margin: 0 5%;
 }
 
 .talk-post-detail-container .delete-modal .reportButtonBox .userActionBox button:last-child {
@@ -474,7 +477,7 @@
   z-index: 9;
 }
 
-.talk-post-detail-container .report-modal .reportButtonBox {
+.talk-post-detail-container .report-modal .report-Button-Box {
   position: fixed; 
   width: 95%; 
   max-width: 736px; 
@@ -486,7 +489,7 @@
   z-index: 10000000;
 }
 
-.talk-post-detail-container .report-modal .reportButtonBox span {
+.talk-post-detail-container .report-modal .report-Button-Box span {
   content: ''; 
   display: block; 
   width: 31px; 
@@ -497,7 +500,7 @@
   opacity: 0.2;
 }
 
-.talk-post-detail-container .report-modal .reportButtonBox button {
+.talk-post-detail-container .report-modal .report-Button-Box button {
   display: flex; 
   padding: 24px 16px; 
   width: 100%; 
@@ -508,7 +511,7 @@
   cursor: pointer;
 }
 
-.talk-post-detail-container .report-modal .reportButtonBox button svg {
+.talk-post-detail-container .report-modal .report-Button-Box button svg {
   margin-right: 10px;
 }
 
@@ -517,7 +520,7 @@
 /* 신고 페이지 확인 */
 
 .talk-post-detail-container .reportBox{
-  position: fixed; top: 50%;
+  position: fixed; top: 50%; z-index: 10;
 }
 
 .talk-post-detail-container .reportBox .overlay {

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './TalkSection.css';
-import { LuSend } from "react-icons/lu";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { BsChat } from "react-icons/bs";
 import { IoIosMore } from "react-icons/io";
@@ -18,7 +17,6 @@ import 'swiper/css/pagination';
 const TalkSection = ({ artist }) => {
   const navigate = useNavigate();
   const [likesState, setLikesState] = useState({});
-  const [reportingIndex, setReportingIndex] = useState(null);
   const [showChooseReport, setShowChooseReport] = useState(false);
   const [showReportDone, setShowReportDone] = useState(false);
   const [username, setUsername] = useState('순간의 윈터');
@@ -431,7 +429,7 @@ const handleUserLikeToggle = (entryId) => {
                     <div className="reportButtonBox">
                       <span style={{content: '',
                           display: 'block',
-                          width: '31px',
+                          width: '20%',
                           height: '2px',
                           borderRadius: '10px',
                           margin: '8px auto 0',
@@ -462,17 +460,24 @@ const handleUserLikeToggle = (entryId) => {
 
                 {deleteTarget === `${profileIndex}-${entry.id}` && (
                   <div className="deleteBox">
-                    <div className="overlay" onClick={() => setDeleteTarget(null)}></div>
+                    <div className="overlay" onClick={(e) => {
+                      e.stopPropagation(),
+                      setDeleteTarget(null)
+                      }}></div>
                     <div className="delete-conform-box">
                       <p>정말로 이 글을 삭제하시겠습니까?</p>
                       <div className="delete-buttons">
-                        <button className="no-btn" onClick={() => setDeleteTarget(null)}>
+                        <button className="no-btn" 
+                          onClick={(e) => {
+                            e.stopPropagation(),
+                            setDeleteTarget(null)}}
+                        >
                           취소
                         </button>
                         <button
                           className="yes-btn"
                           onClick={(e) => {
-                            e.stopPropagation(); // ✅ 추가!
+                            e.stopPropagation();
                             handleDeleteEntry(profileIndex, entry.id);
                           }}
                         >
@@ -488,21 +493,21 @@ const handleUserLikeToggle = (entryId) => {
         })}
       </ul>
       
-      {reportTarget && reportTarget.startsWith('artist-') && (
+      {reportTarget && (
         <div className="report-modal">
           <div className="overlay" onClick={() => setReportTarget(null)}></div>
           <div className="reportButtonBox">
             <span style={{content: '',
                           display: 'block',
-                          width: '31px',
+                          width: '20%',
                           height: '2px',
                           borderRadius: '10px',
                           margin: '8px auto 0',
                           background: '#fff',
                           opacity: '0.2'}}></span>
             <button onClick={() => {
-              setShowChooseReport(true);
               setReportTarget(null);
+              setShowChooseReport(true);
             }}>
               <PiSiren /> 신고하기
             </button>
@@ -530,14 +535,12 @@ const handleUserLikeToggle = (entryId) => {
         <div className="reportedBox">신고되었습니다.</div>
       )}
 
-      <div className="talk-writing-section">
         <div className="talkWritingBox">
           <Link to={`/talkWritingPage/${artist.key}/0`}>
             <MdModeEditOutline style={{width: '25px', height:'25px'}}/>
           </Link>
         </div>
       </div>
-    </div>
   );
 };
 

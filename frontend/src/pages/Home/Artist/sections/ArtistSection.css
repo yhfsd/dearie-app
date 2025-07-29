@@ -14,8 +14,9 @@
 .artist-wrap .artist-list .artistPost .text-box{margin: 12px 2.2% 10px; line-height: 1.2; font-weight: 100; letter-spacing: 0.01em; font-size: 14px; display: -webkit-box;
 -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
 .artist-wrap .artist-list .artistPost .icon-box{margin: 0 2.2%; padding: 15px 0; display: flex; align-items: center;}
-.artist-wrap .artist-list .artistPost .icon-box svg{margin-right: 6px; width: 17px; height: 17px;}
-.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(1){width: 20px; height: 20px;}
-.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(3){width: 16px; height: 16px;}
+.artist-wrap .artist-list .artistPost .icon-box svg{margin-right: 12px;}
+.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(1){width: 23px; height: 23px;}
+.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(2){width: 19px; height: 19px; margin-right: 14px;}
+.artist-wrap .artist-list .artistPost .icon-box svg:nth-child(3){width: 18px; height: 18px;}
 
 .artist-wrap .artist-list .artistPost .img-box img{width: 100%;}

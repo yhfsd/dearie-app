@@ -102,18 +102,7 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
 
   if (hasError) {
     // 모든 경로에서 실패 시 기본 아이콘 표시
-    const defaultStyle = {
-      width: '40px',
-      height: '40px',
-      backgroundColor: '#444',
-      borderRadius: '50%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: '#fff',
-      fontSize: '12px',
-      ...style
-    };
+    const defaultStyle = {};
 
     return (
       <div className={className} style={defaultStyle}>
@@ -125,18 +114,7 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
   const imageSrc = getImageSrc();
   if (!imageSrc) {
     return (
-      <div className={className} style={{
-        width: '40px',
-        height: '40px',
-        backgroundColor: '#444',
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#fff',
-        fontSize: '12px',
-        ...style
-      }}>
+      <div className={className}>
         {defaultIcon}
       </div>
     );
@@ -156,12 +134,7 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
 
 // 댓글 이미지 컴포넌트 (기존 호환성을 위해 유지, 하지만 이제 SafeImage 사용 권장)
 const CommentImage = ({ src, alt }) => {
-  return <SafeImage src={src} alt={alt} style={{
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    objectFit: 'cover'
-  }} />;
+  return <SafeImage />;
 };
 
 const ArtistPostDetail = () => {
@@ -505,12 +478,6 @@ const ArtistPostDetail = () => {
                   <SafeImage 
                     src={cmt.commentImg}
                     alt="댓글 프로필"
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      objectFit: 'cover'
-                    }}
                   />
                 </div>
                 <div className="comment-info">

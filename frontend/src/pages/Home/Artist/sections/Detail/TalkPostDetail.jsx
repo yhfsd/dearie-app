@@ -110,13 +110,10 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
   if (hasError) {
     // 모든 경로에서 실패 시 기본 아이콘 표시
     const defaultStyle = {
-      width: '40px',
-      height: '40px',
       backgroundColor: '#444',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
       color: '#fff',
       fontSize: '12px',
       ...style
@@ -133,8 +130,6 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
   if (!imageSrc) {
     return (
       <div className={className} style={{
-        width: '40px',
-        height: '40px',
         backgroundColor: '#444',
         borderRadius: '50%',
         display: 'flex',
@@ -164,10 +159,6 @@ const SafeImage = ({ src, alt, className, style, defaultIcon = '👤' }) => {
 // 댓글 이미지 컴포넌트 (기존 호환성을 위해 유지)
 const CommentImage = ({ src, alt }) => {
   return <SafeImage src={src} alt={alt} style={{
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    objectFit: 'cover'
   }} />;
 };
 
@@ -473,7 +464,6 @@ const TalkPostDetail = () => {
     
     const newComment = {
       name: currentName,
-      time: '방금 전', // 표시용 (실제로는 timestamp를 사용)
       text: comment.trim(),
       liked: false,
       likeCount: 0,
@@ -632,7 +622,7 @@ const TalkPostDetail = () => {
                 <div className="reportButtonBox">
                   <span style={{content: '',
                           display: 'block',
-                          width: '31px',
+                          width: '20%',
                           height: '2px',
                           borderRadius: '10px',
                           margin: '8px auto 0',
@@ -738,40 +728,40 @@ const TalkPostDetail = () => {
           )}
         </div>
 
-<div className="post-actions">
-  <div className="action-buttons">
-    <button className='heart-btn' onClick={postType === 'artist' ? toggleLike : handleUserLikeToggle}>
-      {postType === 'artist' ? (
-        isLiked ? (
-          <IoMdHeart color="#FF4187" size={17} />
-        ) : (
-          <IoMdHeartEmpty size={17} />
-        )
-      ) : (
-        likedUserPosts[entryId] ? (
-          <IoMdHeart color="#FF4187" size={17} />
-        ) : (
-          <IoMdHeartEmpty size={17} />
-        )
-      )}
-      <span>
-        {postType === 'artist' ? likeCount : (userPostLikeCounts[entryId] || 0)}
-      </span>
-    </button>
+          <div className="post-actions">
+            <div className="action-buttons">
+              <button className='heart-btn' onClick={postType === 'artist' ? toggleLike : handleUserLikeToggle}>
+                {postType === 'artist' ? (
+                  isLiked ? (
+                    <IoMdHeart color="#FF4187" size={23} />
+                  ) : (
+                    <IoMdHeartEmpty size={23} />
+                  )
+                ) : (
+                  likedUserPosts[entryId] ? (
+                    <IoMdHeart color="#FF4187" size={23} />
+                  ) : (
+                    <IoMdHeartEmpty size={23} />
+                  )
+                )}
+                <span>
+                  {postType === 'artist' ? likeCount : (userPostLikeCounts[entryId] || 0)}
+                </span>
+              </button>
 
-    <button className="comment-btn" title="댓글 수">
-      <BsChat style={{ transform: 'scaleX(-1)', width:'16px', height:'14px'}} />
-      <span>{comments.length}</span>
-    </button>
-  </div>
-</div>
+              <button className="comment-btn" title="댓글 수">
+                <BsChat style={{ transform: 'scaleX(-1)', width:'19px', height:'19px'}} />
+                <span>{comments.length}</span>
+              </button>
+            </div>
+          </div>
 
-        <div className="whiteLine"></div>
+          <div className="whiteLine"></div>
 
         <div className="comments-section">
-          <div className="comments-header">
-            <p>댓글 {comments.length}개</p>
-          </div>
+            <div className="comments-header">
+              <p>댓글 {comments.length}개</p>
+            </div>
 
           <div className="comments-list">
             {comments.map((cmt, idx) => (
@@ -781,12 +771,6 @@ const TalkPostDetail = () => {
                     <SafeImage
                       src={cmt.commentImg}
                       alt="댓글 프로필"
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        objectFit: 'cover'
-                      }}
                     />
                   </div>
                   <div className="comment-info">
@@ -827,7 +811,7 @@ const TalkPostDetail = () => {
                     <div className="reportButtonBox">
                       <span style={{content: '',
                           display: 'block',
-                          width: '31px',
+                          width: '20%',
                           height: '2px',
                           borderRadius: '10px',
                           margin: '8px auto 0',
@@ -845,11 +829,13 @@ const TalkPostDetail = () => {
                           </button>
                         </div>
                       ) : (
-                        <button onClick={() => {
-                          setShowReport(true);
-                          setReportTarget(null);
-                        }}>
-                          <PiSiren />신고하기
+                        <button
+                          onClick={() => {
+                            setReportTarget(null);  // 먼저 현재 모달을 닫고
+                            setShowChooseReport(true);  // 신고 확인 모달을 열기
+                          }}
+                        >
+                          <PiSiren /> 신고하기
                         </button>
                       )}
                     </div>
@@ -878,21 +864,23 @@ const TalkPostDetail = () => {
           {showReport && (
             <div className='report-modal'>
               <div className="overlay" onClick={() => setShowReport(false)}></div>
-              <div className="reportButtonBox">
+              <div className="report-Button-Box">
                 <span style={{content: '',
                           display: 'block',
-                          width: '31px',
+                          width: '20%',
                           height: '2px',
                           borderRadius: '10px',
                           margin: '8px auto 0',
                           background: '#fff',
                           opacity: '0.2'}}>
                 </span>    
-                <button onClick={() => {
-                  setShowReport(false);
-                  setShowChooseReport(true);
-                }}>
-                  <PiSiren />신고하기
+                <button
+                  onClick={() => {
+                            setShowReport(false);  // 먼저 현재 모달을 닫고
+                            setShowChooseReport(true);  // 신고 확인 모달을 열기
+                  }}
+                >
+                  <PiSiren /> 신고하기
                 </button>
               </div>
             </div>

@@ -40,7 +40,7 @@ html, body {
 .login-page input {width: 100%; padding: 15px 12px; box-sizing: border-box; border-radius: 10px; background: #121212; border: 1px solid #fff; margin-bottom: 15px; color: #fff; touch-action: manipulation;}
 .login-page input::placeholder {color: #fff; opacity: 0.65;}
 .login-page .next-btn {width: 100%; background: #FF4187; border: none;  border-radius: 10px; box-sizing: border-box; margin-bottom: 30px;}
-.login-page .next-btn .text {opacity: 0.65; font-size: 13px; padding: 13px 12px; text-align: center;}
+.login-page .next-btn .text {font-size: 13px; padding: 13px 12px; text-align: center;}
 
 .login-page .forgot-email {font-size: 14px; opacity: 0.65; margin-bottom: 22px; text-align: center;}
 .login-page .divider {font-size: 14px; opacity: 0.65; padding: 10px 5px; position: relative; text-align: center; margin-bottom: 22px; display: flex; align-items: center; justify-content: center; background: #121212;}
@@ -116,6 +116,6 @@ html, body {
   font-size: 20px;
 }
 
-.back-container .next-btn .text {color: #fff; opacity: 0.65;}
+.back-container .next-btn .text {color: #fff;}
 .back-container .forgot-email {font-size: 14px;}
 
