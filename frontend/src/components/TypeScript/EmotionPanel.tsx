@@ -1,22 +1,38 @@
+// src/components/TypeScript/EmotionPanel.tsx
+
 import React, { useState } from 'react';
 import './EmotionPanel.css';
 import { EMOTION_GROUPS, EmotionGroup, Emotion } from './emotions';
 import { FiChevronLeft, FiX } from 'react-icons/fi';
-import inputIcon from '/chatBot/chat-bot-input.png'
 
 interface EmotionPanelProps {
-  groups?: readonly EmotionGroup[];     // 기본값으로 EMOTION_GROUPS 사용
-  onSelect: (emo: Emotion) => void;
-  onClose: () => void;
+  groups?: readonly EmotionGroup[];           // 기본 EMOTION_GROUPS 사용
+  onSelect: (emo: Emotion) => void;           // 감정 선택 완료 시 호출
+  onClose: () => void;                        // 패널 닫기 호출
+  initialEmotion?: Emotion | null;            // 패널 열 때 보여줄 아이콘 기반 감정
 }
 
 const EmotionPanel: React.FC<EmotionPanelProps> = ({
-  groups = EMOTION_GROUPS,              // prop 미전달 시 기본으로 전체 그룹
+  groups = EMOTION_GROUPS,
   onSelect,
   onClose,
+  initialEmotion = null,
 }) => {
+  // 버튼 선택 상태는 항상 null로 시작, 닫으면 초기화됨
   const [selected, setSelected] = useState<Emotion | null>(null);
 
+  // 이미지 표시용 그룹은 'selected' 우선, 없으면 'initialEmotion', 없으면 첫 그룹
+  const iconGroup: EmotionGroup =
+    selected
+      ? groups.find(g => g.items.some(i => i.label === selected))!
+      : initialEmotion
+        ? groups.find(g => g.items.some(i => i.label === initialEmotion))!
+        : groups[0];
+
+  // 표시할 아이콘
+  const iconSrc = iconGroup.icon;
+
+  // 확인 핸들러
   const handleConfirm = () => {
     if (selected) {
       onSelect(selected);
@@ -26,11 +42,12 @@ const EmotionPanel: React.FC<EmotionPanelProps> = ({
 
   return (
     <div className="emotion-panel">
-        <div className="icon-Box">
-                <div className="emotion-input-icon">
-        <img src={inputIcon} alt="input icon"/>
-      </div>
+      {/* 동적 아이콘 영역 */}
+      <div className="icon-Box">
+        <div className={`emotion-input-icon ${iconGroup.iconClass}`}>
+          <img src={iconSrc} alt={`${iconGroup.title} icon`} />
         </div>
+      </div>
 
       <div className="emotion-header">
         <button className="header-btn" onClick={onClose} aria-label="뒤로가기">
@@ -48,7 +65,9 @@ const EmotionPanel: React.FC<EmotionPanelProps> = ({
       <div className="mainBox">
         <div className="emotion-GroupBox">
           {groups.map(group => (
-            <div key={group.title} className="emotion-group">
+                    <div
+          key={group.title}
+          className={`emotion-group ${group.iconClass}`}>
               <h4 className="emotion-group-title">{group.title}</h4>
               <div className="emotion-btnBox">
                 {group.items.map(item => (
@@ -58,7 +77,10 @@ const EmotionPanel: React.FC<EmotionPanelProps> = ({
                     onClick={() => setSelected(item.label)}
                     title={item.label}
                   >
-                    <span className='emotion-dot' style={{backgroundColor: item.color}}></span>
+                    <span
+                      className='emotion-dot'
+                      style={{ backgroundColor: item.color }}
+                    />
                     {item.label}
                   </button>
                 ))}
@@ -66,18 +88,17 @@ const EmotionPanel: React.FC<EmotionPanelProps> = ({
             </div>
           ))}
         </div>
+
         <div className="emotion-footer">
-        <button
-          className="confirm-btn"
-          onClick={handleConfirm}
-          disabled={!selected}
-        >
-          선택 완료
-        </button>
+          <button
+            className="confirm-btn"
+            onClick={handleConfirm}
+            disabled={!selected}
+          >
+            선택 완료
+          </button>
+        </div>
       </div>
-      </div>
-
-
     </div>
   );
 };

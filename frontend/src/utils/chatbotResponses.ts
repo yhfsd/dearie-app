@@ -1,6 +1,7 @@
 // src/utils/chatbotResponses.ts
 import { Emotion } from '../components/TypeScript/emotions';
 import type { Message } from '../pages/ChatbotPage';
+import { SONGS_BY_EMOTION } from '../components/TypeScript/emusics';
 
 interface EmotionResponse {
   text: string | string[];
@@ -118,6 +119,7 @@ export function createBotMessages(userText: Emotion): Message[] {
     from: 'bot',
     text,
     imageUrl: idx === 0 ? resp.imageUrl : undefined,
+    hideAvatar: idx === 1,
   }));
 
   // 3) 마지막에 '추천 음악' 옵션 메시지 추가
@@ -125,6 +127,9 @@ export function createBotMessages(userText: Emotion): Message[] {
     from: 'bot',
     text: '추천 음악을 받아보시겠어요?',
     showOptions: true,  // ChatWindow 에서 버튼으로 렌더링하는 플래그
+    songs: SONGS_BY_EMOTION[userText],
+    emotion: userText,
+    hideAvatar: true,
   });
 
   return msgs;

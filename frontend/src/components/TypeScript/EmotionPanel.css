@@ -42,6 +42,24 @@
     left: 10%;
     z-index: 1000;
 }
+
+.emotion-input-icon.heart {
+    position: absolute;
+    top: -38px;
+    left: 10%;
+    z-index: 1000;
+}
+
+.emotion-input-icon.fire {
+  top: -58px;
+}
+
+.emotion-input-icon.green {
+  top: -53px;
+}
+
+
+
 .emotion-input-icon img {
   width: 57px;   /* 필요에 따라 조절 */
   height: auto;
@@ -178,6 +196,22 @@
 }
 
 
+/* 긍정 그룹 (iconClass = heart) */
+.emotion-group.heart .emotion-btn.selected {
+   background: rgba(254, 165, 165, 0.5); 
+}
+
+/* 중립 그룹 (iconClass = fire) */
+.emotion-group.fire .emotion-btn.selected {
+  background: rgba(255, 156, 13, 0.5); 
+}
+
+/* 부정 그룹 (iconClass = green) */
+.emotion-group.green .emotion-btn.selected {
+  background: rgba(174, 201, 49, 0.5); 
+}
+
+
 
 
 
@@ -203,7 +237,7 @@
 .emotion-footer .confirm-btn {
     width: 92%;
     padding: 20px 0;
-      background: rgba(4, 2, 51, 0.7);
+      background: rgba(4, 2, 51, 0.6);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   box-shadow: 

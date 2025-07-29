@@ -54,6 +54,18 @@
   z-index: 11;
 }
 
+
+
+.chatbot-body.fire .chat-window .chat-date .text {
+  background: #5E1E05;
+}
+
+.chatbot-body.green .chat-window .chat-date .text {
+  background: #2A4859;
+}
+
+
+
 /* 2) 메시지 리스트 영역 */
 .messages {
   flex: 1;
@@ -67,7 +79,6 @@
 /* 3) 메시지 버블 */
 .message {
   max-width: 100%;
-  padding: 10px 14px;
   border-radius: 20px;
   line-height: 1.4;
   word-break: keep-all;
@@ -177,7 +188,7 @@
   flex-shrink: 0;
   width: 41px !important;
   height: 41px !important;
-  background: rgba(55, 53, 83, 1);
+  background: rgba(55, 53, 83, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -232,7 +243,7 @@
 /* 유저 메시지 (오른쪽) */
 .message.user {
   align-self: flex-end;
-  background: rgba(55, 53, 83, 1);
+  background: rgba(55, 53, 83, 0.5);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -244,9 +255,9 @@
   padding: 8px 16px;
   color: #fff;
   border-radius: 10px;
-  display: inline-block;        
+  display: inline-flex;        
   margin: 16px 0px;
-
+  align-items: center;
   max-width: 84%;              
   word-break: break-word; 
   white-space: normal;   
@@ -260,10 +271,11 @@
 
 .message-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   margin-right: 4px;
+  margin-bottom: 2px;
 }
 
 .message-text {
@@ -276,13 +288,7 @@
 .message-arrow {
   position: relative;
   margin-left: 8px;
-}
-
-.message-arrow svg {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50% , -50%);
+  padding-bottom: 2px;
 }
 
 
@@ -424,5 +430,5 @@
   padding: 6px 16px;
   color: #fff;
   border-radius: 47px;
-  margin: 16px 0px;
+  margin: 8px 0px;
 }

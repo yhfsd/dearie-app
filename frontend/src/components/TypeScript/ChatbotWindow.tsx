@@ -1,6 +1,7 @@
+// src/components/TypeScript/ChatbotWindow.tsx
+
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Message } from '../../pages/ChatbotPage';
-import CustomAudioPlayer from './CustomAudioPlayer';
 import './ChatbotWindow.css';
 import { IoAddOutline } from 'react-icons/io5';
 import { PiPaperPlaneTilt } from 'react-icons/pi';
@@ -11,6 +12,7 @@ import SongSelector from './SongSelector';
 import { SONGS_BY_EMOTION } from './emusics';
 import type { Song } from './emusics';
 import SongPlayerPanel from './SongPlayerPanel';
+import { EMOTION_RESPONSES } from '../../utils/chatbotResponses';
 
 interface ChatWindowProps {
   messages: Message[];
@@ -41,6 +43,26 @@ export default function ChatWindow({
   const [currentEmotion, setCurrentEmotion] = useState<Emotion | null>(null);
   const [currentOptionIndex, setCurrentOptionIndex] = useState<number | null>(null);
   const [playerSong, setPlayerSong] = useState<Song | null>(null);
+  const getAvatarUrl = () => {
+    const base = import.meta.env.BASE_URL + 'chatBot/';
+    if (!currentEmotion) return `${base}dearie.png`;  // 디폴트
+    const group = EMOTION_GROUPS.find(g =>
+      g.items.some(i => i.label === currentEmotion)
+    )!;
+    if (group.title === '긍정') return `${base}dearie.png`;
+    if (group.title === '중립') return `${base}biti.png`;
+    return `${base}ruoa.png`;
+  };
+
+  // 모달에 넘길 추천 목록
+  const recommendedSongs =
+    currentOptionIndex !== null
+      ? messages[currentOptionIndex].songs || []
+      : [];
+  const recommendedEmotion =
+    currentOptionIndex !== null
+      ? messages[currentOptionIndex].emotion!
+      : currentEmotion!;
 
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -84,31 +106,35 @@ export default function ChatWindow({
     return map;
   }, []);
 
-  const mappedSongs = currentEmotion ? (SONGS_BY_EMOTION[currentEmotion] || []) : [];
-
   const todayString = new Date().toLocaleDateString('ko-KR', {
-    year: 'numeric', month: 'long', day: 'numeric', weekday: 'short',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'short',
   });
 
-  // 메시지 배열에 limit 메시지 추가
-    // 메시지 배열에 limit 메시지 추가 (이미지 포함)
   const displayMessages: Message[] = isDisabled
-    ? [...messages,
-       {
-         from: 'bot',
-         text: '앗, 오늘은 대화가 모두 끝났어요!\n내일 또 놀러 와 주세요😉',
-         imageUrl: `${import.meta.env.BASE_URL}chatBot/dearie.png`
-       }
+    ? [
+        ...messages,
+        {
+          from: 'bot',
+          text: '앗, 오늘은 대화가 모두 끝났어요!\n내일 또 놀러 와 주세요😉',
+          hideAvatar: false
+        },
       ]
     : messages;
 
   return (
     <div className="chat-window">
-      {showSongSelector && currentEmotion !== null && (
+      {/* 추천음악 모달 */}
+      {showSongSelector && currentOptionIndex !== null && (
         <SongSelector
-          emotion={currentEmotion}
-          songs={mappedSongs}
-          onClose={() => setShowSongSelector(false)}
+          emotion={recommendedEmotion}
+          songs={recommendedSongs}
+          onClose={() => {
+            setShowSongSelector(false);
+            setCurrentOptionIndex(null);
+          }}
           onSelect={song => {
             if (currentOptionIndex !== null) {
               onDismissOption?.(currentOptionIndex);
@@ -126,8 +152,32 @@ export default function ChatWindow({
             <p className="text">{todayString}</p>
           </div>
         )}
+
         {displayMessages.map((m, i) => {
-          // 봇 옵션 메시지
+          // 1) **유저 메시지** (제일 위에서 잡아내야 합니다)
+          if (m.from === 'user' && m.text) {
+            const isEmotion = !!colorMap[m.text] && !!onUserMessageClick;
+            return isEmotion ? (
+              <button
+                key={i}
+                className="message user"
+                onClick={() => handleEmotionClick(m.text as Emotion)}
+              >
+                <span
+                  className="message-dot"
+                  style={{ backgroundColor: colorMap[m.text] }}
+                />
+                <span className="message-text">{m.text}</span>
+                <FaAngleRight className="message-arrow" />
+              </button>
+            ) : (
+              <div key={i} className="message user">
+                <span className="message-text">{m.text}</span>
+              </div>
+            );
+          }
+
+          // 2) 봇 «추천 음악 옵션» 카드
           if (m.from === 'bot' && m.showOptions) {
             return (
               <div key={i} className="chatbot-textBox">
@@ -140,10 +190,13 @@ export default function ChatWindow({
                         className="text-box-image"
                       />
                     </div>
-                    <p className="text">{m.text ?? ''}</p>
+                    <p className="text">{m.text}</p>
                   </div>
                   <div className="bottom-btn">
-                    <button className="fine" onClick={() => onDismissOption?.(i)}>
+                    <button
+                      className="fine"
+                      onClick={() => onDismissOption?.(i)}
+                    >
                       괜찮아요
                     </button>
                     <button
@@ -160,59 +213,71 @@ export default function ChatWindow({
               </div>
             );
           }
-          // 내가 고른 음악 버튼 메시지
+
+          // 3) 봇 «내가 고른 음악» 버튼
           if (m.from === 'bot' && m.type === 'music' && m.song) {
             return (
               <div key={i} className="message bot">
-                <button className="music-btn" onClick={() => setPlayerSong(m.song!)}>
-                  내가 고른 음악 <FaAngleRight style={{ marginLeft: '10px' }} />
+                <button
+                  className="music-btn"
+                  onClick={() => setPlayerSong(m.song!)}
+                >
+                  내가 고른 음악
+                  <FaAngleRight style={{ marginLeft: '10px' }} />
                 </button>
               </div>
             );
           }
-          // 사용자 감정 버튼
-          if (m.from === 'user' && m.text && colorMap[m.text] && onUserMessageClick) {
-            return (
-              <button key={i} className="message user" onClick={() => handleEmotionClick(m.text as Emotion)}>
-                <span className="message-dot" style={{ backgroundColor: colorMap[m.text] }} />
-                <span className="message-text">{m.text}</span>
-                <FaAngleRight className="message-arrow" style={{ fontSize: 15 }} />
-              </button>
-            );
-          }
-          // 일반 봇 텍스트 메시지
-          if (m.from === 'bot' && m.text) {
-            return (
-              <div key={i} className="message bot">
-                <div className="bot-content">
-                  <div className="bot-avatar-wrapper" style={{ opacity: m.imageUrl ? 1 : 0 }}>
-                    {m.imageUrl && <img className="bot-avatar" src={m.imageUrl} alt="bot avatar" />}
-                  </div>
-                  <div className="bot-bubble">
-                    <div className="bot-text" style={{ whiteSpace: 'pre-wrap' }}>{m.text}</div>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-          // 기타 텍스트 메시지
-          if (m.text) {
-            return (
-              <div key={i} className={`message ${m.from}`}>
-                <span className="message-text">{m.text}</span>
-              </div>
-            );
-          }
+
+          // 4) 봇 일반 텍스트
+  return (
+    <div key={i} className="message bot">
+      <div className="bot-content">
+           <div
+         className="bot-avatar-wrapper"
+         style={{ opacity: m.hideAvatar ? 0 : 1 }}
+       >
+         <img
+           className="bot-avatar"
+           src={m.imageUrl ?? getAvatarUrl()}
+           alt="bot avatar"
+         />
+       </div>
+
+        <div className="bot-bubble">
+          <div
+            className="bot-text"
+            style={{ whiteSpace: 'pre-wrap' }}
+          >
+            {m.text}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+
           return null;
         })}
       </div>
 
-      {playerSong && <SongPlayerPanel song={playerSong} onClose={() => setPlayerSong(null)} />}
+      {/* 음악 플레이어 */}
+      {playerSong && (
+        <SongPlayerPanel
+          song={playerSong}
+          onClose={() => setPlayerSong(null)}
+        />
+      )}
 
+      {/* 감정 선택 패널 */}
       {panelOpen && (
         <>
-          <div className="emotion-backdrop" onClick={() => setPanelOpen(false)} />
+          <div
+            className="emotion-backdrop"
+            onClick={() => setPanelOpen(false)}
+          />
           <EmotionPanel
+            initialEmotion={currentEmotion}
             groups={EMOTION_GROUPS}
             onSelect={emo => {
               setCurrentEmotion(emo);
@@ -224,15 +289,22 @@ export default function ChatWindow({
         </>
       )}
 
+      {/* 입력창 */}
       <div className="input-area">
-        <button className="btn add-btn" onClick={() => !isDisabled && setPanelOpen(true)} disabled={isDisabled}>
+        <button
+          className="btn add-btn"
+          onClick={() => !isDisabled && setPanelOpen(true)}
+          disabled={isDisabled}
+        >
           <IoAddOutline size={24} />
         </button>
         <input
           ref={inputRef}
           type="text"
           value={input}
-          placeholder={isDisabled ? '채팅 횟수를 모두 사용하셨어요' : '답장하기'}
+          placeholder={
+            isDisabled ? '채팅 횟수를 모두 사용하셨어요' : '답장하기'
+          }
           onFocus={scrollToBottom}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => {
@@ -243,8 +315,20 @@ export default function ChatWindow({
           }}
           disabled={isDisabled}
         />
-        <button className="btn send-btn" onClick={() => submitText(input)} disabled={isDisabled}>
-          <PiPaperPlaneTilt size={24} style={{ marginRight: '15px', marginTop: '0px', marginLeft:'8px',display:'block' }} />
+        <button
+          className="btn send-btn"
+          onClick={() => submitText(input)}
+          disabled={isDisabled}
+        >
+          <PiPaperPlaneTilt
+            size={24}
+            style={{
+              marginRight: '15px',
+              marginTop: '0px',
+              marginLeft: '8px',
+              display: 'block',
+            }}
+          />
         </button>
       </div>
     </div>

@@ -5,6 +5,7 @@ import ChatbotHeader from '../components/TypeScript/ChatbotHeader';
 import ChatWindow from '../components/TypeScript/ChatbotWindow';
 import { createBotMessages } from '../utils/chatbotResponses';
 import type { Emotion } from '../components/TypeScript/emotions';
+import { EMOTION_GROUPS } from '../components/TypeScript/emotions';
 import type { Song } from '../components/TypeScript/emusics';
 import { responses } from '../components/TypeScript/responses';
 
@@ -15,26 +16,36 @@ export interface Message {
   showOptions?: boolean;
   type?: 'music';
   song?: Song;
+  songs?: Song[];
+  emotion?: Emotion;
+  hideAvatar?: boolean;
 }
+
+// 현재 emotion 에 따라 반환할 아바타 URL
+const getAvatarUrl = (emotion: Emotion | null) => {
+  const base = import.meta.env.BASE_URL + 'chatBot/';
+  if (!emotion) return `${base}dearie.png`;
+  const group = EMOTION_GROUPS.find(g =>
+    g.items.some(i => i.label === emotion)
+  )!;
+  if (group.title === '긍정') return `${base}dearie.png`;
+  if (group.title === '중립') return `${base}biti.png`;
+  return `${base}ruoa.png`;
+};
 
 const ChatbotPage: React.FC = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const storageKey = "chatData";
+
   const [remainingChats, setRemainingChats] = useState<number>(10);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [themeClass, setThemeClass] = useState<string>('');
+  const [currentEmotion, setCurrentEmotion] = useState<Emotion | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const chatStarted = messages.length > 0;
 
-  const handleDismissOption = (index: number) => {
-    setMessages(prev => {
-      const copy = [...prev];
-      copy.splice(index, 1);
-      return copy;
-    });
-  };
-
-
-    useEffect(() => {
+  // 이전 상태 복원
+  useEffect(() => {
     if (!isLoggedIn) {
       setMessages([]);
       setRemainingChats(10);
@@ -43,42 +54,57 @@ const ChatbotPage: React.FC = () => {
     const raw = localStorage.getItem(storageKey);
     if (raw) {
       try {
-        const { msgs, rem } = JSON.parse(raw);
+        const { msgs, rem, emotion, theme } = JSON.parse(raw);
         setMessages(msgs);
         setRemainingChats(rem);
+        if (emotion) setCurrentEmotion(emotion);
+        if (theme) setThemeClass(theme);
       } catch {}
     }
   }, [isLoggedIn]);
 
-  // ── 2) messages or remainingChats 변경 시 저장
+  // 상태 저장
   useEffect(() => {
     if (!isLoggedIn) return;
     localStorage.setItem(
       storageKey,
-      JSON.stringify({ msgs: messages, rem: remainingChats })
+      JSON.stringify({
+        msgs: messages,
+        rem: remainingChats,
+        emotion: currentEmotion,
+        theme: themeClass,
+      })
     );
-  }, [isLoggedIn, messages, remainingChats]);
+  }, [isLoggedIn, messages, remainingChats, currentEmotion, themeClass]);
 
-  // 사용자의 일반 메시지 처리: responses 매핑 이용
+  // 대화 옵션 닫기
+  const handleDismissOption = (index: number) => {
+    setMessages(prev => {
+      const copy = [...prev];
+      copy.splice(index, 1);
+      return copy;
+    });
+  };
+
+  // 일반 메시지 전송
   const handleSendMessage = (text: string) => {
     if (!text.trim()) return;
 
+    // 남은 채팅 없으면
     if (remainingChats <= 0) {
+      const avatar = getAvatarUrl(currentEmotion);
       setMessages(prev => [
         ...prev,
-        {
-          from: 'bot',
-          text: '오늘의 대화 횟수를 모두 사용하셨어요 😭 내일 다시 찾아와 주세요!',
-          imageUrl: `${import.meta.env.BASE_URL}chatBot/dearie.png`
-        }
+        { from: 'bot', text: '오늘의 대화 횟수를 모두 사용하셨어요 😭 내일 다시 찾아와 주세요!', imageUrl: avatar }
       ]);
-      return
+      return;
     }
-    // 1) 사용자 메시지 추가
+
+    // 1) 유저 메시지
     setMessages(prev => [...prev, { from: 'user', text }]);
     setRemainingChats(prev => Math.max(prev - 1, 0));
 
-    // 2) 응답 매핑 검색 (대소문자 구분 없이)
+    // 2) 봇 응답
     const found = responses.find(item =>
       item.triggers.some(trigger =>
         text.toLowerCase().includes(trigger.toLowerCase())
@@ -86,29 +112,45 @@ const ChatbotPage: React.FC = () => {
     );
     const reply = found?.response
       || `제가 아직 "${text}" 에 대한 내용을 생각중이에요 😥 다른 질문을 해주시면 바로 답변드릴께요`;
- setTimeout(() => {
-   setMessages(prev => [
-     ...prev,
-     { 
-       from: 'bot',
-       text: reply,
-       imageUrl: `${import.meta.env.BASE_URL}chatBot/dearie.png`
-     }
-   ]);
- }, 800);};
+
+    // 캡처된 아바타
+    const avatar = getAvatarUrl(currentEmotion);
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        { from: 'bot', text: reply, imageUrl: avatar, hideAvatar: false }
+      ]);
+    }, 800);
+  };
 
   // 감정 선택 처리
   const handleEmotionSelect = (emo: string) => {
+    // 1) 유저 메시지
     setMessages(prev => [...prev, { from: 'user', text: emo }]);
     setRemainingChats(prev => Math.max(prev - 1, 0));
 
+    // 2) 감정 & 테마 업데이트
+    setCurrentEmotion(emo as Emotion);
+    const group = EMOTION_GROUPS.find(g =>
+      g.items.some(i => i.label === emo)
+    );
+    if (group) setThemeClass(group.iconClass);
+
+    // 감정 선택 시점의 아바타 캡처
+    const avatar = getAvatarUrl(emo as Emotion);
+
+    // 3) 감정별 봇 메시지
     setTimeout(() => {
-      const botMsgs = createBotMessages(emo as Emotion);
+      const botMsgs = createBotMessages(emo as Emotion).map(m => ({
+        // 기존 imageUrl 있으면 그대로, 없으면 선택 시점 아바타
+        ...m,
+        imageUrl: m.imageUrl ?? avatar
+      }));
       setMessages(prev => [...prev, ...botMsgs]);
     }, 1000);
   };
 
-  // 노래 선택 처리
+  // 노래 선택
   const handleSelectSong = (song: Song) => {
     setMessages(prev => [
       ...prev,
@@ -121,20 +163,18 @@ const ChatbotPage: React.FC = () => {
       {(panelOpen || chatStarted) && (
         <div
           className='chatbot-backdrop'
-          onClick={() => {
-            if (panelOpen) setPanelOpen(false);
-          }}
+          onClick={() => panelOpen && setPanelOpen(false)}
         />
       )}
 
-      {!panelOpen && <ChatbotHeader remainingChats={remainingChats} chatStarted={chatStarted} />}
-
-      <div className="chatbot-body">
-        <img
-          src={`${import.meta.env.BASE_URL}chatBot/chatBot-bg.png`}
-          alt="채팅 배경"
-          className="chatbot-bg-img"
+      {!panelOpen && (
+        <ChatbotHeader
+          remainingChats={remainingChats}
+          chatStarted={chatStarted}
         />
+      )}
+
+      <div className={`chatbot-body ${themeClass}`}>
         <ChatWindow
           messages={messages}
           onSendMessage={handleSendMessage}
