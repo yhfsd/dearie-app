@@ -17,6 +17,17 @@
   -ms-overflow-style: none;     /* IE/Edge */
 }
 
+.messages--empty {
+  flex: 1;
+  /* 필요 시 안내 텍스트 중앙 정렬을 위해 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+
+
 .messages::-webkit-scrollbar {
   display: none;                /* Chrome/Safari */
 }

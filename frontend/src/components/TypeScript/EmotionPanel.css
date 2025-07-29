@@ -98,14 +98,10 @@
 }
 
 /* 헤더 버튼 공통 */
-.header-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 4px;
-}
 
+.emotion-header {
+  color: #fff;
+}
 
 .emotion-TitleBox .title {
     font-size: 17px;
@@ -237,7 +233,7 @@
 .emotion-footer .confirm-btn {
     width: 92%;
     padding: 20px 0;
-      background: rgba(4, 2, 51, 0.6);
+      background: rgba(4, 2, 51, 0.4);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   box-shadow: 

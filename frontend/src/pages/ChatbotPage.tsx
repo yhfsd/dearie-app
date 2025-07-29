@@ -1,5 +1,6 @@
 // src/pages/ChatbotPage.tsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ChatbotPage.css';
 import ChatbotHeader from '../components/TypeScript/ChatbotHeader';
 import ChatWindow from '../components/TypeScript/ChatbotWindow';
@@ -21,7 +22,6 @@ export interface Message {
   hideAvatar?: boolean;
 }
 
-// 현재 emotion 에 따라 반환할 아바타 URL
 const getAvatarUrl = (emotion: Emotion | null) => {
   const base = import.meta.env.BASE_URL + 'chatBot/';
   if (!emotion) return `${base}dearie.png`;
@@ -34,6 +34,7 @@ const getAvatarUrl = (emotion: Emotion | null) => {
 };
 
 const ChatbotPage: React.FC = () => {
+  const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const storageKey = "chatData";
 
@@ -42,7 +43,9 @@ const ChatbotPage: React.FC = () => {
   const [themeClass, setThemeClass] = useState<string>('');
   const [currentEmotion, setCurrentEmotion] = useState<Emotion | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
-  const chatStarted = messages.length > 0;
+
+  // showChat: false = 첫 화면, true = 대화 화면
+  const [showChat, setShowChat] = useState(false);
 
   // 이전 상태 복원
   useEffect(() => {
@@ -77,6 +80,17 @@ const ChatbotPage: React.FC = () => {
     );
   }, [isLoggedIn, messages, remainingChats, currentEmotion, themeClass]);
 
+  // 뒤로가기 버튼 동작
+  const handleBack = () => {
+    if (showChat) {
+      // 대화 중이면 UI만 “첫 화면”으로
+      setShowChat(false);
+    } else {
+      // 첫 화면이면 실제 뒤로가기
+      navigate(-1);
+    }
+  };
+
   // 대화 옵션 닫기
   const handleDismissOption = (index: number) => {
     setMessages(prev => {
@@ -89,8 +103,9 @@ const ChatbotPage: React.FC = () => {
   // 일반 메시지 전송
   const handleSendMessage = (text: string) => {
     if (!text.trim()) return;
+    // 화면 전환
+    if (!showChat) setShowChat(true);
 
-    // 남은 채팅 없으면
     if (remainingChats <= 0) {
       const avatar = getAvatarUrl(currentEmotion);
       setMessages(prev => [
@@ -112,9 +127,8 @@ const ChatbotPage: React.FC = () => {
     );
     const reply = found?.response
       || `제가 아직 "${text}" 에 대한 내용을 생각중이에요 😥 다른 질문을 해주시면 바로 답변드릴께요`;
-
-    // 캡처된 아바타
     const avatar = getAvatarUrl(currentEmotion);
+
     setTimeout(() => {
       setMessages(prev => [
         ...prev,
@@ -125,24 +139,25 @@ const ChatbotPage: React.FC = () => {
 
   // 감정 선택 처리
   const handleEmotionSelect = (emo: string) => {
+    // 화면 전환
+    if (!showChat) setShowChat(true);
+
     // 1) 유저 메시지
     setMessages(prev => [...prev, { from: 'user', text: emo }]);
     setRemainingChats(prev => Math.max(prev - 1, 0));
 
     // 2) 감정 & 테마 업데이트
-    setCurrentEmotion(emo as Emotion);
+    const emotion = emo as Emotion;
+    setCurrentEmotion(emotion);
     const group = EMOTION_GROUPS.find(g =>
       g.items.some(i => i.label === emo)
     );
     if (group) setThemeClass(group.iconClass);
 
-    // 감정 선택 시점의 아바타 캡처
-    const avatar = getAvatarUrl(emo as Emotion);
-
+    const avatar = getAvatarUrl(emotion);
     // 3) 감정별 봇 메시지
     setTimeout(() => {
-      const botMsgs = createBotMessages(emo as Emotion).map(m => ({
-        // 기존 imageUrl 있으면 그대로, 없으면 선택 시점 아바타
+      const botMsgs = createBotMessages(emotion).map(m => ({
         ...m,
         imageUrl: m.imageUrl ?? avatar
       }));
@@ -152,15 +167,12 @@ const ChatbotPage: React.FC = () => {
 
   // 노래 선택
   const handleSelectSong = (song: Song) => {
-    setMessages(prev => [
-      ...prev,
-      { from: 'bot', type: 'music', song }
-    ]);
+    setMessages(prev => [...prev, { from: 'bot', type: 'music', song }]);
   };
 
   return (
     <div className="chatbot-page">
-      {(panelOpen || chatStarted) && (
+      {(panelOpen || showChat) && (
         <div
           className='chatbot-backdrop'
           onClick={() => panelOpen && setPanelOpen(false)}
@@ -170,17 +182,19 @@ const ChatbotPage: React.FC = () => {
       {!panelOpen && (
         <ChatbotHeader
           remainingChats={remainingChats}
-          chatStarted={chatStarted}
+          chatStarted={showChat}
+          onBack={handleBack}
         />
       )}
 
       <div className={`chatbot-body ${themeClass}`}>
+        {/* ChatWindow는 항상 렌더; chatStarted 플래그로 메시지 영역만 토글됩니다 */}
         <ChatWindow
           messages={messages}
           onSendMessage={handleSendMessage}
           panelOpen={panelOpen}
           setPanelOpen={setPanelOpen}
-          chatStarted={chatStarted}
+          chatStarted={showChat}
           onUserMessageClick={handleEmotionSelect}
           onSelectSong={handleSelectSong}
           onDismissOption={handleDismissOption}
