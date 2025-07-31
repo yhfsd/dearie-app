@@ -215,7 +215,7 @@ TXT(투모로우바투게더) 팬 커뮤니티 통합 규정 안내 드립니다
   ive: {
     application: {
       title: '덕심일지 공모전(8월)',
-      mainTitle: '<FiEdit /> 제작 방법',
+      mainTitle: '제작 방법',
       mainImg: ApplicationMainImg,
       insideImg: iveinside,
       endTime: '08.24 21:00 종료',
