@@ -198,6 +198,11 @@ export const responses: ResponseItem[] = [
 그 감정, 제가 조심히 안아드릴게요.`,
   },
   {
+    triggers: ['안녕'],
+    response: `안녕~! 오늘 기분은 어떠세요? 😊
+무엇을 도와드릴까요?? 😉`,
+  },
+  {
     triggers: ['피곤'],
     response: `오늘 하루 정말 많이 애쓰셨어요.
 몸도 마음도 지칠 땐 아무것도 하지 않아도 괜찮아요.
