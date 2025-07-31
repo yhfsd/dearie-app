@@ -23,6 +23,7 @@ interface ChatWindowProps {
   onSelectSong: (song: Song) => void;
   isDisabled?: boolean;
   onDismissOption?: (index: number) => void;
+  setChatStarted: (v: boolean) => void; // [김정태_추가]
 }
 
 export default function ChatWindow({
@@ -30,6 +31,7 @@ export default function ChatWindow({
   onSendMessage,
   panelOpen,
   setPanelOpen,
+  setChatStarted, // [김정태_추가]
   chatStarted,
   onUserMessageClick,
   onSelectSong,
@@ -310,16 +312,24 @@ export default function ChatWindow({
           type="text"
           value={input}
           placeholder={isDisabled ? '채팅 횟수를 모두 사용하셨어요' : '답장하기'}
-          onFocus={scrollToBottom}
-          onChange={e => setInput(e.target.value)}
+          // [김정태_수정]
+          onFocus={() => {
+            scrollToBottom();
+            if (!chatStarted) setChatStarted(true);
+          }}
+          // [김정태_수정]
+          onChange={e => {
+            if (!isDisabled) setInput(e.target.value);
+          }}
           onKeyDown={e => {
-            if (e.key === 'Enter') {
+            if (!isDisabled && e.key === 'Enter') {
               e.preventDefault();
               submitText(input);
             }
           }}
-          disabled={isDisabled}
+        readOnly={isDisabled} // [김정태_추가]
         />
+
         <button className="btn send-btn" onClick={() => submitText(input)} disabled={isDisabled}>
           <PiPaperPlaneTilt size={24} style={{ marginRight: '15px', display: 'block' }} />
         </button>

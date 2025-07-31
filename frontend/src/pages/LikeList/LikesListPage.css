@@ -1,5 +1,5 @@
 .likes-page {
-    padding: 42px 2.5%;
+    padding: 54px 2.5% 120px;
     width: 100%;
     height: 100dvh;
     overflow-y: auto;
@@ -16,4 +16,100 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+}
+
+.likes-page ul li{
+    background: #fff;
+    box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 5% 0;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.likes-page ul li .profile-box{
+    display: flex;
+    align-items: center;
+    margin: 0 5% 15px ;
+}
+
+.likes-page ul li .profile-box .profileImg{ 
+    width: 32px !important;
+    height: 32px !important;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: content-box;
+    margin-right: 8px;
+    border: 1px solid #ff4187;
+}
+
+.likes-page ul li .profile-box .profileImg img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.likes-page ul li .profile-box .profile-name{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.likes-page ul li .profile-box .profile-name svg{
+    margin-left: 5px;
+}
+
+.likes-page ul li .profile-box .post-time{
+    font-size: 11px;
+    color: #888;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+.likes-page ul li .text-box{
+    margin: 0 5% 15px;
+    line-height: 1.2;
+}
+
+.likes-page ul li .img-Box img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    background: #fafafc;
+}
+
+.likes-page ul li .icon-box{
+    margin: 15px 5% 0px; 
+    display: flex; 
+    align-items: center;
+}
+
+.likes-page ul li .icon-box svg{margin-right: 12px;}
+
+.likes-page ul li .icon-box svg:nth-child(1){
+    width: 21px;
+    height: 21px; 
+}
+
+.likes-page ul li .icon-box svg:nth-child(1) path{
+    stroke: #000; 
+    stroke-width: 22px;
+}
+
+.likes-page ul li .icon-box svg:nth-child(2){
+    width: 19px; 
+    height: 19px;  
+    fill: #000;
+}
+
+.likes-page ul li .icon-box svg:nth-child(3){
+    width: 19px; 
+    height: 19px; 
+    color: #000;
+}
+
+.likes-page ul li .icon-box svg:nth-child(3) path{
+    stroke-width: 1.5px;
 }

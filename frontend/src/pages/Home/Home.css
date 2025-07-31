@@ -32,9 +32,9 @@
 
 
 
-.home .imgBox .nameBox {position: absolute; bottom: 12px; left: -24px; font-size: 20px; font-weight: 900; width: 70px; text-align: center;}
-.home .imgBox .nameBox .artist-name {text-align: center;}
-.home .imgBox .new-badge {background: #ff4187; position: absolute; left: -13px; bottom: 35px; padding: 2px 6px; border-radius: 12px; font-size: 10px;}
+.home .imgBox .nameBox {position: absolute; bottom: 13px; right: 100px; font-size: 20px; font-weight: 900; width: 70px; text-align: center; display: flex; flex-direction: column; gap: 2px;}
+.home .imgBox .nameBox .artist-name {text-align: left;}
+.home .imgBox .new-badge {background: #ff4187; left: -13px; bottom: 35px; padding: 2px 6px; border-radius: 12px; font-size: 10px; width: 32px; font-weight: 500;}
 
 
 /* 데코레이션 */

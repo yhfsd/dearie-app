@@ -70,7 +70,7 @@ useEffect(() => {
   if (showReportDone) {
     const timer = setTimeout(() => {
       setShowReportDone(false);
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(timer);
   }
 }, [showReportDone]);

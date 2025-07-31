@@ -362,6 +362,7 @@
   background: #282828; 
   border-radius: 10px; 
   z-index: 10000000;
+  animation: slide-up 0.3s ease-out;
 }
 
 .talk-post-detail-container .delete-modal .reportButtonBox span {
@@ -487,6 +488,7 @@
   background: #282828; 
   border-radius: 10px; 
   z-index: 10000000;
+  animation: slide-up 0.3s ease-out;
 }
 
 .talk-post-detail-container .report-modal .report-Button-Box span {
@@ -592,5 +594,6 @@
   font-size: 14px; 
   font-weight: 300;
   color: #fff;
-  z-index: 10000;
+  z-index: 10001;
+  animation: fadeInOut 2s ease-in-out forwards;
 }

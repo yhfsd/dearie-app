@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ArtistPostDetail.css';
 import { useParams } from 'react-router-dom';
 import { artists } from '../../artistsData';
+import { likeUtils } from '../../../../LikeList/LikesListPage'
 import html2canvas from 'html2canvas';
 
 import { LuSend } from "react-icons/lu";
@@ -315,8 +316,17 @@ const ArtistPostDetail = () => {
 
     setPostLikeCount(updatedCount);
     setPostLikeClicked(likedState);
+    
+    // localStorage 업데이트
     localStorage.setItem(likesKey, updatedCount.toString());
     localStorage.setItem(likedKey, likedState.toString());
+
+    // 타임스탬프 관리
+    if (likedState) {
+      likeUtils.saveLikeTimestamp(id, index);
+    } else {
+      likeUtils.removeLikeTimestamp(id, index);
+    }
   };
 
   const handleDownload = () => {
@@ -388,7 +398,7 @@ const ArtistPostDetail = () => {
     if (showReportDone) {
       const timer = setTimeout(() => {
         setShowReportDone(false);
-      }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [showReportDone]);

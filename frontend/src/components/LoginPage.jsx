@@ -28,7 +28,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert('올바른 이메일 형식을 입력해주세요.');
-      return;
+      // return;
     }
 
     setStep('password');

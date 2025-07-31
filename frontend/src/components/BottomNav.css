@@ -19,6 +19,16 @@
   margin: 0 auto;
 }
 
+
+@media (min-width : 768px) {
+  .bottom-nav {
+  justify-content: space-around;
+  padding: 0;
+  padding-top: 6px;
+  }
+  
+}
+
 .bottom-nav .nav-icon {
   font-size: 29px;
   height: 32px;

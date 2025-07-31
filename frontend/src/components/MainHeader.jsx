@@ -144,7 +144,7 @@ useEffect(() => {
     left: [
       {
         id: 'goBack',
-        icon: <FiChevronLeft style={{width:"25px", height:"25px", display:'inline-block'}} />, 
+        icon: <FiChevronLeft style={{width:"25px", height:"25px", display:'inline-block', marginTop: '3px'}} />, 
         onClick: handleBackToToSection
       },
       {

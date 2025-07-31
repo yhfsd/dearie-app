@@ -34,43 +34,10 @@ import TosectionDetail from './pages/Home/Artist/sections/Detail/TosectionDetail
 import ArtistPostDetail from './pages/Home/Artist/sections/Detail/ArtistPostDetail';
 import TalkPostDetail from './pages/Home/Artist/sections/Detail/TalkPostDetail';
 import TalkWritingPage from './pages/Home/Artist/sections/Detail/TalkWritingPage';
+import BodyBackgroundController from './components/BodyBackgroundController';
 
 
-function BodyBackgroundController() {
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    const pinkBgPaths  = ['/challenges/thisMonth', '/challenges/prevMonth_1', '/challenges/prevMonth_2'];
-    const whiteBgPaths = ['/closet', '/challenges', '/more', '/notifications', '/fan-log', '/likelist', '/postlist', '/calendar'];
-    const blueBgPaths  = ['/chatbot'];
-
-    let bgColor = '#121212'; // 기본 색상
-
-    if (blueBgPaths.some(p => pathname.startsWith(p))) {
-      bgColor = '#07004B ';    // 챗봇 경로: 남색
-    } else if (pinkBgPaths.some(p => pathname.startsWith(p))) {
-      bgColor = '#FF4187';    // 분홍색 경로
-    } else if (whiteBgPaths.some(p => pathname.startsWith(p))) {
-      bgColor = '#fff';       // 흰색 경로
-    }
-    // else는 이미 기본 색상(#121212)을 유지
-
-    document.body.style.backgroundColor = bgColor;
-    let meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'theme-color');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', bgColor);
-
-    return () => {
-      document.body.style.backgroundColor = '';
-    };
-  }, [pathname]);
-
-  return null;
-}
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(

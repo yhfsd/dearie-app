@@ -14,7 +14,7 @@
   position: absolute;
   width: 100%;
   bottom: 0px; left: 0px; right: 0;
-  max-height: 90vh;
+  max-height: 75vh;
   min-height: 350px;
   overflow-y: visible;
   background: rgba(255, 255, 255, 0.05);
@@ -29,7 +29,14 @@
   border-radius: 12px 12px 0px 0px;
   z-index: 200;           /* backdrop보다 높게 */
   pointer-events: auto;   /* 클릭 허용 */
+  animation: slideup-chatbot 0.8s ease-in-out both;
 }
+
+@keyframes slideup-chatbot {
+  from {opacity: 0; transform: translateX(0) translateY(100%);}
+  to {opacity: 1; transform: translateX(0) translateY(0);}
+}
+
 
 
 .emotion-panel .icon-Box {
@@ -115,7 +122,7 @@
 
 .emotion-GroupBox {
     padding: 0 4%;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 

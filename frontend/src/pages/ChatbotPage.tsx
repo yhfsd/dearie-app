@@ -1,4 +1,3 @@
-// src/pages/ChatbotPage.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ChatbotPage.css';
@@ -35,16 +34,14 @@ const getAvatarUrl = (emotion: Emotion | null) => {
 
 const ChatbotPage: React.FC = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const storageKey = "chatData";
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  const storageKey = 'chatData';
 
   const [remainingChats, setRemainingChats] = useState<number>(10);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [themeClass, setThemeClass] = useState<string>('');
+  const [themeClass, setThemeClass] = useState<'heart'|'fire'|'green'>('heart');
   const [currentEmotion, setCurrentEmotion] = useState<Emotion | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
-
-  // showChat: false = 첫 화면, true = 대화 화면
   const [showChat, setShowChat] = useState(false);
 
   // 이전 상태 복원
@@ -61,7 +58,9 @@ const ChatbotPage: React.FC = () => {
         setMessages(msgs);
         setRemainingChats(rem);
         if (emotion) setCurrentEmotion(emotion);
-        if (theme) setThemeClass(theme);
+        if (theme === 'heart' || theme === 'fire' || theme === 'green') {
+          setThemeClass(theme);
+        }
       } catch {}
     }
   }, [isLoggedIn]);
@@ -80,87 +79,69 @@ const ChatbotPage: React.FC = () => {
     );
   }, [isLoggedIn, messages, remainingChats, currentEmotion, themeClass]);
 
-  // 뒤로가기 버튼 동작
-  const handleBack = () => {
-    if (showChat) {
-      // 대화 중이면 UI만 “첫 화면”으로
-      setShowChat(false);
-    } else {
-      // 첫 화면이면 실제 뒤로가기
-      navigate(-1);
+  // themeClass 변경 시 배경 색 및 meta 업데이트
+  useEffect(() => {
+    const colorMap: Record<'heart'|'fire'|'green', string> = {
+      heart: '#07024E',
+      fire:  '#CF4B04',
+      green: '#66B2DD',
+    };
+    const color = colorMap[themeClass];
+    document.body.style.backgroundColor = color;
+    document.documentElement.style.backgroundColor = color;
+    const DEFAULT = '#121212';
+    let meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'theme-color');
+      document.head.appendChild(meta);
     }
+    meta.setAttribute('content', color);
+  }, [themeClass]);
+
+  // 뒤로가기
+  const handleBack = () => {
+    if (showChat) setShowChat(false);
+    else navigate(-1);
   };
 
-  // 대화 옵션 닫기
-  const handleDismissOption = (index: number) => {
-    setMessages(prev => {
-      const copy = [...prev];
-      copy.splice(index, 1);
-      return copy;
-    });
-  };
-
-  // 일반 메시지 전송
+  // 메시지 전송
   const handleSendMessage = (text: string) => {
     if (!text.trim()) return;
-    // 화면 전환
     if (!showChat) setShowChat(true);
-
     if (remainingChats <= 0) {
       const avatar = getAvatarUrl(currentEmotion);
-      setMessages(prev => [
-        ...prev,
-        { from: 'bot', text: '오늘의 대화 횟수를 모두 사용하셨어요 😭 내일 다시 찾아와 주세요!', imageUrl: avatar }
-      ]);
+      setMessages(prev => [...prev, { from: 'bot', text: '오늘의 대화 횟수를 모두 사용하셨어요 😭 내일 다시 찾아와 주세요!', imageUrl: avatar }]);
       return;
     }
-
-    // 1) 유저 메시지
     setMessages(prev => [...prev, { from: 'user', text }]);
     setRemainingChats(prev => Math.max(prev - 1, 0));
-
-    // 2) 봇 응답
     const found = responses.find(item =>
-      item.triggers.some(trigger =>
-        text.toLowerCase().includes(trigger.toLowerCase())
-      )
+      item.triggers.some(trigger => text.toLowerCase().includes(trigger.toLowerCase()))
     );
-    const reply = found?.response
-      || `제가 아직 "${text}" 에 대한 내용을 생각중이에요 😥 다른 질문을 해주시면 바로 답변드릴께요`;
+    const reply = found?.response || `제가 아직 "${text}" 에 대한 내용을 생각중이에요 😥 다른 질문을 해주시면 바로 답변드릴께요`;
     const avatar = getAvatarUrl(currentEmotion);
-
     setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        { from: 'bot', text: reply, imageUrl: avatar, hideAvatar: false }
-      ]);
+      setMessages(prev => [...prev, { from: 'bot', text: reply, imageUrl: avatar, hideAvatar: false }]);
     }, 800);
   };
 
-  // 감정 선택 처리
+  // 감정 선택
   const handleEmotionSelect = (emo: string) => {
-    // 화면 전환
     if (!showChat) setShowChat(true);
-
-    // 1) 유저 메시지
     setMessages(prev => [...prev, { from: 'user', text: emo }]);
     setRemainingChats(prev => Math.max(prev - 1, 0));
-
-    // 2) 감정 & 테마 업데이트
     const emotion = emo as Emotion;
     setCurrentEmotion(emotion);
-    const group = EMOTION_GROUPS.find(g =>
-      g.items.some(i => i.label === emo)
-    );
-    if (group) setThemeClass(group.iconClass);
-
+    const group = EMOTION_GROUPS.find(g => g.items.some(i => i.label === emo));
+    if (group) {
+      if (group.title === '긍정') setThemeClass('heart');
+      else if (group.title === '중립') setThemeClass('fire');
+      else setThemeClass('green');
+    }
     const avatar = getAvatarUrl(emotion);
-    // 3) 감정별 봇 메시지
     setTimeout(() => {
-      const botMsgs = createBotMessages(emotion).map(m => ({
-        ...m,
-        imageUrl: m.imageUrl ?? avatar
-      }));
+      const botMsgs = createBotMessages(emotion).map(m => ({ ...m, imageUrl: m.imageUrl ?? avatar }));
       setMessages(prev => [...prev, ...botMsgs]);
     }, 1000);
   };
@@ -173,22 +154,12 @@ const ChatbotPage: React.FC = () => {
   return (
     <div className="chatbot-page">
       {(panelOpen || showChat) && (
-        <div
-          className='chatbot-backdrop'
-          onClick={() => panelOpen && setPanelOpen(false)}
-        />
+        <div className="chatbot-backdrop" onClick={() => panelOpen && setPanelOpen(false)} />
       )}
-
       {!panelOpen && (
-        <ChatbotHeader
-          remainingChats={remainingChats}
-          chatStarted={showChat}
-          onBack={handleBack}
-        />
+        <ChatbotHeader remainingChats={remainingChats} chatStarted={showChat} onBack={handleBack} themeClass={themeClass} />
       )}
-
       <div className={`chatbot-body ${themeClass}`}>
-        {/* ChatWindow는 항상 렌더; chatStarted 플래그로 메시지 영역만 토글됩니다 */}
         <ChatWindow
           messages={messages}
           onSendMessage={handleSendMessage}
@@ -197,8 +168,9 @@ const ChatbotPage: React.FC = () => {
           chatStarted={showChat}
           onUserMessageClick={handleEmotionSelect}
           onSelectSong={handleSelectSong}
-          onDismissOption={handleDismissOption}
+          onDismissOption={() => {}}
           isDisabled={remainingChats <= 0}
+          setChatStarted={setShowChat}
         />
       </div>
     </div>

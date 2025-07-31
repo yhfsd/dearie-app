@@ -64,7 +64,7 @@ const challengeZone = () => {
             monthAlt={'7월 챌린지'}
             headTitle={'7월 챌린지'}
             challengeTitle={'[7월] 자기긍정 챌린지'}
-            count={'999,999,999'}
+            count={'742,724,753'}
             disableBgAnimation={true}
             />
           </li>
@@ -75,7 +75,7 @@ const challengeZone = () => {
             monthAlt={'6월 챌린지'}
             headTitle={'6월 챌린지'}
             challengeTitle={'[6월] 깨끗한 지구 만들기 챌린지'}
-            count={'999,999,999'}
+            count={'643,522,633'}
             disableBgAnimation={true}
             />
           </li>

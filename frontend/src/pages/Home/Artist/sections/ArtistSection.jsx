@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ArtistSection.css';
+import { likeUtils } from '../../../LikeList/LikesListPage'
+
 import { LuSend } from "react-icons/lu";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { BsChat, BsPatchCheckFill } from "react-icons/bs";
@@ -41,6 +43,13 @@ const ArtistSection = ({ artist }) => {
       // localStorage 업데이트
       localStorage.setItem(`${artist.key}-postLiked-${index}`, newLiked.toString());
       localStorage.setItem(`${artist.key}-postLikes-${index}`, newLikes.toString());
+
+      // 타임스탬프 관리
+      if (newLiked) {
+        likeUtils.saveLikeTimestamp(artist.key, index);
+      } else {
+        likeUtils.removeLikeTimestamp(artist.key, index);
+      }
 
       return {
         ...prev,
@@ -115,7 +124,8 @@ const ArtistSection = ({ artist }) => {
                         text: '이 게시물을 확인해보세요!',
                         url,
                       }).catch(console.error);
-                    } else {
+                    } 
+                    else {
                       navigator.clipboard.writeText(url);
                       alert('링크가 복사되었습니다!');
                     }

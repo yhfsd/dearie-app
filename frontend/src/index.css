@@ -167,3 +167,16 @@ input:focus {
 
 
 
+img {
+  -webkit-user-drag: none;
+}
+
+body {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+.calendar-wrap .react-calendar__navigation span {
+  cursor: initial;
+}

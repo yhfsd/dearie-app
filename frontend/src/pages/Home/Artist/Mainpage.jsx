@@ -12,6 +12,9 @@ import ToSection                        from './sections/ToSection';
 import TalkSection                      from './sections/TalkSection';
 import ContentSection                   from './sections/ContentSection';
 
+
+
+
 // 탭 설정: label은 기본 문자열
 const TABS = [
   { key: 'highlight', label: 'Highlight', component: HighlightSection },
@@ -44,6 +47,20 @@ const handleTabChange = key => {
 };
 
 
+   const [themeClass, setThemeClass] = useState('heart'); // 'heart'|'fire'|'green'
+ useEffect(() => {
+   const raw = localStorage.getItem('chatData');
+   if (raw) {
+     try {
+       const { theme } = JSON.parse(raw);
+       if (theme === 'heart' || theme === 'fire' || theme === 'green') {
+         setThemeClass(theme);
+       }
+     } catch {''}
+   }
+ }, []);
+
+
 
 useEffect(() => {
   if (!isTabClicked) return;
@@ -63,13 +80,6 @@ useEffect(() => {
 
   setTimeout(checkScrollable, 200); // 콘텐츠 렌더 시간 확보
 }, [activeTab]);
-
-
-
-
-
-
-
 
 
 
@@ -122,6 +132,9 @@ useEffect(() => {
   // 현재 탭에 매핑된 컴포넌트
   const ActiveComponent = TABS.find(t => t.key === activeTab)?.component;
 
+
+
+
   return (
     <div className="main-page">
       {/* Group Intro */}
@@ -160,10 +173,11 @@ useEffect(() => {
 
  <div className="chatBotBox">
 <button className="chatBotBtn" onClick={() => navigate('/chatbot')}>
-  <img 
-    src={`${import.meta.env.BASE_URL}chatBot/chatBot-fixedImg.png`}
-    alt="Chat Bot" 
-    className="chatBotBtn-img" />
+         <img
+           src={`${import.meta.env.BASE_URL}chatBot/chatBot-fixedImg-${themeClass}.png`}
+           alt="Chat Bot"
+           className="chatBotBtn-img"
+         />
 </button>
  </div>
     </div>

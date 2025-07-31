@@ -12,15 +12,15 @@
 .ve-title {
   position: fixed;
   z-index: 9999;
-  top: 8px;
+  top: 0px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 15px;
   color: #000;
   font-weight: 500;
   font-family: 'Pretendard',sans-serif;
-  max-height: 53px;
-  line-height: 52px;
+  max-height: 46px;
+  line-height: 46px;
   font-size: 15px;
 }
 .ve-edit-btn {

@@ -132,3 +132,5 @@ pointer-events: none;
   margin-bottom: 10px;
   transition: all 0.3s ease;
 }
+
+.calendar-wrap .react-calendar__tile--now{background: #FDFDFD !important;}

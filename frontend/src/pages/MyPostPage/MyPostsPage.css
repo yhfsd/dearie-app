@@ -1,4 +1,4 @@
-.my-posts-page {padding: 0 2.5%; padding-bottom: 120px; min-height: 100vh; background: #fff; padding-top: 54px; box-sizing: border-box;}
+.my-posts-page {padding: 0 2.5%; padding-bottom: 120px; min-height: 100vh; background: #fff; padding-top: 61px; box-sizing: border-box;}
 
 
 .entry-header .imgBox {
@@ -77,7 +77,7 @@
     border-radius: 10px;
     padding: 5%;
     box-sizing: border-box;
-    margin-bottom: 50px;
+    margin-bottom: 8px;
     cursor: pointer;
 }
 
@@ -115,7 +115,7 @@
 }
 
 /* Swiper 페이지네이션(점) 스타일 커스텀 */
-.swiper-pagination-bullet {
+.my-posts-page .swiper-pagination-bullet {
   background: #ddd;
   opacity: 1;
   width: 8px;
@@ -123,7 +123,8 @@
   margin: 0 3px !important;
   transition: background 0.2s;
 }
-.swiper-pagination-bullet-active {
+
+.my-posts-page .swiper-pagination-bullet-active {
   background: #ff2979;
 }
 

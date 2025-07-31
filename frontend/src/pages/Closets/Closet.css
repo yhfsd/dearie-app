@@ -12,33 +12,28 @@
 .Closet-container .bestItem > p{margin:0 2.5% 10px;}
 .Closet-container .bestItem .bestItemTextBox p{text-align: center; margin-top: 10px; white-space: pre-wrap; font-size: 11px; font-weight: 100;}
 .Closet-container .bestItem .bestItemImgBox img{width: 100%;}
-.Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 25%;}
+    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 55%;}
 
 .Closet-container .newItem{margin-top: 22px;}
 .Closet-container .newItem > p{margin:0 2.5% 10px;}
 .Closet-container .newItem .newItemTextBox p{text-align: center; font-size: 10px; margin-top: 4px; white-space: pre-wrap;}
 .Closet-container .newItem .newItemImgBox img{width: 100%;}
-.Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 10%;}
+    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 25%;}
 
 .Closet-container .commercial{margin-top: 22px;}
 .Closet-container .commercial > p{margin:0 2.5% 10px;}
 .Closet-container .commercial .commercialTextBox{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 28px; font-weight: bold; color: #fff; width: 100%; text-align: center;}
 .Closet-container .commercial .swiper img{width: 100%; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10%;}
-.Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 20%;}
+    .Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 35%;}
 
 .Closet-container .swiper{overflow: visible;}
 .Closet-container .swiper .swiper-wrapper{margin-left: 2.5%;}
 .Closet-container .swiper .swiper-wrapper .swiper-slide:last-child{margin-right: 2.5%;}
 
 
-@media (max-width: 768px) {
-    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 40%;}
-    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 10%;}
+@media (min-width: 768px) {
+    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 35%;}
+    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 15%;}
     .Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 25%;}
     
-}
-@media (max-width: 1200px) {
-    .Closet-container .bestItem .swiper-backface-hidden .swiper-slide{width: 55%;}
-    .Closet-container .newItem .swiper-backface-hidden .swiper-slide{width: 25%;}
-    .Closet-container .commercial .swiper-backface-hidden .swiper-slide{width: 35%;}
 }

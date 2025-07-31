@@ -12,6 +12,13 @@ import { CiCircleMinus } from 'react-icons/ci';
 export default function GroupIntro({ id, title, heroImage, social, description }) {
   const [isJoined, setIsJoined] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showJoinMsg, setShowJoinMsg] = useState(false);
+  const [showUnjoinMsg, setShowUnjoinMsg] = useState(false);
+
+const toggleMenu = () => {
+  setIsMenuOpen(prev => !prev);
+};
+
 
   useEffect(() => {
     try {
@@ -22,35 +29,39 @@ export default function GroupIntro({ id, title, heroImage, social, description }
     }
   }, [id]);
 
-  const handleJoin = () => {
-    alert('가입이 완료되었습니다!');
-    try {
-      const stored = JSON.parse(localStorage.getItem('pickedGroups') || '[]');
-      if (!stored.some(g => g.id === id)) {
-        const updated = [...stored, { id, name: title }];
-        localStorage.setItem('pickedGroups', JSON.stringify(updated));
-      }
-    } catch {
-      localStorage.setItem('pickedGroups', JSON.stringify([{ id, name: title }]));
-    }
-    setIsJoined(true);
-  };
-
-  const handleUnjoin = () => {
-    alert('가입이 취소되었습니다!');
-    try {
-      const stored = JSON.parse(localStorage.getItem('pickedGroups') || '[]');
-      const updated = stored.filter(g => g.id !== id);
+const handleJoin = () => {
+  try {
+    const stored = JSON.parse(localStorage.getItem('pickedGroups') || '[]');
+    if (!stored.some(g => g.id === id)) {
+      const updated = [...stored, { id, name: title }];
       localStorage.setItem('pickedGroups', JSON.stringify(updated));
-    } catch {
-      localStorage.setItem('pickedGroups', '[]');
     }
-    setIsJoined(false);
-  };
+  } catch {
+    localStorage.setItem('pickedGroups', JSON.stringify([{ id, name: title }]));
+  }
+  setIsJoined(true);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
-  };
+  // ✅ 토스트 메시지 표시
+  setShowJoinMsg(true);
+  setTimeout(() => setShowJoinMsg(false), 2000);
+};
+
+
+const handleUnjoin = () => {
+  try {
+    const stored = JSON.parse(localStorage.getItem('pickedGroups') || '[]');
+    const updated = stored.filter(g => g.id !== id);
+    localStorage.setItem('pickedGroups', JSON.stringify(updated));
+  } catch {
+    localStorage.setItem('pickedGroups', '[]');
+  }
+  setIsJoined(false);
+
+  // ✅ 토스트 메시지 표시
+  setShowUnjoinMsg(true);
+  setTimeout(() => setShowUnjoinMsg(false), 2000);
+};
+
 
   // Portal components
   // Portal components
@@ -110,6 +121,13 @@ export default function GroupIntro({ id, title, heroImage, social, description }
           )}
         </div>
       </div>
+      {showJoinMsg && (
+      <div className="join-toast">가입이 완료되었습니다!</div>
+      )}
+      {showUnjoinMsg && (
+        <div className="join-toast">가입이 취소되었습니다!</div>
+      )}
+
     </section>
   );
 }

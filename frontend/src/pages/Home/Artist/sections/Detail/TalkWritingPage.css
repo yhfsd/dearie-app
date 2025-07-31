@@ -19,11 +19,11 @@
   cursor: pointer;
   display: inline-block;
   position: fixed;
-  top: 8px;
+  top: 0px;
   right: 5%;
   z-index: 9999;
-  max-height: 53px;
-  line-height: 53px;
+  max-height: 46px;
+  line-height: 46px;
   font-weight: 600;
 }
 

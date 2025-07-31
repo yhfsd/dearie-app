@@ -17,6 +17,23 @@ const More = () => {
   const navigate = useNavigate();
   const { clearReadFlags } = useNotifications();
 
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const handleGroupPickClick = (group) => {
+  setSelectedGroup(group);
+  setConfirmModalOpen(true); // 모달 오픈
+  };
+
+  const handleConfirmJoin = () => {
+  if (selectedGroup) {
+    setPickedGroups([...pickedGroups, selectedGroup]);
+  }
+  setSelectedGroup(null);
+  setConfirmModalOpen(false);
+  };
+
+
+
   // --- 이름 / 레벨 / 경험치 ---
   const [name, setName] = useState("순간의 윈터");
   const [editing, setEditing] = useState(false);
@@ -33,7 +50,7 @@ const More = () => {
 
   const allGroups = [
     { id: "aespa", name: "AESPA" },
-    { id: "riize", name: "RIZE" },
+    { id: "riize", name: "RIIZE" },
     { id: "txt", name: "TXT" },
     { id: "ive", name: "아이브" },
     { id: "iu", name: "아이유" },
@@ -138,14 +155,19 @@ const handleImageChange = async (e) => {
   };
 
 
-  const handleGroupPick = (group) => {
-    const exists = pickedGroups.some((g) => g.id === group.id);
-    if (exists) {
-      setPickedGroups(pickedGroups.filter((g) => g.id !== group.id));
-    } else {
-      setPickedGroups([...pickedGroups, group]);
-    }
-  };
+// const handleGroupPick = (group) => {
+//   const exists = pickedGroups.some((g) => g.id === group.id);
+//   if (exists) {
+//     // 가입 취소는 현재 없음
+//     return;
+//   } else {
+//     const confirmed = window.confirm(`정말 ${group.name}에 가입하시겠습니까?`);
+//     if (confirmed) {
+//       setPickedGroups([...pickedGroups, group]);
+//     }
+//   }
+// };
+
 
   const handleRemovePick = (groupId) => {
     setPickedGroups(pickedGroups.filter((g) => g.id !== groupId));
@@ -183,7 +205,8 @@ const handleImageChange = async (e) => {
     localStorage.removeItem('userPostLikeCounts');
 
 
-    // [방용민_수정]ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// [방용민_수정]ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    localStorage.removeItem('userId');
     Object.keys(localStorage).forEach((key) => {
       if (key.includes('-comments-')) {
         localStorage.removeItem(key);
@@ -219,6 +242,11 @@ const handleImageChange = async (e) => {
     });
     Object.keys(localStorage).forEach((key) => {
       if (key.includes('fanTalkEntries-')) {
+        localStorage.removeItem(key);
+      }
+    });
+    Object.keys(localStorage).forEach((key) => {
+      if (key.includes('-likedTime-')) {
         localStorage.removeItem(key);
       }
     });
@@ -381,41 +409,38 @@ const handleImageChange = async (e) => {
                 </div>
               ))}
             </div>
-            <ul className="modal-group-list">
-              {allGroups.map((group) => {
-                const picked = isGroupPicked(group.id);
-                return (
-                  <li key={group.id}>
-                    <div className="group-item">
-                      <p className="img">
-                        <img 
-                          src={`${import.meta.env.BASE_URL}groups/${group.id}.png`}
-                          alt={group.name} />
-                      </p>
-                      <span>{group.name}</span>
-                      <button
-                        className={`group-action-btn ${picked ? 'cancel' : 'join'}`}
-                        onClick={(e) => {
-                          // li 클릭 이벤트 전파 방지
-                          e.stopPropagation();
-                          if (picked) {
-                            // 취소하기일 때 확인창 띄우고, 확인 시에만 토글
-                            if (window.confirm('정말 즐겨찾기를 해제하시겠습니까?')) {
-                              handleGroupPick(group);
-                            }
-                          } else {
-                            // 가입하기는 바로 토글
-                            handleGroupPick(group);
-                          }
-                        }}
-                      >
-                        {picked ? '취소하기' : '가입하기'}
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+<ul className="modal-group-list">
+  {allGroups.map((group) => {
+    const picked = isGroupPicked(group.id);
+    
+    // 가입한 그룹은 숨기기
+    if (picked) return null;
+
+    return (
+      <li key={group.id}>
+        <div className="group-item">
+          <p className="img">
+            <img 
+              src={`${import.meta.env.BASE_URL}groups/${group.id}.png`}
+              alt={group.name} />
+          </p>
+          <span>{group.name}</span>
+          <button
+            className="group-action-btn join"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleGroupPickClick(group); // ✅ 모달 여는 함수
+            }}
+          >
+            가입하기
+          </button>
+
+        </div>
+      </li>
+    );
+  })}
+</ul>
+
           </div>
         </div>
       )}
@@ -430,7 +455,7 @@ const handleImageChange = async (e) => {
           </div>
           <p>내가 쓴 글</p>
         </Link>
-        <Link to="/closet/favorites" className="menu-item">
+        <Link to="/likelist" className="menu-item">
           <div className="icon">
             <LuFolderHeart style={{ fontSize: "30px", color: "#FF4187" }} />
           </div>
@@ -558,6 +583,20 @@ const handleImageChange = async (e) => {
           로그아웃
         </button>
       </div>
+      {confirmModalOpen && (
+  <div className="confirm-modal">
+    <div className="confirm-modal-content modal">
+      <p>
+        <span>{selectedGroup?.name}</span>에 가입하시겠습니까?
+      </p>
+      <div className="modal-buttons">
+        <button onClick={() => setConfirmModalOpen(false)}>취소</button>
+        <button onClick={handleConfirmJoin}>가입하기</button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

@@ -143,3 +143,30 @@
 .group-intro__unjoin .title span {
   margin-left: 10px;
 }
+
+.group-intro .join-toast {
+  position: fixed;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.78);
+  color: white;
+  padding: 14px 9px;
+  border-radius: 10px;
+  font-weight: 500;
+  z-index: 9999;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: fadeInOut 2s ease-in-out;
+  width: 150px;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; transform: translate(-50%, 20px); }
+  10%  { opacity: 1; transform: translate(-50%, 0); }
+  90%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+
+
+

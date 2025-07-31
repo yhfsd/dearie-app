@@ -232,10 +232,10 @@ const headerConfig = {
       ],
   }, 
   '/talkWritingPage': {
-    bgColor: '#121212',
+    bgColor: '#1A1A1A',
     textColor: '#fff',
     left: [
-      { id: 'goBack', icon: <FiChevronLeft style={{width:"25px", height:"25px"}}/>,  onClick: () =>{localStorage.setItem('lastActiveTab', 'talk'), window.history.back()} },
+      { id: 'goBack', icon: <IoCloseOutline style={{width:"25px", height:"25px"}}/>,  onClick: () =>{localStorage.setItem('lastActiveTab', 'talk'), window.history.back()} },
     ],
     center: [<h2 key="write-title" style={{ color: '#fff', fontWeight: '500', fontSize: '17px'}}>포스트 쓰기</h2>],
     right: [],
@@ -254,7 +254,7 @@ function getMatchedHeaderConfig(pathname) {
       left: [
         {
           id: 'goBack',
-          icon: <FiChevronLeft style={{ width: "25px", height: "25px" }} />,
+          icon: <FiChevronLeft style={{ width: "25px", height: "25px", marginTop:'3px' }} />,
           onClick: () => window.history.back()
         },
         {
@@ -293,7 +293,7 @@ function getMatchedHeaderConfig(pathname) {
     left: [
       {
         id: 'goBack',
-        icon: <FiChevronLeft style={{ width: "25px", height: "25px" }} />,
+        icon: <FiChevronLeft style={{ width: "25px", height: "25px",marginTop:'3px' }} />,
         onClick: () => {
           localStorage.setItem('lastActiveTab', 'to');
           window.history.back();
@@ -329,7 +329,7 @@ function getMatchedHeaderConfig(pathname) {
     left: [
       {
         id: 'goBack',
-        icon: <FiChevronLeft style={{ width: "25px", height: "25px" }} />,
+        icon: <FiChevronLeft style={{ width: "25px", height: "25px", marginTop:'3px' }} />,
         onClick: () => {
           localStorage.setItem('lastActiveTab', 'talk');
           window.history.back();
@@ -363,7 +363,7 @@ function getMatchedHeaderConfig(pathname) {
     left: [
       {
         id: 'goBack',
-        icon: <FiChevronLeft style={{ width: "25px", height: "25px" }} />,
+        icon: <FiChevronLeft style={{ width: "25px", height: "25px",marginTop:'3px' }} />,
         onClick: () => {
           localStorage.setItem('lastActiveTab', 'artist');
           window.history.back();

@@ -13,26 +13,17 @@ export default function Favorites() {
     // teamId에 따라 이미지 키 생성
     let imageKey;
     if (teamId === 1) {
-      // All 그룹의 경우 aespa 또는 ive 이미지 사용
-      imageKey = `aespaReviewImg${itemId}_1`;
-      // aespa 이미지가 없으면 ive 이미지 시도
-      if (!mainImgs[imageKey]) {
-        imageKey = `IVEReviewImg${itemId}_1`;
-      }
-      // 그것도 없으면 all 이미지 사용
-      if (!mainImgs[imageKey]) {
-        imageKey = `allReviewImg${itemId}_1`;
-      }
+        imageKey = `allImg${itemId}`;
     } else if (teamId === 2) {
-      imageKey = `IUReviewImg${itemId}_1`;
+      imageKey = `aespaImg${itemId}`;
     } else if (teamId === 3) {
-      imageKey = `TXTReviewImg${itemId}_1`;
+      imageKey = `TXTImg${itemId}`;
     } else if (teamId === 4) {
-      imageKey = `aespaReviewImg${itemId}_1`;
+      imageKey = `RIIZEImg${itemId}`;
     } else if (teamId === 5) {
-      imageKey = `IVEReviewImg${itemId}_1`;
+      imageKey = `IUImg${itemId}`;
     } else if (teamId === 6) {
-      imageKey = `RIIZEReviewImg${itemId}_1`;
+      imageKey = `IVEImg${itemId}`;
     }
 
     return mainImgs[imageKey] || mainImgs['allReviewImg1_1']; // 기본 이미지
