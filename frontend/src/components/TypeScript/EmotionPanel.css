@@ -30,6 +30,7 @@
   z-index: 200;           /* backdrop보다 높게 */
   pointer-events: auto;   /* 클릭 허용 */
   animation: slideup-chatbot 0.8s ease-in-out both;
+  scrollbar-width: none;
 }
 
 @keyframes slideup-chatbot {
@@ -37,7 +38,9 @@
   to {opacity: 1; transform: translateX(0) translateY(0);}
 }
 
-
+.emotion-panel::-webkit-scrollbar {
+  display: none;
+}
 
 .emotion-panel .icon-Box {
   position: relative;
@@ -123,9 +126,12 @@
 .emotion-GroupBox {
     padding: 0 4%;
     margin-bottom: 100px;
+    scrollbar-width: none;
 }
 
-
+.emotion-GroupBox::-webkit-scrollbar {
+  display: none;
+}
 
 .emotion-group-title {
     color: rgba(255, 255, 255, 0.65);
@@ -178,12 +184,19 @@
 }
 
 .emotion-panel .mainBox {
-    overflow-y: auto;
-    max-height: 60vh;
+  overflow-y: auto;
+  max-height: 60vh;
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
 }
 
 
 
+.emotion-panel .mainBox::-webkit-scrollbar {
+  display: none;
+}
 
 
 .emotion-dot {
