@@ -165,7 +165,7 @@ useEffect(() => {
    {ActiveComponent && (
      <ActiveComponent
        artist={artistInfo}
-       onTabChange={setActiveTab}    /* ← 여기 추가 */
+       onTabChange={handleTabChange}    /* ← 여기 추가 */
      />
    )}
  </section>
