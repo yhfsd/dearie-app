@@ -43,7 +43,25 @@
   margin-bottom: 100px;
 }
 
+.panel-content .slide-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  padding: 0 8%;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
 
+.panel-content .slide-title {
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.panel-content .slide-artist {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.69);
+}
 
 .panel-close-btn {
   color: #fff;
@@ -111,8 +129,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 10px 0px 10px;
 }
 
+.song-player-panel .Main-content .imgBox img {
+  width: 100%;
+}
 
 
 .Main-content .custom-player {

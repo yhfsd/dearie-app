@@ -27,7 +27,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert('올바른 이메일 형식을 입력해주세요.');
+      // alert('올바른 이메일 형식을 입력해주세요.');
       // return;
     }
 
@@ -40,8 +40,8 @@ const LoginPage = ({ setIsLoggedIn }) => {
       return;
     }
 
-    if (password.length < 5) {
-      alert('비밀번호는 5자 이상 입력해주세요.');
+    if (password.length < 3) {
+      alert('비밀번호는 3자 이상 입력해주세요.');
       return;
     }
 
@@ -75,7 +75,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
 
           <input
             type="email"
-            placeholder="이메일 입력"
+            placeholder="텍스트나 숫자를 입력해주세요"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -127,7 +127,7 @@ const LoginPage = ({ setIsLoggedIn }) => {
             <div className="password-wrapper">
               <input
                 type={isShowPwChecked ? 'text' : 'password'}
-                placeholder="5자리 이상 입력해주세요"
+                placeholder="3자리 이상 입력해주세요"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />

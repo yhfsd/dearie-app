@@ -55,6 +55,14 @@ const App = () => {
     }
   }, [location, isLoggedIn]);
 
+    useEffect(() => {
+    const images = import.meta.glob('./assets/**/*.png', { eager: true });
+    Object.values(images).forEach((module) => {
+      const img = new Image();
+      img.src = module.default;
+    });
+  }, []);
+
   const savedLast = localStorage.getItem('lastPath') || '/';
 
   return (

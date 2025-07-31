@@ -1,4 +1,5 @@
 // src/components/TypeScript/SongSelector.tsx
+
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './SongSelector.css';
@@ -13,7 +14,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-
 interface SongSelectorProps {
   emotion: string;
   songs: Song[];
@@ -23,7 +23,6 @@ interface SongSelectorProps {
 
 export default function SongSelector({ emotion, songs, onClose, onSelect }: SongSelectorProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [currentTrack, setCurrentTrack] = useState<string | null>(null);
 
   // 초기 슬라이드 설정
   useEffect(() => {
@@ -35,8 +34,8 @@ export default function SongSelector({ emotion, songs, onClose, onSelect }: Song
   };
 
   const overlay = (
-    <div className="song-selector-overlay">
-      <div className="song-selector">
+    <div className="song-selector-overlay" onClick={onClose}>
+      <div className="song-selector" onClick={e => e.stopPropagation()}>
         <div className="song-selector-inner">
           <div className="titleBox">
             <p className="text">키워드에 대한 음악 추천중 ···</p>
@@ -48,7 +47,6 @@ export default function SongSelector({ emotion, songs, onClose, onSelect }: Song
             slidesPerView="auto"
             centeredSlides
             spaceBetween={24}
-
             pagination={{ clickable: true }}
             onSlideChange={handleSlideChange}
             className="song-swiper"
@@ -69,30 +67,29 @@ export default function SongSelector({ emotion, songs, onClose, onSelect }: Song
                   </div>
 
                   {/* active 슬라이드에만 커스텀 플레이어 표시 */}
-      <div className="player-wrapper">
-        <CustomAudioPlayer
-          src={song.src}
-          coverImg={song.img}
-          title={song.title}
-          artist={song.groupName}
-          isActive={activeIndex === idx}
-        />
-      </div>
-     </div>
+                  <div className="player-wrapper">
+                    <CustomAudioPlayer
+                      src={song.src}
+                      coverImg={song.img}
+                      title={song.title}
+                      artist={song.groupName}
+                      isActive={activeIndex === idx}
+                    />
+                  </div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
 
         <div className="bottom-btnBox">
-        <button className='select-btn'
-        onClick={() => {
-          onSelect(songs[activeIndex]);
-          onClose();
-        }}
-        >
-          선택 완료
-        </button>
+          {/* onSelect만 호출, 모달 닫기는 부모에서 처리 */}
+          <button
+            className='select-btn'
+            onClick={() => onSelect(songs[activeIndex])}
+          >
+            선택 완료
+          </button>
           <button className="close-btn" onClick={onClose}>
             선택하지 않고 넘어갈게요
           </button>

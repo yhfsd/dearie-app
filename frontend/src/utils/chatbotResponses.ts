@@ -125,7 +125,6 @@ export function createBotMessages(userText: Emotion): Message[] {
   // 3) 마지막에 '추천 음악' 옵션 메시지 추가
   msgs.push({
     from: 'bot',
-    text: '추천 음악을 받아보시겠어요?',
     showOptions: true,  // ChatWindow 에서 버튼으로 렌더링하는 플래그
     songs: SONGS_BY_EMOTION[userText],
     emotion: userText,

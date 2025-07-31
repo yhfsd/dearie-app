@@ -1,7 +1,8 @@
 // src/pages/FanLog/ThemePage.jsx
 // @ts-nocheck
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import './ThemePage.css';
 
@@ -55,6 +56,17 @@ const THEMES = {
 
 export default function ThemePage() {
   const navigate = useNavigate();
+
+useEffect(() => {
+  const images = import.meta.glob('../../assets/**/*.png', { eager: true });
+
+  Object.values(images).forEach((module) => {
+    const img = new Image();
+    img.src = module.default;
+  });
+}, []);
+
+
 
   // 1) 로컬스토리지에서 fanLogBg(thumbnail) 꺼내기
   const stored = localStorage.getItem('fanLogBg');

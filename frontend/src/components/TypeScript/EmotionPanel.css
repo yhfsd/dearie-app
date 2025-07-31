@@ -253,7 +253,7 @@
 .emotion-footer .confirm-btn {
     width: 92%;
     padding: 20px 0;
-      background: rgba(4, 2, 51, 0.4);
+      background: #fff;
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   box-shadow: 
@@ -265,4 +265,5 @@
   position: fixed;
   bottom: 20px;
   z-index: 9999;
+  color: #FF4187;
 }

@@ -9,7 +9,6 @@ import { FaAngleRight } from 'react-icons/fa6';
 import EmotionPanel from './EmotionPanel';
 import { EMOTION_GROUPS, Emotion } from './emotions';
 import SongSelector from './SongSelector';
-import { SONGS_BY_EMOTION } from './emusics';
 import type { Song } from './emusics';
 import SongPlayerPanel from './SongPlayerPanel';
 
@@ -23,7 +22,7 @@ interface ChatWindowProps {
   onSelectSong: (song: Song) => void;
   isDisabled?: boolean;
   onDismissOption?: (index: number) => void;
-  setChatStarted: (v: boolean) => void; // [김정태_추가]
+  setChatStarted: (v: boolean) => void;
 }
 
 export default function ChatWindow({
@@ -31,13 +30,14 @@ export default function ChatWindow({
   onSendMessage,
   panelOpen,
   setPanelOpen,
-  setChatStarted, // [김정태_추가]
+  setChatStarted,
   chatStarted,
   onUserMessageClick,
   onSelectSong,
   isDisabled = false,
   onDismissOption,
 }: ChatWindowProps) {
+  // state hooks
   const [input, setInput] = useState('');
   const [showDate, setShowDate] = useState(false);
   const [showSongSelector, setShowSongSelector] = useState(false);
@@ -45,7 +45,45 @@ export default function ChatWindow({
   const [panelSelectedEmotion, setPanelSelectedEmotion] = useState<Emotion | null>(null);
   const [currentOptionIndex, setCurrentOptionIndex] = useState<number | null>(null);
   const [playerSong, setPlayerSong] = useState<Song | null>(null);
+  const [dismissedOptions, setDismissedOptions] = useState<number[]>([]);
 
+  // close & select handlers
+  const closeSongSelector = () => {
+    setShowSongSelector(false);
+    setCurrentOptionIndex(null);
+  };
+
+  const handleSongSelect = (song: Song) => {
+    onSelectSong(song);
+    if (currentOptionIndex !== null) {
+      // 카드 숨기기
+      setDismissedOptions(prev => [...prev, currentOptionIndex]);
+      onDismissOption?.(currentOptionIndex);
+    }
+    // 모달 닫기
+    closeSongSelector();
+  };
+
+  // prepare filtered message list
+  const displayMessages: Message[] = isDisabled
+    ? [
+        ...messages,
+        {
+          from: 'bot',
+          text: '앗, 오늘은 대화가 모두 끝났어요!\n내일 또 놀러 와 주세요😉',
+          hideAvatar: false,
+        },
+      ]
+    : messages;
+
+  const visibleEntries = displayMessages
+    .map((msg, idx) => ({ msg, idx }))
+    .filter(({ msg, idx }) => {
+      // remove dismissed option cards
+      return !(msg.from === 'bot' && msg.showOptions && dismissedOptions.includes(idx));
+    });
+
+  // utility & effects
   const getAvatarUrl = () => {
     const base = import.meta.env.BASE_URL + 'chatBot/';
     if (!currentEmotion) return `${base}dearie.png`;
@@ -77,14 +115,14 @@ export default function ChatWindow({
     const el = messagesRef.current;
     if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
   };
-  useEffect(scrollToBottom, [messages, isDisabled]);
+  useEffect(scrollToBottom, [visibleEntries, isDisabled]);
   useEffect(() => {
     const vv = window.visualViewport;
     if (!vv) return;
     const handler = () => setTimeout(scrollToBottom, 50);
     vv.addEventListener('resize', handler);
     return () => vv.removeEventListener('resize', handler);
-  }, [messages, isDisabled]);
+  }, [visibleEntries, isDisabled]);
 
   const handleEmotionClick = (emo: Emotion) => {
     setCurrentEmotion(emo);
@@ -115,17 +153,6 @@ export default function ChatWindow({
     weekday: 'short',
   });
 
-  const displayMessages: Message[] = isDisabled
-    ? [
-        ...messages,
-        {
-          from: 'bot',
-          text: '앗, 오늘은 대화가 모두 끝났어요!\n내일 또 놀러 와 주세요😉',
-          hideAvatar: false,
-        },
-      ]
-    : messages;
-
   return (
     <div className="chat-window">
       {/* 추천음악 모달 */}
@@ -133,22 +160,12 @@ export default function ChatWindow({
         <SongSelector
           emotion={recommendedEmotion}
           songs={recommendedSongs}
-          onClose={() => {
-            setShowSongSelector(false);
-            setCurrentOptionIndex(null);
-          }}
-          onSelect={song => {
-            if (currentOptionIndex !== null) {
-              onDismissOption?.(currentOptionIndex);
-              setCurrentOptionIndex(null);
-            }
-            onSelectSong(song);
-            setShowSongSelector(false);
-          }}
+          onClose={closeSongSelector}
+          onSelect={handleSongSelect}
         />
       )}
 
-      {/* 메시지 영역: chatStarted 에 따라 실제 리스트 또는 빈 박스로 토글 */}
+      {/* 메시지 영역 */}
       {chatStarted ? (
         <div className="messages" ref={messagesRef}>
           {showDate && (
@@ -157,13 +174,13 @@ export default function ChatWindow({
             </div>
           )}
 
-          {displayMessages.map((m, i) => {
+          {visibleEntries.map(({ msg: m, idx }) => {
             // 1) 유저 메시지
             if (m.from === 'user' && m.text) {
               const isEmotion = !!colorMap[m.text] && !!onUserMessageClick;
               return isEmotion ? (
                 <button
-                  key={i}
+                  key={idx}
                   className="message user"
                   onClick={() => handleEmotionClick(m.text as Emotion)}
                 >
@@ -175,7 +192,7 @@ export default function ChatWindow({
                   <FaAngleRight className="message-arrow" />
                 </button>
               ) : (
-                <div key={i} className="message user">
+                <div key={idx} className="message user">
                   <span className="message-text">{m.text}</span>
                 </div>
               );
@@ -184,7 +201,7 @@ export default function ChatWindow({
             // 2) 봇 추천 음악 옵션 카드
             if (m.from === 'bot' && m.showOptions) {
               return (
-                <div key={i} className="chatbot-textBox">
+                <div key={idx} className="chatbot-textBox">
                   <div className="chatbot-textBox-inner">
                     <div className="titleBox">
                       <div className="imgBox">
@@ -194,16 +211,19 @@ export default function ChatWindow({
                           className="text-box-image"
                         />
                       </div>
-                      <p className="text">{m.text}</p>
+                      <p className="text">추천 음악을 받아보시겠어요?</p>
                     </div>
                     <div className="bottom-btn">
-                      <button className="fine" onClick={() => onDismissOption?.(i)}>
+                      <button
+                        className="fine"
+                        onClick={() => setDismissedOptions(prev => [...prev, idx])}
+                      >
                         괜찮아요
                       </button>
                       <button
                         className="like"
                         onClick={() => {
-                          setCurrentOptionIndex(i);
+                          setCurrentOptionIndex(idx);
                           setShowSongSelector(true);
                         }}
                       >
@@ -215,10 +235,10 @@ export default function ChatWindow({
               );
             }
 
-            // 3) 봇 내가 고른 음악 버튼
+            // 3) 음악 재생 버튼
             if (m.from === 'bot' && m.type === 'music' && m.song) {
               return (
-                <div key={i} className="message bot">
+                <div key={idx} className="message bot">
                   <button className="music-btn" onClick={() => setPlayerSong(m.song!)}>
                     내가 고른 음악
                     <FaAngleRight style={{ marginLeft: '10px' }} />
@@ -227,9 +247,9 @@ export default function ChatWindow({
               );
             }
 
-            // 4) 봇 일반 텍스트
+            // 4) 일반 봇 텍스트
             return (
-              <div key={i} className="message bot">
+              <div key={idx} className="message bot">
                 <div className="bot-content">
                   <div
                     className="bot-avatar-wrapper"
@@ -264,42 +284,36 @@ export default function ChatWindow({
           <div
             className="emotion-backdrop"
             onClick={() => {
-              // 취소 시 원래 감정 복원 후 닫기
               setPanelSelectedEmotion(currentEmotion);
               setPanelOpen(false);
             }}
           />
-   <EmotionPanel
-     groups={EMOTION_GROUPS}
-     // 아이콘용: 마지막에 확정된 감정
-     initialEmotion={currentEmotion}
-     // 버튼 하이라이트용: 패널에서 실제 클릭한 것만
-     selectedEmotion={panelSelectedEmotion}
-     onChange={emo => setPanelSelectedEmotion(emo)}
-     onSelect={() => {
-       // 선택 완료 시 currentEmotion으로 확정
-       if (panelSelectedEmotion) {
-         setCurrentEmotion(panelSelectedEmotion);
-         onUserMessageClick?.(panelSelectedEmotion);
-       }
-       setPanelOpen(false);
-     }}
-     onClose={() => {
-       // 취소하면 하이라이트 초기화
-       setPanelSelectedEmotion(currentEmotion);
-       setPanelOpen(false);
-     }}
-   />
+          <EmotionPanel
+            groups={EMOTION_GROUPS}
+            initialEmotion={currentEmotion}
+            selectedEmotion={panelSelectedEmotion}
+            onChange={emo => setPanelSelectedEmotion(emo)}
+            onSelect={() => {
+              if (panelSelectedEmotion) {
+                setCurrentEmotion(panelSelectedEmotion);
+                onUserMessageClick?.(panelSelectedEmotion);
+              }
+              setPanelOpen(false);
+            }}
+            onClose={() => {
+              setPanelSelectedEmotion(currentEmotion);
+              setPanelOpen(false);
+            }}
+          />
         </>
       )}
 
-      {/* 입력창 (항상 렌더) */}
+      {/* 입력창 */}
       <div className="input-area">
         <button
           className="btn add-btn"
           onClick={() => {
             if (isDisabled) return;
-            // 패널 열 때 내부 선택값을 현재 감정으로 초기화
             setPanelSelectedEmotion(null);
             setPanelOpen(true);
           }}
@@ -312,12 +326,10 @@ export default function ChatWindow({
           type="text"
           value={input}
           placeholder={isDisabled ? '채팅 횟수를 모두 사용하셨어요' : '답장하기'}
-          // [김정태_수정]
           onFocus={() => {
             scrollToBottom();
             if (!chatStarted) setChatStarted(true);
           }}
-          // [김정태_수정]
           onChange={e => {
             if (!isDisabled) setInput(e.target.value);
           }}
@@ -327,9 +339,8 @@ export default function ChatWindow({
               submitText(input);
             }
           }}
-        readOnly={isDisabled} // [김정태_추가]
+          readOnly={isDisabled}
         />
-
         <button className="btn send-btn" onClick={() => submitText(input)} disabled={isDisabled}>
           <PiPaperPlaneTilt size={24} style={{ marginRight: '15px', display: 'block' }} />
         </button>
