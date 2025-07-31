@@ -2,9 +2,15 @@
 .chatbot-page {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100vh;
   position: relative;
   overflow-x: hidden;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  max-width: 768px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .chatbot-page::-webkit-scrollbar {
@@ -29,6 +35,7 @@
   background: url('/chatBot/chatBot-bg.png') center/cover no-repeat;
   scrollbar-width: none;        /* Firefox */
   -ms-overflow-style: none; 
+  overflow: hidden;
 }
 
 
