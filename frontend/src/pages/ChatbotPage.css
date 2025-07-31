@@ -9,6 +9,7 @@
   position: fixed;
   inset: 0;
   max-width: 768px;
+  width: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
