@@ -1,4 +1,4 @@
-.challenges { padding: 49px 0; background: #fff; height: 100vh;}
+.challenges { padding: 49px 0; background: #fff; height: 100%;}
 .challenges .container {background: #fff; padding-bottom: 87px;}
 /* 이번달 */
 .challenges .container .thisMonth {margin-bottom: 14px; padding: 0 2.5%;}
