@@ -3,7 +3,7 @@
     color: #fff;
     padding-bottom: 68px;
     background: #121212;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 
