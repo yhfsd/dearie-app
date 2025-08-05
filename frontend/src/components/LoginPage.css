@@ -58,7 +58,7 @@ html, body {
 .social-icons .social.apple .icon {font-size: 30px; padding: 0;}
 .login-page .signup {position: absolute; left: 50%; bottom: 5%; width: 100%; transform: translateX(-50%); text-align: center; font-size: 13px; color: #fff; display: flex; justify-content: center; align-items: center;}
 .login-page .signup .text {opacity: 0.65;}
-.login-page .signup .link {color: #FF4187; opacity: 1; margin-left: 5px;}
+.login-page .signup .link {color: #323232; opacity: 1; margin-left: 5px;}
 /* 단계 전환용 fade-in 애니메이션 */
 .step-container {
   /* animation: fadeInRight 0.8s ease-in-out; */
